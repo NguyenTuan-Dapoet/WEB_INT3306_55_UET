@@ -1,0 +1,111 @@
+/* General Styling */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.hero-container {
+  position: relative;
+  height: 60vh; 
+  background-image: url('../../assets/home_bg.jpg'); 
+  background-size: cover;
+  background-position: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: absolute; /* Navbar nằm trên nền */
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Nền trong suốt */
+  z-index: 10;
+}
+
+.navbar-logo {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar-link:hover {
+  color: #00cc88; /* Màu khi hover */
+}
+
+.navbar-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-right: 3rem; /* Đẩy nút Login và Sign up vào trong */
+}
+
+.navbar-login,
+.navbar-signup {
+  border: none;
+  padding: 0.7rem 1.2rem; /* Điều chỉnh kích thước nút */
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.navbar-login {
+  background: none;
+  color: white;
+}
+
+.navbar-login:hover {
+  color: #00cc88;
+}
+
+.navbar-signup {
+  background-color:white;
+  color: black;
+}
+
+.navbar-signup:hover {
+  background-color: #00996e;
+}
+
+/* Hero Text Styling */
+.hero-text {
+  position: absolute;
+  top: 50%; /* Canh giữa theo chiều dọc */
+  left: 50%; /* Canh giữa theo chiều ngang */
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.hero-text h2 {
+  font-size: 2.5rem;
+  margin: 0.5rem 0;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}

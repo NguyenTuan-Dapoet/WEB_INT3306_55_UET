@@ -1,0 +1,81 @@
+/* Container chứa toàn bộ thành phần lịch */
+.calendarWrap {
+    position: relative;
+    width: 200px; /* Kích thước nhỏ hơn */
+  }
+  
+  /* Hộp input hiển thị khoảng ngày */
+  .inputBox {
+    border: 1px solid #00cc88;
+    border-radius: 6px;
+    background-color: #ffffff;
+    font-size: 16px; /* Giảm kích thước chữ */
+    font-weight: 500;
+    cursor: pointer;
+    color: #333;
+    text-align: center;
+    transition: border-color 0.3s ease;
+  }
+  
+  .inputBox:hover,
+  .inputBox:focus {
+    border-color: #00996e;
+    outline: none;
+  }
+  
+  /* Lịch dropdown */
+  .calendarElement {
+    position: absolute;
+    top: calc(100% + 8px); /* Thu gọn khoảng cách từ input xuống lịch */
+    left: 0%;
+    z-index: 10;
+    background-color: #f1fdf5;
+    border: 1px solid #00cc88;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* Thu gọn padding */
+    color: #333;
+    width: 100%;
+    text-align: center; /* Canh giữa toàn bộ nội dung */
+  }
+  
+  /* Ẩn dòng tháng/năm nhỏ màu xám */
+  .calendarElement .rdrDateDisplayWrapper {
+    display: none; /* Ẩn dòng hiển thị ngày tháng trên đầu */
+  }
+  
+  /* Vị trí mũi tên điều hướng */
+  .calendarElement .rdrNextPrevButton {
+    background: #00cc88;
+    color: #fff;
+    border: none;
+    /* border-radius: 80%; Bo tròn nút mũi tên */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0; /* Xóa khoảng cách mặc định */
+  }
+  
+  .calendarElement .rdrNextPrevButton:hover {
+    background-color: #00996e;
+  }
+  
+  /* Canh chỉnh mũi tên gần với thanh chọn tháng và năm */
+  .calendarElement .rdrMonthAndYearWrapper {
+    display: flex;
+    justify-content: space-between; /* Canh đều hai bên */
+    align-items: center; /* Canh giữa dọc */
+    padding: 0 8px; /* Thu gọn padding */
+  }
+  
+  /* Số ngày trong lịch */
+  .calendarElement .rdrDayNumber span {
+    color: #333;
+    font-size: 14px; /* Giảm kích thước chữ */
+  }
+  
+
+  /* Ngày bị hover */
+  .calendarElement .rdrDayHovered span {
+    border-radius: 50%;
+  }
+  

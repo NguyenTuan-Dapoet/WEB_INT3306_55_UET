@@ -1,0 +1,84 @@
+/* Container */
+.passenger-class-container {
+    position: relative;
+  }
+  
+  /* Trigger button */
+  .passenger-class-trigger {
+    border: 1px solid #00cc88;
+    border-radius: 6px;
+    padding: 13px 15px;
+    background-color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.3s ease;
+  }
+  
+  .passenger-class-trigger:hover {
+    border-color: #00996e;
+  }
+  
+  /* Dropdown */
+  .passenger-class-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    background-color: #f1fdf5;
+    border: 1px solid #00cc88;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 100%;
+  }
+  
+  /* Dropdown sections */
+  .dropdown-section {
+    margin-bottom: 15px;
+  }
+  
+  .dropdown-section label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .dropdown-section select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease;
+  }
+  
+  .dropdown-section select:focus {
+    outline: none;
+    border-color: #00cc88;
+  }
+  
+  /* Close button */
+  .dropdown-close-button {
+    background-color: #00cc88;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .dropdown-close-button:hover {
+    background-color: #00996e;
+    transform: translateY(-2px);
+  }
+  
