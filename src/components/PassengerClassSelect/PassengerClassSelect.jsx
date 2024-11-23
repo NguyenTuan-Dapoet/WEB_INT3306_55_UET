@@ -1,20 +1,31 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setPassengers } from "../../Redux/tripSlice";
 import "./PassengerClassSelect.css";
 
 const PassengerClassSelect = () => {
-  const [person, setPerson] = useState(1); // Giá trị mặc định cho "person"
-  const [classType, setClassType] = useState("Economy"); // Giá trị mặc định cho "class"
+  const dispatch = useDispatch();
+  const passengers = useSelector((state) => state.trip.passengers);
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Trạng thái mở/đóng dropdown
 
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
-  const handlePersonChange = (event) => {
-    setPerson(event.target.value);
+  const handleClassChange = (event) => {
+    dispatch(setPassengers({ classType: event.target.value }));
   };
 
-  const handleClassChange = (event) => {
-    setClassType(event.target.value);
+  const handleAdultChange = (event) => {
+    const value = Math.min(Math.max(parseInt(event.target.value, 10) || 0, 0), 10); // Giới hạn từ 0 đến 10
+    dispatch(setPassengers({ adult: value }));
   };
+
+  const handleChildrenChange = (event) => {
+    const value = Math.min(Math.max(parseInt(event.target.value, 10) || 0, 0), 5); // Giới hạn từ 0 đến 5
+    dispatch(setPassengers({ children: value }));
+  };
+
+  const people = passengers.adult + passengers.children;
 
   return (
     <div className="passenger-class-container">
@@ -25,7 +36,7 @@ const PassengerClassSelect = () => {
         role="button"
         tabIndex={0}
       >
-        {`${person} ${person > 1 ? "people" : "person"}, ${classType}`}
+        {`${people} ${people > 1 ? "people" : "person"}, ${passengers.classType}`}
       </div>
 
       {/* Dropdown nội dung */}
@@ -36,7 +47,7 @@ const PassengerClassSelect = () => {
             <label htmlFor="class-select">Class</label>
             <select
               id="class-select"
-              value={classType}
+              value={passengers.classType}
               onChange={handleClassChange}
             >
               <option value="Economy">Economy</option>
@@ -48,22 +59,29 @@ const PassengerClassSelect = () => {
 
           {/* Lựa chọn Person */}
           <div className="dropdown-section">
-            <label htmlFor="person-select">Passenger</label>
-            <select
-              id="person-select"
-              value={person}
-              onChange={handlePersonChange}
-            >
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-            </select>
+            <label htmlFor="passenger">Passenger</label>
+            <div className="adult-input">Adult (max 10)</div>
+            <input
+              id="adult-input"
+              type="number"
+              min="0"
+              max="10"
+              value={passengers.adult}
+              onChange={handleAdultChange}
+            />
+
+            <div className="children-input">Children (max 5)</div>
+            <input
+              id="children-input"
+              type="number"
+              min="0"
+              max="5"
+              value={passengers.children}
+              onChange={handleChildrenChange}
+            />
           </div>
 
-          <button
-            className="dropdown-close-button"
-            onClick={toggleDropdown}
-          >
+          <button className="dropdown-close-button" onClick={toggleDropdown}>
             Done
           </button>
         </div>

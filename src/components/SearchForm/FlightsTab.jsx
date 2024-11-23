@@ -1,114 +1,47 @@
-// import React, { useState } from "react";
-// import DateRangeComp from "../DateSelect/DateRangeComp.jsx";
-// import CalendarComp from "../DateSelect/CalendarComp.jsx";
-// import PassengerClassSelect from "../PassengerClassSelect/PassengerClassSelect.jsx";
-// import "./SearchForm.css";
-
-// const FlightsTab = () => {
-//   const [From, setFrom] = useState("");
-//   const [To, setTo] = useState("");
-//   const [Trip, setTrip] = useState("one-way");
-
-//   const handleFromChange = (event) => setFrom(event.target.value);
-//   const handleToChange = (event) => setTo(event.target.value);
-
-//   const handleSwitch = () => {
-//     const temp = From;
-//     setFrom(To);
-//     setTo(temp);
-//   };
-
-//   const handleChangeTrip = (event) => {
-//     setTrip(event.target.value);
-//   };
-
-//   return (
-//     <div className="form-content">
-//       <div className="form-row">
-//         {/* From and To */}
-//         <div className="input-group">
-//           <input
-//             value={From}
-//             onChange={handleFromChange}
-//             type="text"
-//             placeholder="From"
-//           />
-//           <button className="swap-button" onClick={handleSwitch}>
-//             switch
-//           </button>
-//           <input
-//             value={To}
-//             onChange={handleToChange}
-//             type="text"
-//             placeholder="To"
-//           />
-//         </div>
-
-//         {/* Trip Options */}
-//         <select
-//           className="Trip-option"
-//           value={Trip}
-//           onChange={handleChangeTrip}
-//         >
-//           <option value="one-way">One Way</option>
-//           <option value="round-trip">Round Trip</option>
-//         </select>
-
-//         {/* Date Picker */}
-//         <div className="date-container">
-//           <DateRangeComp />
-//         </div>
-
-//         {/* Passenger and Class Select */}
-//         <PassengerClassSelect/>
-//       </div>
-
-//       <div className="form-actions">
-//         <button className="add-promo-code">+ Add Promo Code</button>
-//         <button className="submit-button">Show Flights</button>
-//       </div>
-
-//       <div>
-//         <p>kết quả: {From} to {To}, {Trip}, </p>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default FlightsTab;
-
-
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setTripOption } from "../../Redux/tripSlice"; // Import action
-import DateRangeComp from "../DateSelect/DateRangeComp.jsx";
+import {setFrom, setTo, setTripOption, setStartDate, setEndDate } from "../../Redux/tripSlice";
 import CalendarComp from "../DateSelect/CalendarComp.jsx";
+import DateRangeComp from "../DateSelect/DateRangeComp.jsx";
 import PassengerClassSelect from "../PassengerClassSelect/PassengerClassSelect.jsx";
-import "./SearchForm.css";
+import { IoMdSwap } from "react-icons/io";
+
+import "./FlightsTab.css";
 
 const FlightsTab = () => {
-  const [From, setFrom] = useState("");
-  const [To, setTo] = useState("");
-
   const dispatch = useDispatch();
-  const tripOption = useSelector((state) => state.trip.tripOption); // Lấy giá trị từ Redux store
 
-  const handleFromChange = (event) => setFrom(event.target.value);
-  const handleToChange = (event) => setTo(event.target.value);
+  const From = useSelector((state) => state.trip.From);
+  const To = useSelector((state) => state.trip.To);
+  const tripOption = useSelector((state) => state.trip.tripOption);
+  const startDate = useSelector((state) => state.trip.startDate);
+  const endDate = useSelector((state) => state.trip.endDate);
+  const passengers = useSelector((state) => state.trip.passengers);
 
+  const handleFromChange = (e) => {
+    dispatch(setFrom(e.target.value));
+  };
+
+  const handleToChange = (e) => {
+    dispatch(setTo(e.target.value));
+  };
+
+  // setFrom và setTo là các Redux actions được tạo bởi createSlice trong Redux Toolkit.
+  // Những actions này cần được kích hoạt bằng cách sử dụng dispatch.
   const handleSwitch = () => {
     const temp = From;
-    setFrom(To);
-    setTo(temp);
+    dispatch(setFrom(To)); // Gửi giá trị "To" vào Redux store cho "From"
+    dispatch(setTo(temp)); // Gửi giá trị "temp" (giá trị cũ của "From") vào Redux store cho "To"
   };
 
   const handleChangeTrip = (event) => {
-    dispatch(setTripOption(event.target.value)); // Cập nhật giá trị trong Redux store
+    dispatch(setTripOption(event.target.value));
   };
 
   return (
-    <div className="form-content">
-      <div className="form-row">
+    <>
+      {/* Form Content */}
+      <div className="form-content-flights">
         {/* From and To */}
         <div className="input-group">
           <input
@@ -118,7 +51,7 @@ const FlightsTab = () => {
             placeholder="From"
           />
           <button className="swap-button" onClick={handleSwitch}>
-            switch
+            <IoMdSwap />
           </button>
           <input
             value={To}
@@ -128,10 +61,10 @@ const FlightsTab = () => {
           />
         </div>
 
-        {/* Trip Options */}
+        {/* Trip Option */}
         <select
           className="Trip-option"
-          value={tripOption} // Lấy giá trị từ Redux store
+          value={tripOption}
           onChange={handleChangeTrip}
         >
           <option value="one-way">One Way</option>
@@ -140,24 +73,41 @@ const FlightsTab = () => {
 
         {/* Date Picker */}
         <div className="date-container">
-          {tripOption === "one-way" ? <CalendarComp /> : <DateRangeComp />}
+          {tripOption === "one-way" ? (
+            <CalendarComp
+              type="tripStart"
+              placeholder="Select Departure Date"
+              onDateChange={(date) => dispatch(setStartDate(date))}
+            />
+          ) : (
+            <DateRangeComp
+              onStartDateChange={(date) => dispatch(setStartDate(date))}
+              onEndDateChange={(date) => dispatch(setEndDate(date))}
+            />
+          )}
         </div>
 
         {/* Passenger and Class Select */}
-        <PassengerClassSelect />
+        <div className="PassengerClassSelect">
+          <PassengerClassSelect />
+        </div>
       </div>
 
-      <div className="form-actions">
-        <button className="add-promo-code">+ Add Promo Code</button>
-        <button className="submit-button">Show Flights</button>
-      </div>
-
-      {/* <div>
+      {/* Result Section */}
+      {/* <div className="result-flights-tab">
         <p>
-          Kết quả: {From} to {To}, {tripOption}
+          From: {From || "Not specified"}, 
+          To: {To || "Not specified"},{" "}
+          Trip Option: {tripOption || "Not selected"},{" "}
+          {tripOption === "round-trip"
+            ? `Dates: ${startDate || "Not selected"} - ${endDate || "Not selected"}`
+            : `Date: ${startDate || "Not selected"}`},{" "}
+          Passengers: {passengers.adult} {passengers.adult > 1 ? "Adults" : "Adult"} and{" "}
+          {passengers.children} {passengers.children > 1 ? "Children" : "Child"},{" "}
+          Class: {passengers.classType || "Not selected"}
         </p>
       </div> */}
-    </div>
+    </>
   );
 };
 

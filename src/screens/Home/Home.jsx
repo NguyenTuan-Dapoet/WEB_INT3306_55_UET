@@ -3,6 +3,9 @@ import NavBar from '../../components/NavBar/NavBar.jsx'
 import SearchForm from '../../components/SearchForm/SearchForm.jsx'
 import PassengerClassSelect from '../../components/PassengerClassSelect/PassengerClassSelect.jsx'
 import DateRangeComp from '../../components/DateSelect/DateRangeComp.jsx'
+
+import './Home.css'
+
 function Home() {
     return (
         <div>

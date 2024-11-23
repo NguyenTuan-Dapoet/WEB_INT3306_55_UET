@@ -1,217 +1,82 @@
-
-/* General styling */
 .search-form-container {
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 0.5rem 2.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  max-width: 1100px;
-  margin: 10px auto;
-  font-family: 'Arial', sans-serif;
-  font-size: 14px;
-  position: relative;
-  top: -100px;
-}
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 0.5rem 2.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    max-width: 1100px;
+    margin: 10px auto;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    position: relative;
+    top: -100px;
+  }
+  
+  /* Tabs */
+  .tabs {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #f0f0f0;
+  }
+  
+  .tab-button {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.3s ease, font-weight 0.3s ease;
+  }
+  
+  .tab-button.active {
+    font-weight: bold;
+    color: #00cc88;
+    border-bottom: 3px solid #00cc88;
+  }
+  
+  .tab-button:hover {
+    color: #00cc88;
+  }
 
-/* Tabs */
-.tabs {
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid #f0f0f0;
-}
-
-.tab-button {
-  background: none;
-  border: none;
-  font-size: 1rem;
-  padding: 0.8rem 1.2rem;
-  cursor: pointer;
-  color: #555;
-  transition: color 0.3s ease, font-weight 0.3s ease;
-}
-
-.tab-button.active {
-  font-weight: bold;
-  color: #00cc88;
-  border-bottom: 3px solid #00cc88;
-}
-
-.tab-button:hover {
-  color: #00cc88;
-}
-
-/* Form content */
-.form-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-/* Form rows */
-.form-row {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem; 
-  justify-content: space-between;
-  flex-wrap: wrap; /* Đảm bảo rằng các thành phần không tràn khi không đủ không gian */
-}
-
-.input-group {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-
-.input-group input {
-  width: 100px; 
-  padding: 0.8rem;
-  border: none;
-}
-
-.swap-button {
-  background: #00cc88; /* Màu nền */
-  color: #ffffff; /* Màu chữ */
-  border: none; /* Loại bỏ viền */
-  padding: 0.8rem 1rem; /* Tăng khoảng cách bên trong nút */
-  font-size: 1rem; /* Tăng kích thước chữ */
-  cursor: pointer; /* Thay đổi con trỏ chuột */
-  border-radius: 8px; /* Làm viền bo tròn nhẹ */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng chuyển động */
-}
-
-.swap-button:hover {
-  background: #00996e; /* Thay đổi màu nền khi hover */
-  transform: scale(1.05); /* Tăng nhẹ kích thước khi hover */
-}
-
-
-/* Form controls */
-.form-row input,
-.form-row .Date {
-  padding: 0.8rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  font-size: 1rem;
-  flex: 2;
-  transition: border-color 0.3s ease;
-}
-
-.form-row select  {
-  padding: 0.8rem 0rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  font-size: 1rem;
-  flex: 1;
-  transition: border-color 0.3s ease;
-}
-
-
-input:focus,
-select.Trip-option:focus {
-  outline: none;
-  border-color: #00cc88;
-}
-
-/* Date Picker Styling */
-.date-container {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem; /* Tạo khoảng cách giữa các thành phần liên quan đến DatePicker */
-  flex: 2;
-}
-
-.calendarWrap {
-  position: relative;
-}
-
-.inputBox {
-  width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.inputBox:focus {
-  outline: none;
-  border-color: #00cc88;
-}
-
-.calendarElement {
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
-  z-index: 10;
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  padding: 15px;
-  min-width: 300px;
-}
-
-/* Form actions */
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  align-items: center;
-}
-
-.add-promo-code {
-  background: none;
-  border: none;
-  color: #555;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: color 0.3s ease;
-}
-
-.add-promo-code:hover {
-  color: #00cc88;
-}
-
-.submit-button {
-  background-color: #00cc88;
-  color: #ffffff;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.submit-button:hover {
-  background-color: #00996e;
-  transform: scale(1.05);
-}
-
-/* Adjust spacing and alignment */
-.select-input-group {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.date-picker {
-  display: flex;
-  justify-content: flex-start;
-  gap: 1rem;
-  align-items: center;
-}
-
-.date-picker .inputBox {
-  flex: 1;
-}
-
-.passenger-class-container {
-  flex: 3;
-}
+  
+  /* Form actions */
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  .add-promo-code {
+    background: none;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+  
+  .add-promo-code:hover {
+    color: #00cc88;
+  }
+  
+  .submit-button {
+    background-color: #00cc88;
+    color: #ffffff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #00996e;
+    transform: scale(1.05);
+  }
