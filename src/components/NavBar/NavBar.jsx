@@ -27,9 +27,9 @@ function NavBar () {
 
           {/* hero text */}
           <div className="hero-text">
-            <h1>Helping Others</h1>
-            <h2>LIVE & TRAVEL</h2>
-            <p>Special offers to suit your plan</p>
+            <p id='title-hero-text'>Helping Others</p>
+            <p id='content-hero-text'>LIVE & TRAVEL</p>
+            <p id='sub-content-hero-text'>Special offers to suit your plan</p>
           </div>
         </div>
     );

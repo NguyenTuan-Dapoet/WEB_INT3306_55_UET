@@ -1,75 +1,74 @@
-import { useEffect, useRef, useState } from 'react'
-import { Calendar } from 'react-date-range'
-import format from 'date-fns/format'
+import { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Calendar } from "react-date-range";
+import format from "date-fns/format";
+import { setCheckInDate, setCheckOutDate } from "../../Redux/staySlice";
+import { setStartDate, setEndDate } from "../../Redux/tripSlice";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
 
-import 'react-date-range/dist/styles.css'
-import 'react-date-range/dist/theme/default.css'
-
-const CalendarComp = () => {
-
-  // date state
-  const [calendar, setCalendar] = useState('')
-
-  // open close
-  const [open, setOpen] = useState(false)
-
-  // get the target element to toggle 
-  const refOne = useRef(null)
+const CalendarComp = ({ type, placeholder = "Pick a date" }) => {
+  const [calendar, setCalendar] = useState("");
+  const [open, setOpen] = useState(false);
+  const refOne = useRef(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    // set current date on component load
-    setCalendar(format(new Date(), 'dd/MM/yyyy'))
-    // event listeners
-    document.addEventListener("keydown", hideOnEscape, true)
-    document.addEventListener("click", hideOnClickOutside, true)
-  }, [])
+    setCalendar(format(new Date(), "dd/MM/yyyy"));
+    document.addEventListener("keydown", hideOnEscape, true);
+    document.addEventListener("click", hideOnClickOutside, true);
+  }, []);
 
-  // hide dropdown on ESC press
   const hideOnEscape = (e) => {
-    // console.log(e.key)
-    if( e.key === "Escape" ) {
-      setOpen(false)
-    }
-  }
+    if (e.key === "Escape") setOpen(false);
+  };
 
-  // Hide on outside click
   const hideOnClickOutside = (e) => {
-    // console.log(refOne.current)
-    // console.log(e.target)
-    if( refOne.current && !refOne.current.contains(e.target) ) {
-      setOpen(false)
+    if (refOne.current && !refOne.current.contains(e.target)) {
+      setOpen(false);
     }
-  }
+  };
 
-  // on date change, store date in state
   const handleSelect = (date) => {
-    // console.log(date)
-    // console.log(format(date, 'dd/MM/yyyy'))
-    setCalendar(format(date, 'MM/dd/yyyy'))
-  }
+    const formattedDate = format(date, "dd/MM/yyyy");
+    setCalendar(formattedDate);
+
+    // Dispatch hành động tùy thuộc vào `type`
+    if (type === "stayCheckIn") {
+      dispatch(setCheckInDate(formattedDate));
+    } else if (type === "stayCheckOut") {
+      dispatch(setCheckOutDate(formattedDate));
+    } else if (type === "tripStart") {
+      dispatch(setStartDate(formattedDate));
+    } else if (type === "tripEnd") {
+      dispatch(setEndDate(formattedDate));
+    }
+
+    setOpen(false);
+  };
 
   return (
     <div className="calendarWrap">
-
       <input
-        value={ calendar }
+        value={calendar}
         readOnly
         className="inputBox"
-        onClick={ () => setOpen(open => !open) }
+        placeholder={placeholder}
+        onClick={() => setOpen((open) => !open)}
       />
-
       <div ref={refOne}>
-        {open && 
+        {open && (
           <Calendar
-            date={ new Date() }
-            onChange = { handleSelect }
+            editableDateInputs={true}
+            months={1}
+            onChange={handleSelect}
+            direction="horizontal"
             className="calendarElement"
           />
-        }
+        )}
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default CalendarComp
+export default CalendarComp;
