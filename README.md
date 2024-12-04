@@ -6,3 +6,8 @@ Hướng dẫn chạy code:
 - chạy reactjs:
 => npm install
 => npm run dev 
+
+
+-> Tra branch
+npm install bootstrap
+npm install lucide-react
