@@ -1,4 +1,3 @@
-
 - calender
 => npm i @syncfusion/ej2-react-calendars --save
 
@@ -7,3 +6,9 @@
 
 - icon
 => npm install react-icons --save
+
+-router 
+=> npm install react-router-dom
+
+-chọn địa điểm 
+=> npm install react-select
