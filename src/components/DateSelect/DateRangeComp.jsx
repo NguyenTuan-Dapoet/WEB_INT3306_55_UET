@@ -1,15 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { setStartDate, setEndDate } from "../../Redux/tripSlice"; // Import action
 import { DateRange } from "react-date-range";
 import format from "date-fns/format";
 import { addDays } from "date-fns";
-
+import "./SelectDateComp.css";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import "./DateRangeComp.css";
+import "./SelectDateComp.css";
+
+import { useDispatch } from "react-redux";
+import { setStartDate, setEndDate } from "../../Redux/tripSlice";
 
 const DateRangeComp = () => {
+  const dispatch = useDispatch();
+
   const [range, setRange] = useState([
     {
       startDate: new Date(),
@@ -18,12 +21,19 @@ const DateRangeComp = () => {
     },
   ]);
   const [open, setOpen] = useState(false);
+  const [startDate, setStartDate_state] = useState(format(range[0].startDate, "dd/MM/yyyy"));
+  const [endDate, setEndDate_state] = useState(format(range[0].endDate, "dd/MM/yyyy"));
   const refOne = useRef(null);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     document.addEventListener("keydown", hideOnEscape, true);
     document.addEventListener("click", hideOnClickOutside, true);
+
+    // Cleanup khi component unmount
+    return () => {
+      document.removeEventListener("keydown", hideOnEscape, true);
+      document.removeEventListener("click", hideOnClickOutside, true);
+    };
   }, []);
 
   const hideOnEscape = (e) => {
@@ -39,12 +49,18 @@ const DateRangeComp = () => {
   const handleDateChange = (item) => {
     const selectedRange = item.selection;
     setRange([selectedRange]);
-    dispatch(setStartDate(format(selectedRange.startDate, "dd/MM/yyyy"))); // Lưu ngày bắt đầu
-    dispatch(setEndDate(format(selectedRange.endDate, "dd/MM/yyyy"))); // Lưu ngày kết thúc
+    setStartDate(format(selectedRange.startDate, "dd/MM/yyyy"));
+    setEndDate(format(selectedRange.endDate, "dd/MM/yyyy"));
+
+    // Dispatch ngày vào Redux
+    dispatch(setStartDate(format(selectedRange.startDate, "dd/MM/yyyy")));
+    dispatch(setEndDate(format(selectedRange.endDate, "dd/MM/yyyy")));
   };
 
-  let startDate = format(range[0].startDate, "dd/MM/yyyy");
-  let endDate = format(range[0].endDate, "dd/MM/yyyy");
+  // Hàm toggle (đóng/mở lịch)
+  const toggleCalendar = () => {
+    setOpen((prevOpen) => !prevOpen); // Đảo ngược trạng thái của 'open'
+  };
 
   return (
     <div className="calendarWrap">
@@ -52,7 +68,7 @@ const DateRangeComp = () => {
         value={`${startDate} - ${endDate}`}
         readOnly
         className="inputBox"
-        onClick={() => setOpen(!open)}
+        onClick={toggleCalendar} // Bấm vào ô input để đóng/mở lịch
       />
       <div ref={refOne}>
         {open && (
@@ -61,7 +77,7 @@ const DateRangeComp = () => {
             editableDateInputs={true}
             moveRangeOnFirstSelection={false}
             ranges={range}
-            months={1}
+            months={2}
             direction="horizontal"
             className="calendarElement"
           />

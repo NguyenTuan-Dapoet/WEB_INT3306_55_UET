@@ -1,30 +1,47 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setPassengers } from "../../Redux/tripSlice";
+import { useDispatch } from 'react-redux';  // import useDispatch để sử dụng dispatch
+import { setPassengers } from "../../Redux/tripSlice"; // Import action setPassengers
 import "./PassengerClassSelect.css";
 
 const PassengerClassSelect = () => {
-  const dispatch = useDispatch();
-  const passengers = useSelector((state) => state.trip.passengers);
+  // State cho hành khách
+  const [passengers, setPassengersState] = useState({
+    classType: "Economy",
+    adult: 1,
+    children: 0,
+  });
+
+  const dispatch = useDispatch();  // Khởi tạo dispatch
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Trạng thái mở/đóng dropdown
 
+  // Toggle trạng thái dropdown
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
+  // Thay đổi loại hạng (class)
   const handleClassChange = (event) => {
-    dispatch(setPassengers({ classType: event.target.value }));
+    setPassengersState({ ...passengers, classType: event.target.value });
   };
 
+  // Thay đổi số lượng người lớn
   const handleAdultChange = (event) => {
     const value = Math.min(Math.max(parseInt(event.target.value, 10) || 0, 0), 10); // Giới hạn từ 0 đến 10
-    dispatch(setPassengers({ adult: value }));
+    setPassengersState({ ...passengers, adult: value });
   };
 
+  // Thay đổi số lượng trẻ em
   const handleChildrenChange = (event) => {
     const value = Math.min(Math.max(parseInt(event.target.value, 10) || 0, 0), 5); // Giới hạn từ 0 đến 5
-    dispatch(setPassengers({ children: value }));
+    setPassengersState({ ...passengers, children: value });
   };
 
+  // Hàm xử lý khi nhấn nút Done
+  const handleDoneButton = () => {
+    dispatch(setPassengers(passengers)); // Dispatch state hành khách vào Redux
+    setIsDropdownOpen(false); // Đóng dropdown sau khi bấm Done
+  };
+
+  // Tổng số hành khách
   const people = passengers.adult + passengers.children;
 
   return (
@@ -81,7 +98,8 @@ const PassengerClassSelect = () => {
             />
           </div>
 
-          <button className="dropdown-close-button" onClick={toggleDropdown}>
+          {/* Nút Done */}
+          <button className="dropdown-close-button" onClick={handleDoneButton}>
             Done
           </button>
         </div>

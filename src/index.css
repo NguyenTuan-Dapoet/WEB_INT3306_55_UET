@@ -1,0 +1,24 @@
+/* css for main */
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    /* min-width: 800px; */
+
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* chỉnh chiều ngang của web  */
+.app {
+    width: 80%;
+    margin: auto;
+}

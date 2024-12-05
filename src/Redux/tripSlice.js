@@ -1,8 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  From: "",
-  To: "",
+  From: {
+    locationName: '',
+    airportName: '',
+    code: ''
+  },
+  To: {
+    locationName: '',
+    airportName: '',
+    code: ''
+  },
   tripOption: "one-way",
   startDate: null,
   endDate: null,
