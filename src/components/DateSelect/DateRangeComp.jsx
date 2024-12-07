@@ -1,17 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import { DateRange } from "react-date-range";
-
-// Import định dạng ngày từ thư viện date-fns
 import format from "date-fns/format";
 import { addDays } from "date-fns";
+import "./SelectDateComp.css";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import "./SelectDateComp.css";
 
-// Import các file CSS cần thiết
-import "react-date-range/dist/styles.css"; // CSS mặc định
-import "react-date-range/dist/theme/default.css"; // CSS theme
-import "./DateRangeComp.css"; // CSS tùy chỉnh
+import { useDispatch } from "react-redux";
+import { setStartDate, setEndDate } from "../../Redux/tripSlice";
 
 const DateRangeComp = () => {
-  // State quản lý ngày bắt đầu và ngày kết thúc
+  const dispatch = useDispatch();
+
   const [range, setRange] = useState([
     {
       startDate: new Date(),
@@ -19,56 +20,66 @@ const DateRangeComp = () => {
       key: "selection",
     },
   ]);
-
-  // State để kiểm soát việc mở/đóng lịch
   const [open, setOpen] = useState(false);
-
-  // Sử dụng useRef để tham chiếu đến thành phần lịch
+  const [startDate, setStartDate_state] = useState(format(range[0].startDate, "dd/MM/yyyy"));
+  const [endDate, setEndDate_state] = useState(format(range[0].endDate, "dd/MM/yyyy"));
   const refOne = useRef(null);
 
-  // Thêm sự kiện ẩn lịch khi nhấn ngoài vùng lịch hoặc phím ESC
   useEffect(() => {
     document.addEventListener("keydown", hideOnEscape, true);
     document.addEventListener("click", hideOnClickOutside, true);
+
+    // Cleanup khi component unmount
+    return () => {
+      document.removeEventListener("keydown", hideOnEscape, true);
+      document.removeEventListener("click", hideOnClickOutside, true);
+    };
   }, []);
 
-  // Hàm ẩn lịch khi nhấn phím ESC
   const hideOnEscape = (e) => {
-    if (e.key === "Escape") {
-      setOpen(false);
-    }
+    if (e.key === "Escape") setOpen(false);
   };
 
-  // Hàm ẩn lịch khi nhấn ra ngoài
   const hideOnClickOutside = (e) => {
     if (refOne.current && !refOne.current.contains(e.target)) {
       setOpen(false);
     }
   };
 
-  let startDate = format(range[0].startDate, "dd/MM/yyyy");
-  let endDate = format(range[0].endDate,"dd/MM/yyyy");
+  const handleDateChange = (item) => {
+    const selectedRange = item.selection;
+    setRange([selectedRange]);
+    setStartDate(format(selectedRange.startDate, "dd/MM/yyyy"));
+    setEndDate(format(selectedRange.endDate, "dd/MM/yyyy"));
+
+    // Dispatch ngày vào Redux
+    dispatch(setStartDate(format(selectedRange.startDate, "dd/MM/yyyy")));
+    dispatch(setEndDate(format(selectedRange.endDate, "dd/MM/yyyy")));
+  };
+
+  // Hàm toggle (đóng/mở lịch)
+  const toggleCalendar = () => {
+    setOpen((prevOpen) => !prevOpen); // Đảo ngược trạng thái của 'open'
+  };
+
   return (
     <div className="calendarWrap">
-      {/* Hộp input để hiển thị khoảng ngày được chọn */}
       <input
-        value={`${startDate} - ${endDate}`} // Hiển thị ngày bắt đầu và ngày kết thúc
+        value={`${startDate} - ${endDate}`}
         readOnly
         className="inputBox"
-        onClick={() => setOpen(!open)}
-        />
-
-      {/* Vùng chứa lịch */}
+        onClick={toggleCalendar} // Bấm vào ô input để đóng/mở lịch
+      />
       <div ref={refOne}>
         {open && (
           <DateRange
-            onChange={(item) => setRange([item.selection])} // Cập nhật state khi người dùng chọn ngày
-            editableDateInputs={true} // Cho phép chỉnh sửa ngày bằng cách nhập
-            moveRangeOnFirstSelection={false} // Không tự động di chuyển dải ngày khi chọn
-            ranges={range} // Giá trị dải ngày
-            months={1} // Hiển thị 1 tháng
-            direction="horizontal" // Hiển thị lịch ngang
-            className="calendarElement" // Áp dụng CSS tùy chỉnh
+            onChange={handleDateChange}
+            editableDateInputs={true}
+            moveRangeOnFirstSelection={false}
+            ranges={range}
+            months={2}
+            direction="horizontal"
+            className="calendarElement"
           />
         )}
       </div>

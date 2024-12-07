@@ -1,25 +1,55 @@
-// Tạo một slice để quản lý trạng thái Trip-option.
 import { createSlice } from "@reduxjs/toolkit";
 
-// Trạng thái mặc định
 const initialState = {
+  From: {
+    locationName: '',
+    airportName: '',
+    code: ''
+  },
+  To: {
+    locationName: '',
+    airportName: '',
+    code: ''
+  },
   tripOption: "one-way",
+  startDate: null,
+  endDate: null,
+  passengers: {
+    adult: 1,
+    children: 0,
+    classType: "Economy",
+  },
 };
 
-// Tạo slice cho Redux
 const tripSlice = createSlice({
-  name: "trip", // Tên slice
-  initialState, // Trạng thái mặc định
+  name: "trip",
+  initialState,
   reducers: {
-    // Hàm cập nhật trạng thái tripOption
-    setTripOption(state, action) {
-      state.tripOption = action.payload; // Cập nhật giá trị tripOption
+    setFrom: (state, action) => {
+      state.From = action.payload;
+    },
+    setTo: (state, action) => {
+      state.To = action.payload;
+    },
+    setTripOption: (state, action) => {
+      state.tripOption = action.payload;
+    },
+    setStartDate: (state, action) => {
+      state.startDate = action.payload;
+    },
+    setEndDate: (state, action) => {
+      state.endDate = action.payload;
+    },
+    setPassengers: (state, action) => {
+      state.passengers = { ...state.passengers, ...action.payload };
     },
   },
 });
 
-// Export các action để sử dụng trong component
-export const { setTripOption } = tripSlice.actions;
+export const { setFrom, setTo, 
+               setTripOption, 
+               setStartDate, 
+               setEndDate, 
+               setPassengers } = tripSlice.actions;
 
-// Export reducer để đăng ký trong store
 export default tripSlice.reducer;

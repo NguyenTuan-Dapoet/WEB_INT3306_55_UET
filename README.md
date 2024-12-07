@@ -1,13 +1,14 @@
-Hướng dẫn chạy code:
-- import các thư viện sau
-+ calender => npm i @syncfusion/ej2-react-calendars --save
-+ redux => npm install @reduxjs/toolkit react-redux
+- calender
+=> npm i @syncfusion/ej2-react-calendars --save
 
-- chạy reactjs:
-=> npm install
-=> npm run dev 
+- redux 
+=> npm install @reduxjs/toolkit react-redux
 
+- icon
+=> npm install react-icons --save
 
--> Tra branch
-npm install bootstrap
-npm install lucide-react
+-router 
+=> npm install react-router-dom
+
+-chọn địa điểm 
+=> npm install react-select
