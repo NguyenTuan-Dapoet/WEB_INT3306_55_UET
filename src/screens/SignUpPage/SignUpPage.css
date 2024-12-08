@@ -1,8 +1,8 @@
 /* Định dạng nền cho login-background */
-.login-background {
+.signup-background {
     min-height: 100vh;
     width: 100%;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     background: url('../../assets/login-background.jpeg') no-repeat center center; 
     background-size: cover;
 
@@ -11,9 +11,8 @@
     align-items: center;
 }
 
-/* Định dạng chung cho login-container */
-.login-container {
-    width: auto;
+.signup-container {
+    width: 420px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,11 +23,11 @@
     backdrop-filter: blur(30px);
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    padding: 30px 40px;
+    padding: 50px 40px;
 }
 
 /* Định dạng cho tiêu đề */
-.login-container h1 {
+.signup-container h1 {
     color: white;
     font-size: 36px;
     text-align: center;
@@ -37,9 +36,9 @@
 /* Định dạng cho các ô nhập liệu (input-box) */
 .input-box {
     position: relative;
-    width: 100%;
+    width: 330px;
     height: 50px;
-    margin: 30px 0;
+    margin: 40px 0;
 }
 
 .input-box input {
@@ -53,6 +52,17 @@
     font-size: 16px;
     color: white;
     padding: 20px 45px 20px 20px;
+}
+
+.input-box input.invalid {
+    border: 1px solid rgb(255, 0, 0);
+}
+
+.error-message {
+    color: red;
+    font-size: 16px;
+    font-weight: 500;
+    z-index: 1;
 }
 
 /* Định dạng cho placeholder trong input */
@@ -70,9 +80,15 @@
 }
 
 /* Định dạng cho nút login */
-.login {
+.login-box {
     width: 100%;
-    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login-box .login {
+    width: 100%;
     background: white;
     border: none;
     outline: none;
@@ -83,6 +99,8 @@
     font-size: 16px;
     color: black;
     margin: 20px 0;
+    padding: 15px 0px;
+    text-align: center;
 }
 
 /* Định dạng cho phần Google Login */
@@ -118,14 +136,54 @@
 }
 
 /* Định dạng cho liên kết đăng ký/sign-in */
-.signIn-link {
+.login-link {
     font-size: 14px;
     text-align: center;
     margin: 20px 0 15px;
 }
 
-.signIn-link a {
+.login-link a {
     color: white;
     text-decoration: none;
     font-weight: 600;
 }
+
+.test {
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+p.token-value {
+    color: tomato;
+    width: 500px;
+    text-align: center; /* Căn giữa nội dung */
+    word-wrap: break-word; /* Ngắt dòng nếu cần */
+    word-break: break-word; /* Đảm bảo token xuống dòng đúng */
+    overflow-wrap: break-word; /* Hỗ trợ ngắt từ tốt hơn */
+    white-space: normal; /* Ngắt dòng tự động */
+    margin-top: 20px; /* Tạo khoảng cách với phần tử phía trên */
+    font-size: 16px; /* Điều chỉnh kích thước chữ */
+    line-height: 1.5; /* Khoảng cách dòng dễ đọc hơn */
+}
+
+p.error-value,
+p.success-value {
+    color: red;
+    width: 320px;
+    text-align: center; 
+    word-wrap: break-word; 
+    word-break: break-word; 
+    overflow-wrap: break-word; 
+    white-space: normal; 
+    /* padding-top: 20px;  */
+    font-size: 16px; 
+    line-height: 1.5; 
+    font-weight: 600;
+}
+
+
+
+  
+
+  

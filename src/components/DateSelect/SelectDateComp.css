@@ -24,6 +24,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+
 /* Căn chỉnh lịch (calendar) ở dưới input */
 .rdrCalendarWrapper.rdrDateRangeWrapper.calendarElement {
   position: absolute;
@@ -50,6 +51,7 @@
 .calendarWrap input.inputBox:focus {
   border: 2px solid green;  
   outline: none; 
+  /* background: #00cc88; */
 }
 
 

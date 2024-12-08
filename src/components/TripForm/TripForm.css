@@ -43,7 +43,7 @@
   /* Form actions */
   .form-submit {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 1rem;
     align-items: center;
     margin-top: 20px;
@@ -52,6 +52,7 @@
 
   .form-submit-button {
     background-color: #00cc88;
+    position: relative;
     color: #ffffff;
     border: none;
     padding: 0.8rem 1.5rem;
@@ -62,6 +63,13 @@
     align-items: center;
     gap: 0.5rem;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: auto ;
+  }
+
+  .form-submit-error {
+    color: red;
+    font-weight: 500;
+    font-size: 16px;
   }
   
   .submit-button:hover {
