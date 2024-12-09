@@ -5,20 +5,23 @@ import Login from './screens/Login/Login.jsx'
 import { Routes, Route } from 'react-router-dom'
 import Footer from './components/Footer/Footer.jsx'
 
+// import { FlightSearchPage } from './screens/FlightSearch/FlightSearchPage.jsx'
+
 function App() {
   return (
     <>
       <div className="app">
-        <NavBar_1/>
+        <NavBar_1 />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          {/* <Route path="/flights" element={<FlightSearchPage />} /> */}
           {/* <Route path="/signup" element={<SignUp />} /> */}
         </Routes>
         {/* <Home /> */}
       </div>
-      <Footer/>
+      <Footer />
     </>
   )
 }

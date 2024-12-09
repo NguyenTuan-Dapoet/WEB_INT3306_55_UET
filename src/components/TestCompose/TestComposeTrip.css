@@ -67,7 +67,7 @@
     width: 20%;
     height: 100%;
     font-size: 30px;
-    background-color: white;
+    /* background-color: white; */
     border: none;
     cursor: pointer;
 }
