@@ -24,10 +24,12 @@
 .navbar .navbar-sign {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 30px;
 }
 
-.navbar .navbar-sign a {
+.navbar .navbar-sign .SignUp-User,
+.navbar .navbar-sign .Login-Logout {
+    position: relative;
     background: transparent;
     font-size: 16px;
     color: black;
@@ -38,10 +40,41 @@
     transition: 0.3s;
 }
 
-.navbar .navbar-sign button:hover {
+/* .navbar .navbar-sign .SignUp-User:hover,
+.navbar .navbar-sign .Login-Logout:hover {
     background: tomato;
     color: white;
+} */
+
+.navbar .navbar-sign .SignUp-User .user-menu {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 350px;
+    background-color: #fff;
+    z-index: 1;
+    padding: 20px;
+    border: 3px solid tomato;
+    border-radius: 20px;
 }
+
+.navbar .navbar-sign .SignUp-User .user-menu ul {
+    /* padding-left: 20px;  */
+    list-style-type: none; 
+    margin: 5px 20px;
+}
+
+.navbar .navbar-sign .SignUp-User .user-menu li {
+    text-align: left;  
+    /* margin: 5px 0;   */
+}
+
 
 .navbar .active {
     padding-bottom: 2px;

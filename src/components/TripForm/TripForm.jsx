@@ -1,35 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TripForm.css";
-import TestComposeTrip from "./ComposeTrip";
-import {setTripOption} from "../../Redux/tripSlice";
-
-import { useSelector, useDispatch } from 'react-redux';
-
-export const TestForm = () => {
+import ComposeTrip from "./ComposeTrip";
+import { setTripOption } from "../../Redux/tripSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { useSearchFlight } from "../../assets/api/SearchFlightProvider";  // Import context
+import { useNavigate } from 'react-router-dom';  // Import useNavigate
+ 
+export const TripForm = () => {
   const dispatch = useDispatch();
   const [tripOption, setTripOption_state] = useState("One-way");
-  const [result, setResult] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");  // Thêm trạng thái lỗi
 
-  const formData = useSelector((state) => state.trip)
-  console.log("Form data from Redux:", formData);
+  const formData = useSelector((state) => state.trip);
+  console.log("(Home)Form data from Redux:", formData);
+
+  const flightData = useSearchFlight();// Use context  
+  console.log("(Home)Flight data from context:", flightData);
+
+  const flightStorage = JSON.parse(localStorage.getItem("flightData"));
+  if (flightData) {
+    console.log("(Home)Dữ liệu chuyến bay từ localStorage:", flightStorage);
+  } else {
+    console.log("(Home)Không có dữ liệu chuyến bay trong localStorage");
+  }
+
+
+  const navigate = useNavigate();  // Hook to navigate
 
   const handleTripOptionChange = (option) => {
     setTripOption_state(option);
     dispatch(setTripOption(option));
   };
 
+  var isError = !formData.From.code || !formData.To.code || !formData.startDate
+
   const handleSubmit = () => {
-    // Kiểm tra giá trị formData và hiển thị kết quả
-    setResult(`Form Results: \n
-      From: ${formData.From.locationName || 'N/A'} \n
-      To: ${formData.To.locationName || 'N/A'} \n
-      Date: ${formData.startDate || 'N/A'} - ${formData.endDate || 'N/A'} \n
-      tripOption: ${formData.tripOption || 'N/A'} \n
-      Passenger: ${Number(formData.passengers?.adult) + Number(formData.passengers?.children)} và ${formData.passengers?.classType || 'N/A'}`);
-      };
+    // Kiểm tra xem dữ liệu cần thiết đã được nhập hay chưa
+    if (isError) {
+      setErrorMessage("Vui lòng nhập đầy đủ thông tin");
+      return;  
+    }
+    
+    // Nếu dữ liệu hợp lệ, gọi searchFlights từ context khi submit form và đợi kết quả
+    console.log("bắt đầu tìm kiếm chuyến bay");
+    flightData.searchFlights(formData.From.code, formData.To.code, formData.startDate);    
+    navigate('/flight');
+  };
+
+  //bỏ lỗi khi chọn thông tin
+  useEffect(() => {
+    setErrorMessage("");  // Ẩn thông báo lỗi nếu có đủ thông tin
+  }, [formData.From.code, formData.To.code]);
 
   return (
-    <div className='test-form'>
+    <div className="test-form">
       <div className="form-tabs">
         <button
           className={`form-tab-button ${tripOption === "One-way" ? "active" : ""}`}
@@ -45,18 +69,24 @@ export const TestForm = () => {
         </button>
       </div>
 
-      <TestComposeTrip formType={tripOption === "One-way" ? "One-way" : "Round-way"} />
+      <ComposeTrip formType={tripOption === "One-way" ? "One-way" : "Round-way"} />
 
       <div className="form-submit">
-        <button className="form-submit-button" onClick={handleSubmit}>
+        {errorMessage && 
+          <p className="form-submit-error">
+            {errorMessage}
+          </p>
+        }
+
+        <button
+          className="form-submit-button"
+          onClick={handleSubmit}
+        >
           {tripOption === "One-way" ? "One-way submit" : "Round-way submit"}
         </button>
-      </div>  
-
-     <div className="show_result">{result}</div>
-    
+      </div>
     </div>
   );
 };
 
-export default TestForm;
+export default TripForm;

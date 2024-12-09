@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Select from 'react-select';
 import { IoMdSwap } from "react-icons/io";
 import CalendarComp from '../DateSelect/CalendarComp';
 import DateTimeComp from '../DateSelect/DateRangeComp';
 import PassengerClassSelect from '../PassengerClassSelect/PassengerClassSelect';
 import './ComposeTrip.css';
-import { location_list } from "../../assets/frontend_assets/assets"; // Import location_list
+
+import { LocationContext } from '../../assets/api/LocationProvider';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setFrom, setTo } from '../../Redux/tripSlice';
 
-export const TestComposeTrip = ({ formType }) => {
+export const ComposeTrip = ({ formType }) => {
   const dispatch = useDispatch();
   const formData = useSelector((state) => state.trip);
 
+  // Lấy danh sách địa điểm từ context
+  const location_list = useContext(LocationContext);
+  
   // Khai báo state để lưu giá trị của select-from và select-to
   const [fromOption, setFromState] = useState(null); // option
   const [toOption, setToState] = useState(null); // option
@@ -151,4 +155,4 @@ export const TestComposeTrip = ({ formType }) => {
   );
 };
 
-export default TestComposeTrip;
+export default ComposeTrip;
