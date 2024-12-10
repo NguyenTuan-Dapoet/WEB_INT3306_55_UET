@@ -3,23 +3,33 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .navbar .navbar-logo {
     font-size: 3rem;
     font-weight: bold;
+
+    cursor: pointer;
+    transform: color 0.3s ease;
 }
 
-.navbar .navbar-menu {
+/* .navbar .navbar-menu {
     display: flex;
     list-style: none;
     gap: 20px;
     font-size: 18px;
+
+    transition: 0.3s;
 }
 
-.navbar .navbar-menu a{
+.navbar .navbar-menu a {
     cursor: pointer;
-}
+
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+} */
 
 .navbar .navbar-sign {
     display: flex;
@@ -33,11 +43,41 @@
     background: transparent;
     font-size: 16px;
     color: black;
-    border: 1px solid tomato;
+    border: 1px solid #8DD3BA;
     padding: 10px 30px;
     border-radius: 50px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow: hidden;
+    z-index: 1;
+}
+
+
+.navbar .navbar-sign .SignUp-User:hover,
+.navbar .navbar-sign .Login-Logout:hover {
+    /* background: #8DD3BA; */
+    color: white;
+    background-color: transparent;
+}
+
+.navbar .navbar-sign .SignUp-User::before,
+.navbar .navbar-sign .Login-Logout::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #8DD3BA;
+    border-radius: 15px;
+    transition: left 0.3s ease;
+    z-index: -1;
+
+}
+
+.navbar .navbar-sign .SignUp-User:hover::before,
+.navbar .navbar-sign .Login-Logout:hover::before {
+    left: 0;
 }
 
 /* .navbar .navbar-sign .SignUp-User:hover,
@@ -55,23 +95,24 @@
     top: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%);
-    
+
     width: 350px;
     background-color: #fff;
     z-index: 1;
     padding: 20px;
     border: 3px solid tomato;
     border-radius: 20px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .navbar .navbar-sign .SignUp-User .user-menu ul {
     /* padding-left: 20px;  */
-    list-style-type: none; 
+    list-style-type: none;
     margin: 5px 20px;
 }
 
 .navbar .navbar-sign .SignUp-User .user-menu li {
-    text-align: left;  
+    text-align: left;
     /* margin: 5px 0;   */
 }
 
@@ -79,4 +120,43 @@
 .navbar .active {
     padding-bottom: 2px;
     border-bottom: 2px solid tomato;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar .navbar-sign .SignUp-User {
+        white-space: nowrap;
+    }
+
+    .navbar .navbar-menu {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        display: none;
+        /* Mặc định ẩn menu */
+        background-color: #8DD3BA;
+        /* Sử dụng màu nền chủ đạo */
+        padding: 10px 0;
+        border-top: 1px solid #ffffff;
+    }
+
+    .navbar .navbar-menu.show {
+        display: flex;
+        /* Hiển thị khi nhấn nút toggle */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 5px;
+
+    }
+
+    .navbar .navbar-sign {
+        width: 100%;
+        justify-content: flex-end;
+        gap: 10px;
+    }
 }

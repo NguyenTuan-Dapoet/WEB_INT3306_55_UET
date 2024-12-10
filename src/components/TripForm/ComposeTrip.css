@@ -4,7 +4,6 @@
     gap: 16px;
     width: 100%;
     padding: 16px;
-    flex-wrap: nowrap;
     /* background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
@@ -31,7 +30,7 @@
 .form-trip .input-form .select-from,
 .form-trip .input-form .select-to {
     width: 100%;
-    padding: 8px;
+    padding: 5px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -63,8 +62,8 @@
     flex: 0;
     justify-content: center;
     align-items: center;
-    width: 110px;
-    height: 50px;
+    font-size: 30px;
+    padding: 5px;
     color: #555;
     cursor: pointer;
     border: 1px solid #ccc;
@@ -84,8 +83,11 @@
 
 .form-trip .date-container {
     width: 100%;
-    padding: 8px;
-    border: 2px solid #e0e0e0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
     border-radius: 8px;
 }
 
@@ -94,17 +96,24 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 8px;
     border-radius: 8px;
-    /* background-color: #f9f9f9; */
     height: 100%;
-    /* border: 1px solid #e0e0e0; */
 }
 
 /* Media queries */
-@media (min-width: 768px) {
+@media (max-width: 1200px) {
     .form-trip {
         grid-template-columns: 2fr 1fr;
+    }
+
+    .form-trip .input-form {
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-trip {
+        grid-template-columns: 2fr;
     }
 
     .form-trip .input-form {

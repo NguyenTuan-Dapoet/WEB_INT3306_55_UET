@@ -3,7 +3,7 @@
     min-height: 100vh;
     width: 100%;
     margin-bottom: 3%;
-    background: url('../../assets/login-background.jpeg') no-repeat center center; 
+    background: url('../../assets/login-background.jpeg') no-repeat center center;
     background-size: cover;
 
     display: flex;
@@ -12,7 +12,10 @@
 }
 
 .signup-container {
+    margin: 10%;
     width: 420px;
+    max-width: 90%;
+    max-height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,6 +27,7 @@
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     padding: 50px 40px;
+    animation: fadeIn 0.5s ease-out;
 }
 
 /* Định dạng cho tiêu đề */
@@ -31,6 +35,8 @@
     color: white;
     font-size: 36px;
     text-align: center;
+    animation: bounce 0.67s ease-out;
+    animation-iteration-count: 2;
 }
 
 /* Định dạng cho các ô nhập liệu (input-box) */
@@ -79,19 +85,19 @@
     font-size: 16px;
 }
 
-/* Định dạng cho nút login */
-.login-box {
+/* Định dạng nút login */
+.signup-box {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.login-box .login {
+
+.signup-box .login {
     width: 100%;
     background: white;
     border: none;
-    outline: none;
     border-radius: 40px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
     cursor: pointer;
@@ -99,8 +105,22 @@
     font-size: 16px;
     color: black;
     margin: 20px 0;
-    padding: 15px 0px;
+    padding: 15px 0;
     text-align: center;
+    transition: transform 0.1s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signup-box .login:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+.signup-box .login:focus {
+    transform: scale(0.95);
+    background-color: rgba(231, 234, 233, 0.3);
+    box-shadow: 0 0 0 5px rgba(231, 234, 233, 0.3);
+    outline: none;
 }
 
 /* Định dạng cho phần Google Login */
@@ -148,6 +168,20 @@
     font-weight: 600;
 }
 
+.login-link a:hover {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: underline;
+    transform: scale(0.95);
+    outline: none;
+}
+
+.login-link a:focus {
+    transform: scale(0.95);
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.6);
+    outline: none;
+}
+
 .test {
     font-size: 14px;
     text-align: center;
@@ -157,33 +191,68 @@
 p.token-value {
     color: tomato;
     width: 500px;
-    text-align: center; /* Căn giữa nội dung */
-    word-wrap: break-word; /* Ngắt dòng nếu cần */
-    word-break: break-word; /* Đảm bảo token xuống dòng đúng */
-    overflow-wrap: break-word; /* Hỗ trợ ngắt từ tốt hơn */
-    white-space: normal; /* Ngắt dòng tự động */
-    margin-top: 20px; /* Tạo khoảng cách với phần tử phía trên */
-    font-size: 16px; /* Điều chỉnh kích thước chữ */
-    line-height: 1.5; /* Khoảng cách dòng dễ đọc hơn */
+    text-align: center;
+    /* Căn giữa nội dung */
+    word-wrap: break-word;
+    /* Ngắt dòng nếu cần */
+    word-break: break-word;
+    /* Đảm bảo token xuống dòng đúng */
+    overflow-wrap: break-word;
+    /* Hỗ trợ ngắt từ tốt hơn */
+    white-space: normal;
+    /* Ngắt dòng tự động */
+    margin-top: 20px;
+    /* Tạo khoảng cách với phần tử phía trên */
+    font-size: 16px;
+    /* Điều chỉnh kích thước chữ */
+    line-height: 1.5;
+    /* Khoảng cách dòng dễ đọc hơn */
 }
 
 p.error-value,
 p.success-value {
     color: red;
     width: 320px;
-    text-align: center; 
-    word-wrap: break-word; 
-    word-break: break-word; 
-    overflow-wrap: break-word; 
-    white-space: normal; 
+    text-align: center;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
     /* padding-top: 20px;  */
-    font-size: 16px; 
-    line-height: 1.5; 
+    font-size: 16px;
+    line-height: 1.5;
     font-weight: 600;
 }
 
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
 
-  
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
-  
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 28px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .signup-container {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .input-box {
+        width: 100%;
+    }
+}
