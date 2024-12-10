@@ -1,0 +1,40 @@
+.like-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border: 2px solid #000;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease, fill 0.3s ease;
+}
+
+.like-button:hover {
+    background-color: #e2e2e2;
+}
+
+.like-button svg {
+    fill: none;
+    stroke: #000;
+    transition: stroke 0.3s ease, fill 0.3s ease;
+}
+
+/* Trạng thái khi nút được kích hoạt */
+.like-button.liked svg {
+    fill: #000000;
+    stroke: #000000;
+}
+
+.like-button.liked {
+    border-color: #000;
+    background-color: #ffffff;
+}
+
+/* Trạng thái hover khi nút đã liked */
+.like-button.liked:hover {
+    background-color: #e2e2e2;
+}

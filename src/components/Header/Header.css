@@ -1,8 +1,8 @@
 .header {
     height: 35vw;
 
-    /* margin-top: 30px; */
-    background: url('../../assets/Home_hanoiTour.jpg') no-repeat; 
+    margin-top: 30px;
+    background: url('../../assets/Home_hanoiTour.jpg') no-repeat;
     background-size: cover;
     position: relative;
 
@@ -10,6 +10,8 @@
     justify-content: center;
     align-items: center;
 
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 8px;
 }
 
 .header-contents {
@@ -22,23 +24,25 @@
 
     gap: 1.5vw;
     color: white;
-    text-shadow: 3px 3px 5px black; 
+    text-shadow: 3px 3px 5px black;   
 }
 
 #title-header {
     font-weight: 500;
-    font-size: max(4.5vw, 22px);    
+    font-size: max(4.5vw, 22px);
+    letter-spacing: 0.05em;
 }
-  
+
 #content-header {
     font-size: max(3vw, 15px);
     font-weight: 300;
     text-align: center;
+    color: #f8f8f8;
 }
-  
+
 #sub-content-header {
-    font-size: max(2.5vw, 12px);
+    font-size: max(2vw, 12px);
     font-weight: 300;
     text-align: center;
+    color: #e0f2ed;
 }
-  

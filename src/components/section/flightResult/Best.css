@@ -1,0 +1,18 @@
+.best-container {
+    margin: 1rem 0;
+    padding: 1.5rem;
+    padding-top: 0;
+}
+
+.best-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #6c757d;
+}
+
+.best-header .highlight-text {
+    color: #eb5d4a;
+}

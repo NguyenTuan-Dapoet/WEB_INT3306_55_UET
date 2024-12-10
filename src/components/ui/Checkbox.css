@@ -1,0 +1,24 @@
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Khoảng cách giữa checkbox và label */
+}
+
+.checkbox-error {
+    border: 1px solid #dc3545;
+    /* Màu viền đỏ khi có lỗi */
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.checkbox-input {
+    cursor: pointer;
+}
+
+.checkbox-label {
+    font-size: 14px;
+    color: #212529;
+    cursor: pointer;
+    user-select: none;
+}

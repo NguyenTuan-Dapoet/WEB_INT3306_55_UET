@@ -1,5 +1,6 @@
 .flight-display {
     margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .flight-display .flight-display-header {
@@ -14,4 +15,3 @@
     gap: 30px;
     row-gap: 50px;
 }
- 

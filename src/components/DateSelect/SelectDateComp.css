@@ -4,9 +4,12 @@
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  display: flex;  /* Dùng flexbox */
-  flex-direction: column;  /* Căn chỉnh các phần tử theo trục dọc */
-  align-items: center;  /* Căn giữa theo trục ngang */
+  display: flex;
+  /* Dùng flexbox */
+  flex-direction: column;
+  /* Căn chỉnh các phần tử theo trục dọc */
+  align-items: center;
+  /* Căn giữa theo trục ngang */
 }
 
 
@@ -14,61 +17,64 @@
 .rdrCalendarWrapper.calendarElement {
   position: absolute;
   top: calc(100% + 10px);
-  left: 50% ;
-  transform: translateX(-50%); 
+  left: 50%;
+  transform: translateX(-50%);
 
   background-color: #d3eae2;
-  text-align: center; 
-  border: 3px solid #00cc88;
+  text-align: center;
+  border: 2px solid #00cc88;
   border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
 }
 
 
 /* Căn chỉnh lịch (calendar) ở dưới input */
 .rdrCalendarWrapper.rdrDateRangeWrapper.calendarElement {
   position: absolute;
-  top: calc(100% + 10px);  /* Calendar xuất hiện dưới input với một khoảng cách */
-  left: 50% ;
-  transform: translateX(-50%);   width: auto;  /* Đảm bảo calendar có chiều rộng bằng input */
-  z-index: 10;  /* Đảm bảo calendar hiển thị lên trên các phần tử khác */
+  top: calc(100% + 10px);
+  /* Calendar xuất hiện dưới input với một khoảng cách */
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  /* Đảm bảo calendar có chiều rộng bằng input */
+  z-index: 10;
+  /* Đảm bảo calendar hiển thị lên trên các phần tử khác */
 }
 
 .calendarWrap .inputBox {
   height: 100%;
   width: 100%;
-  border: 2px solid green;
-  border-radius: 6px;
-  background-color: white;
+  border: none;
+  background: none;
+  padding: 15px;
   font-size: 16px;
   cursor: pointer;
   color: #333;
   text-align: center;
   transition: 0.3s ease;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .calendarWrap input.inputBox:focus {
-  border: 2px solid green;  
-  outline: none; 
-  /* background: #00cc88; */
+  outline: none;
 }
-
-
 
 /* mũi tên + tháng + năm */
 .rdrMonthAndYearWrapper {
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-  width: 100%; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   box-sizing: border-box;
+  padding: 10px;
+  border-radius: 6px 6px 0 0;
 }
 
 
 /* Ẩn dòng tháng/năm nhỏ màu xám */
 .calendarElement .rdrDateDisplayWrapper {
-  display: none; 
+  display: none;
 }
 
 /*tháng + năm  */
@@ -76,16 +82,16 @@
   width: 50%;
   height: 100%;
   margin: 0;
-  padding: 10; 
-  box-sizing: border-box; 
-  }
+  padding: 10;
+  box-sizing: border-box;
+}
 
 /* mũi tên điều hướng */
 .calendarElement .rdrNextPrevButton {
   width: 10%;
   height: 50%;
   margin: 0;
-  padding: 0; 
+  padding: 0;
   background: #bae4d5;
   color: #fff;
   border: none;
@@ -94,10 +100,19 @@
   box-sizing: border-box;
 }
 
+.calendarElement .rdrNextPrevButton:hover {
+  background: #9ecdba;
+}
+
 /* thành phần ngày trong lịch */
 .calendarElement .rdrDayNumber span {
   color: #333;
-  font-size: 14px; 
+  font-size: 14px;
 }
-  
 
+@media (max-width: 1200px) {
+  .rdrCalendarWrapper.calendarElement {
+    z-index: 10;
+  }
+
+}
