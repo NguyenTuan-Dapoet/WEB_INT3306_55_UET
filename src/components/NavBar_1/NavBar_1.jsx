@@ -18,7 +18,7 @@ export const NavBar_1 = () => {
       setShowUserMenu((prev) => !prev);
     }
   };
-  console.log("userinfor",userInfo);
+  console.log("userinfor", userInfo);
   console.log("show menu", showUserMenu);
 
   return (
@@ -43,28 +43,32 @@ export const NavBar_1 = () => {
 
       <ul className="navbar-sign">
         {isUserLogin ? (
-        // Nếu đã đăng nhập thành công, hiển thị nút User
-        <>
-          <div className="SignUp-User" >
-            <a onClick={handleUserClick}>User</a>
-            {userInfo && showUserMenu && (
-              <div className="user-menu">
-                <h3>User Information</h3>
-                <ul>
-                    <li><strong>Id:</strong> {userInfo.id}</li>
-                    <li><strong>Name:</strong> {userInfo.fullName}</li>
-                    <li><strong>Email:</strong> {userInfo.username}</li>
-                    <li><strong>Phone:</strong> {userInfo.phoneNumber}</li>
-                    <li><strong>Address:</strong> {userInfo.role}</li>
-                </ul>
-              </div>
-            )}
-          </div>
-        </>
+          // Nếu đã đăng nhập thành công, hiển thị nút User
+          <>
+            <div className="SignUp-User" >
+              <a onClick={handleUserClick}>User</a>
+              {userInfo && showUserMenu && (
+                <>
+                  {console.log("Rendering user menu...")}
+                  <div className="user-menu">
+                    <h3>User Information</h3>
+                    <ul>
+                      <li><strong>Id:</strong> {userInfo.id}</li>
+                      <li><strong>Name:</strong> {userInfo.fullName}</li>
+                      <li><strong>Email:</strong> {userInfo.username}</li>
+                      <li><strong>Phone:</strong> {userInfo.phoneNumber}</li>
+                      <li><strong>Role:</strong> {userInfo.role}</li>
+                    </ul>
+                  </div>
+                </>
+              )}
+
+            </div>
+          </>
         ) : (
           <Link to="/signup" className="SignUp-User">Sign Up</Link>
         )}
-        
+
 
         {isUserLogin ? (
           <a className="Login-Logout" onClick={logout}>Logout</a>
