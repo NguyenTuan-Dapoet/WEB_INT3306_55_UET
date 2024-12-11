@@ -7,11 +7,13 @@
  
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSearchFlight } from "../../../assets/api/SearchFlightProvider";  // Import context
 import FlightCard from '../FlightCard/FlightCard';
 import './FlightResult.css';
 
 export const FlightResult = () => {
+  const navigate = useNavigate(); // Dùng để điều hướng
   const contextData = useSearchFlight();  // Lấy dữ liệu chuyến bay từ context
   const [storedData, setStoredData] = useState(null); // Dữ liệu từ localStorage
 
@@ -27,6 +29,7 @@ export const FlightResult = () => {
     setStoredData(data);
   };
 
+  //khi có sự thay đổi về việc tìm kiếm (từ home->flightpage)
   useEffect(() => {
     if (!contextData.loading) {
       const flightData = { flightList: contextData.flightList, error: contextData.error, loading: contextData.loading };
@@ -42,8 +45,18 @@ export const FlightResult = () => {
     }
   }, [contextData.flightList, contextData.error, contextData.loading]);
 
+  const handleSubmitButton = (selectedFlight) => {
+    // Lưu chuyến bay đã chọn vào localStorage
+    localStorage.setItem("selectedFlight", JSON.stringify(selectedFlight));
+    navigate('/booking');
+  };
+
   const displayFlightList = storedData?.flightList || contextData?.flightList || [];
   const displayError = storedData?.error || contextData?.error;
+
+
+  //----------------check log----------------
+  console.log(displayFlightList);
 
   return (
     <div className='flight-page'>
@@ -67,6 +80,7 @@ export const FlightResult = () => {
                     arrival= {flight.arrivalTime}
                     price={flight.price}
                     availableSeats={flight.availableSeats}
+                    handleBooking={() => handleSubmitButton(flight)} 
                   />
                 </li>
               ))}

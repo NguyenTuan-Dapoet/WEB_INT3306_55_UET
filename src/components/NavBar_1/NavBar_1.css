@@ -4,7 +4,7 @@
     justify-content: space-between;
     align-items: center;
 }
-
+ 
 .navbar .navbar-logo {
     font-size: 3rem;
     font-weight: bold;
@@ -40,11 +40,30 @@
     transition: 0.3s;
 }
 
-/* .navbar .navbar-sign .SignUp-User:hover,
-.navbar .navbar-sign .Login-Logout:hover {
-    background: tomato;
-    color: white;
-} */
+.show-tickets {
+    display: inline-block;
+    padding: 10px 20px; 
+    margin-top: 20px;
+    font-size: 16px; 
+    font-weight: bold;
+    color: white; 
+    background-color: tomato; 
+    border: none; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+}
+
+.show-tickets:hover {
+    background-color: #0056b3; /* Thay đổi màu nền khi hover */
+    transform: scale(1.05); /* Tăng kích thước nút khi hover */
+}
+
+.show-tickets:active {
+    background-color: #003f7f; /* Màu nền khi nhấn */
+    transform: scale(0.95); /* Giảm kích thước nút khi nhấn */
+}
 
 .navbar .navbar-sign .SignUp-User .user-menu {
     display: flex;

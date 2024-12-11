@@ -1,0 +1,112 @@
+/* Tổng quan trang */
+.booking-page-background {
+    background: url('../../assets/booking-background.png') no-repeat center center; 
+    min-height: 100vh;
+    width: 100%;
+    margin-bottom: 3%;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.booking-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: transparent;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(30px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 50px 40px;
+}
+
+.booking-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Chia thành 2 cột */
+    gap: 20px; /* Khoảng cách giữa các cột và hàng */
+    margin-top: 20px;
+}
+
+.booking-form label {
+    display: flex;
+    flex-direction: column; /* Đảm bảo nhãn và input xếp theo chiều dọc */
+    font-size: 14px;
+    color: #333;
+}
+
+.booking-form input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.booking-submit-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.booking-submit-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.success-message {
+    color: green;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+/* Thông báo lỗi và thành công */
+.error-message,
+.success-message {
+    font-size: 16px;
+    text-align: center;
+    /* margin-top: 20px; */
+}
+
+.error-message {
+    color: #d9534f;
+}
+
+.success-message {
+    color: #5bc0de;
+}
+
+/* Cải thiện giao diện di động */
+/* @media (max-width: 768px) {
+    .booking-page-container {
+        padding: 15px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .booking-detail h2 {
+        font-size: 24px;
+    }
+
+    .booking-form h3 {
+        font-size: 20px;
+    }
+
+    .booking-submit-button {
+        font-size: 16px;
+    }
+} */
