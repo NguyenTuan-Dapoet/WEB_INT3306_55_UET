@@ -45,25 +45,22 @@ export const NavBar_1 = () => {
         {isUserLogin ? (
           // Nếu đã đăng nhập thành công, hiển thị nút User
           <>
-            <div className="SignUp-User" >
+            <div className="SignUp-User">
               <a onClick={handleUserClick}>User</a>
-              {userInfo && showUserMenu && (
-                <>
-                  {console.log("Rendering user menu...")}
-                  <div className="user-menu">
-                    <h3>User Information</h3>
-                    <ul>
-                      <li><strong>Id:</strong> {userInfo.id}</li>
-                      <li><strong>Name:</strong> {userInfo.fullName}</li>
-                      <li><strong>Email:</strong> {userInfo.username}</li>
-                      <li><strong>Phone:</strong> {userInfo.phoneNumber}</li>
-                      <li><strong>Role:</strong> {userInfo.role}</li>
-                    </ul>
-                  </div>
-                </>
-              )}
-
             </div>
+            {userInfo && showUserMenu && (
+              <div className="user-menu">
+                <h3>User Information</h3>
+                <ul>
+                  <li><strong>Id:</strong> {userInfo.id}</li>
+                  <li><strong>Name:</strong> {userInfo.fullName}</li>
+                  <li><strong>Email:</strong> {userInfo.username}</li>
+                  <li><strong>Phone:</strong> {userInfo.phoneNumber}</li>
+                  <li><strong>Role:</strong> {userInfo.role}</li>
+                </ul>
+              </div>
+            )}
+
           </>
         ) : (
           <Link to="/signup" className="SignUp-User">Sign Up</Link>
