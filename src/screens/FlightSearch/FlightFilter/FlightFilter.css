@@ -1,0 +1,42 @@
+.flight-filter-container {
+    position: relative;
+    border-style: none;
+    width: 100%;
+    padding-right: 12px;
+
+}
+
+.flight-filter-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.flight-filter-button {
+    padding: 0;
+    color: 1.25rem;
+}
+
+.flight-filter-detail {
+    width: 100%;
+}
+
+.flight-filter-detail-slider {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.rating-filter {
+    justify-content: flex-start;
+}
+
+
+
+@media (min-width: 1024px) {
+    .flight-filter-container {
+        width: 400px;
+        border-radius: 1px;
+    }
+}

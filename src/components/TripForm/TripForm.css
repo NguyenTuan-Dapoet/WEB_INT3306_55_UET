@@ -1,78 +1,80 @@
-.test-form{
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 0.5rem 2.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    max-width: 90%;
-    margin: 10px auto;
-    font-family: 'Arial', sans-serif;
-    font-size: 14px;
-    position: relative;
-    top: -100px;
-  }
-   
-  /* Tabs */
-  .form-tabs {
-    display: flex;
-    justify-content: flex-start;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid #f0f0f0;
-  }
-   
-  .form-tab-button {
-    background: none;
-    border: none;
-    font-size: 1rem;
-    padding: 0.8rem 1.2rem;
-    cursor: pointer;
-    color: #555;
-    transition: color 0.3s ease, font-weight 0.3s ease;
-  }
-  
-  .form-tab-button.active {
-    font-weight: bold;
-    color: #00cc88;
-    border-bottom: 3px solid #00cc88;
-  }
-  
-  .form-tab-button:hover {
-    color: #00cc88;
-  }
+.test-form {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1rem 2.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  margin: 20px auto;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  position: relative;
+  top: -80px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-  
-  /* Form actions */
-  .form-submit {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
+.test-form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
 
-  .form-submit-button {
-    background-color: #00cc88;
-    position: relative;
-    color: #ffffff;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-left: auto ;
-  }
+.form-tabs {
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 2px solid #e6f2f0;
+}
 
-  .form-submit-error {
-    color: red;
-    font-weight: 500;
-    font-size: 16px;
-  }
-  
-  .submit-button:hover {
-    background-color: #00996e;
-    transform: scale(1.05);
-  }
+.form-tab-button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.3s ease, font-weight 0.3s ease, border-bottom 0.3s ease;
+}
+
+.form-tab-button.active {
+  font-weight: bold;
+  color: #00a877;
+  border-bottom: 3px solid #8DD3BA;
+}
+
+.form-tab-button:hover {
+  color: #00a877;
+}
+
+/* Form actions */
+.form-submit {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 20px;
+  padding: 0 16px 16px 0;
+}
+
+.form-submit-button {
+  background-color: #8DD3BA;
+  color: #ffffff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.form-submit-button:hover {
+  background-color: #00a877;
+  transform: scale(1.05);
+}
+
+.show_result {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+}

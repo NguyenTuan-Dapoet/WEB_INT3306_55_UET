@@ -11,11 +11,13 @@ import TicketPage from './screens/TicketPage/TicketPage.jsx'
 import { Routes, Route } from 'react-router-dom'
 import Footer from './components/Footer/Footer.jsx'
 
+// import { FlightSearchPage } from './screens/FlightSearch/FlightSearchPage.jsx'
+
 function App() {
   return (
     <>
       <div className="app">
-        <NavBar_1/>
+        <NavBar_1 />
         <Routes>
           {/* <Route path="/" element={<TicketPage />} /> */}
           <Route path="/" element={<HomePage />} />
@@ -27,7 +29,7 @@ function App() {
           <Route path="/tickets" element={<TicketPage />} />
         </Routes>
       </div>
-      <Footer/>
+      <Footer />
     </>
   )
 }

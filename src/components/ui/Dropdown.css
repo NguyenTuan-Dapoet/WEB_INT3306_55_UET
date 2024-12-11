@@ -1,0 +1,54 @@
+.accordion {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+/* Style cho button của accordion, không có viền */
+.accordion-button {
+    background-color: transparent;
+    color: black;
+    border: none;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: background-color 0.2s, color 0.2s, text-decoration 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Hover hiệu ứng cho button */
+.accordion-button:hover {
+    background-color: #CFEDE2;
+    /* Màu sáng hơn khi hover */
+    color: #003d2d;
+    text-decoration: underline;
+}
+
+/* Focus vào button */
+.accordion-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px rgba(49, 53, 51, 0.5);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: transparent;
+    color: black;
+}
+
+/* Style cho nội dung của accordion */
+.accordion-body {
+    padding: 15px;
+    color: #333;
+    font-size: 14px;
+    border: none;
+}
+
+/* Style cho accordion-item */
+.accordion-item {
+    margin-bottom: 10px;
+    border: none;
+    overflow: hidden;
+}
+
+.accordion-item:last-child {
+    margin-bottom: 0;
+}

@@ -1,27 +1,21 @@
-.navbar {
+ .navbar {
     padding: 20px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
- 
+
 .navbar .navbar-logo {
     font-size: 3rem;
     font-weight: bold;
-}
 
-.navbar .navbar-menu {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-    font-size: 18px;
-}
-
-.navbar .navbar-menu a{
     cursor: pointer;
+    transform: color 0.3s ease;
 }
 
 .navbar .navbar-sign {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 30px;
@@ -33,36 +27,49 @@
     background: transparent;
     font-size: 16px;
     color: black;
-    border: 1px solid tomato;
+    border: 1px solid #8DD3BA;
     padding: 10px 30px;
     border-radius: 50px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow: hidden; /* Dùng để cắt phần ::before */
 }
 
-.show-tickets {
-    display: inline-block;
-    padding: 10px 20px; 
-    margin-top: 20px;
-    font-size: 16px; 
-    font-weight: bold;
-    color: white; 
-    background-color: tomato; 
-    border: none; 
-    border-radius: 10px; 
-    cursor: pointer; 
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease; 
+.navbar .navbar-sign .SignUp-User::before,
+.navbar .navbar-sign .Login-Logout::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #8DD3BA;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+    z-index: -1;
 }
 
-.show-tickets:hover {
-    background-color: #0056b3; /* Thay đổi màu nền khi hover */
-    transform: scale(1.05); /* Tăng kích thước nút khi hover */
+.navbar .navbar-sign .SignUp-User:hover::before,
+.navbar .navbar-sign .Login-Logout:hover::before {
+    transform: translateX(0);
 }
 
-.show-tickets:active {
-    background-color: #003f7f; /* Màu nền khi nhấn */
-    transform: scale(0.95); /* Giảm kích thước nút khi nhấn */
+.user-menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 20%;
+    transform: translateX(-50%);
+    width: 350px;
+    background-color: #fff;
+    z-index: 999; /* Đảm bảo hiển thị trên các phần tử khác */
+    padding: 20px;
+    border: 3px solid #8DD3BA;
+    border-radius: 20px;
+    opacity: 1;
 }
 
 .navbar .navbar-sign .SignUp-User .user-menu {
@@ -74,28 +81,88 @@
     top: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%);
-    
+
     width: 350px;
     background-color: #fff;
-    z-index: 1;
+    z-index: 10;
     padding: 20px;
     border: 3px solid tomato;
     border-radius: 20px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .navbar .navbar-sign .SignUp-User .user-menu ul {
     /* padding-left: 20px;  */
-    list-style-type: none; 
+    list-style-type: none;
     margin: 5px 20px;
 }
 
 .navbar .navbar-sign .SignUp-User .user-menu li {
-    text-align: left;  
+    text-align: left;
     /* margin: 5px 0;   */
 }
 
+.show-tickets {
+    display: inline-block;
+    padding: 10px 20px; 
+    margin-top: 20px;
+    font-size: 16px; 
+    font-weight: bold;
+    color: white; 
+    background-color: #8DD3BA; 
+    border: none; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+}
 
-.navbar .active {
-    padding-bottom: 2px;
-    border-bottom: 2px solid tomato;
+.show-tickets:hover {
+    background-color: #0056b3; 
+    transform: scale(1.05); 
+}
+
+.show-tickets:active {
+    background-color: #003f7f;
+    transform: scale(0.95); 
+}
+
+
+@media screen and (max-width: 768px) {
+    .navbar .navbar-sign .SignUp-User {
+        white-space: nowrap;
+    }
+
+    .navbar .navbar-menu {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        display: none;
+        /* Mặc định ẩn menu */
+        background-color: #8DD3BA;
+        /* Sử dụng màu nền chủ đạo */
+        padding: 10px 0;
+        border-top: 1px solid #ffffff;
+    }
+
+    .navbar .navbar-menu.show {
+        display: flex;
+        /* Hiển thị khi nhấn nút toggle */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 5px;
+
+    }
+
+    .navbar .navbar-sign {
+        width: 100%;
+        justify-content: flex-end;
+        gap: 10px;
+    }
 }
