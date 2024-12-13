@@ -11,7 +11,7 @@ export const BookingProvider = ({ children }) => {
         setLoading(true);
         setError(null); // Đặt lại lỗi trước khi gửi yêu cầu
         try {
-            const responseText = await fetch(
+            const response = await fetch(
                 `http://localhost:8080/bookings/createBooking/user/${userId}/flight/${flightId}`,
                 {
                     method: 'POST',
@@ -23,12 +23,11 @@ export const BookingProvider = ({ children }) => {
                 }
             );
 
-            // const responseText = await response.text(); // backend: nếu thành -> susccess
-            
+            const responseText = await response.text(); // backend: nếu thành -> susccess
             console.log("API response", responseText);
 
             // Kiểm tra nếu có lỗi
-            if (!responseText.ok) {
+            if (!response.ok) {
                 // throw new Error(responseText || 'Failed to create booking');
                 throw new Error('Failed to create booking');
             }

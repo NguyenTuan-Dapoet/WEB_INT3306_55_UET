@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSearchFlight } from "../../../assets/api/SearchFlightProvider";  // Import context
 import FlightCard from '../FlightCard/FlightCard';
 import './FlightResult.css';
+import { LoadingState } from '../../../components/LoadingState/LoadingState';
 
 export const FlightResult = () => {
   const navigate = useNavigate(); // Dùng để điều hướng
@@ -62,8 +63,8 @@ export const FlightResult = () => {
     <div className='flight-page'>
 
       <h2>Kết quả tìm kiếm chuyến bay:</h2>
-      {contextData.loading && <p>Đang tải chuyến bay...</p>}
-      {displayError && <p className="error-message">Lỗi: {displayError}</p>}
+      {contextData.loading && <LoadingState />}
+      {!contextData.loading && displayError && <p className="error-message">Lỗi: {displayError}, tham khảo các chuyến sau:</p>}
 
       {/* Hiển thị danh sách chuyến bay */}
       {!contextData.loading && (

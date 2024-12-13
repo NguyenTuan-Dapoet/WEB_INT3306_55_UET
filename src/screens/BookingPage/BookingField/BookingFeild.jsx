@@ -1,16 +1,16 @@
-// BookingPage.js
-import React, { createContext, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { BookingContext } from '../../../assets/api/BookingProvider.jsx';
 import { UserInfoContext } from '../../../assets/api/UserInfoProvider.jsx';
 import { FlightCard } from '../../FlightPage/FlightCard/FlightCard.jsx';
+import { LoadingState } from '../../../components/LoadingState/LoadingState.jsx';
 import './BookingFeild.css';
-
 
 const BookingFeild = () => {
     const selectedFlight = JSON.parse(localStorage.getItem("selectedFlight"));
     const token = localStorage.getItem('app_token');
     const { userInfo } = useContext(UserInfoContext);
     const { createBooking, loading, error, bookingResponse } = useContext(BookingContext);
+
     if (!selectedFlight) {
         return <p>No flight selected. Please go back and choose a flight.</p>;
     }
@@ -40,71 +40,76 @@ const BookingFeild = () => {
         createBooking(userInfo.id, selectedFlight.flightId, token, bookingData);
     };
 
-    // console.log("bookingResponse", bookingResponse);
-    // console.log("error", error);
+    console.log("bookingResponse", bookingResponse);
 
     return (
-        <div className='booking-page-background'>
-            <div className="booking-page-container">
-                <div className='booking-detail'>
-                    <FlightCard 
-                    flightNumber= {selectedFlight.flightNumber}
-                    origin= {selectedFlight.origin.locationName}
-                    destination={selectedFlight.destination.locationName}
-                    departure={selectedFlight.departureTime}
-                    arrival= {selectedFlight.arrivalTime}
-                    price={selectedFlight.price}
-                    availableSeats={selectedFlight.availableSeats}
-                  />
-                </div>
-                
-                <h3>Passenger Information</h3>
+        <div className='booking-feild-background'>
+            {loading ? (
+                <div className='booking-feild-loading'>
+                    <LoadingState />
+                </div> 
+            ) : (
+                <div className="booking-feild-container">
+                    <div className='booking-detail'>
+                        <FlightCard 
+                        flightNumber= {selectedFlight.flightNumber}
+                        origin= {selectedFlight.origin.locationName}
+                        destination={selectedFlight.destination.locationName}
+                        departure={selectedFlight.departureTime}
+                        arrival= {selectedFlight.arrivalTime}
+                        price={selectedFlight.price}
+                        availableSeats={selectedFlight.availableSeats}
+                      />
+                    </div>
+                    
+                    <h3>Passenger Information</h3>
 
-                <div className="booking-form">
-                    <label>
-                        Name:
-                        <input
-                            type="text"
-                            name="passengerName"
-                            value={bookingData.passengerName}
-                            onChange={handleChange}
-                        />
-                    </label>
-                    <label>
-                        Email:
-                        <input
-                            type="email"
-                            name="email"
-                            value={bookingData.email}
-                            onChange={handleChange}
-                        />
-                    </label>
-                    <label>
-                        Phone Number:
-                        <input
-                            type="text"
-                            name="phoneNumber"
-                            value={bookingData.phoneNumber}
-                            onChange={handleChange}
-                        />
-                    </label>
-                    <label>
-                        Total People:
-                        <input
-                            type="number"
-                            name="totalPeople"
-                            value={bookingData.totalPeople}
-                            onChange={handleChange}
-                        />
-                    </label>
+                    <div className="booking-form">
+                        <label>
+                            Name:
+                            <input
+                                type="text"
+                                name="passengerName"
+                                value={bookingData.passengerName}
+                                onChange={handleChange}
+                            />
+                        </label>
+                        <label>
+                            Email:
+                            <input
+                                type="email"
+                                name="email"
+                                value={bookingData.email}
+                                onChange={handleChange}
+                            />
+                        </label>
+                        <label>
+                            Phone Number:
+                            <input
+                                type="text"
+                                name="phoneNumber"
+                                value={bookingData.phoneNumber}
+                                onChange={handleChange}
+                            />
+                        </label>
+                        <label>
+                            Total People:
+                            <input
+                                type="number"
+                                name="totalPeople"
+                                value={bookingData.totalPeople}
+                                onChange={handleChange}
+                            />
+                        </label>
+                    </div>
+                    <button onClick={handleSubmit} disabled={loading} className='booking-submit-button'>
+                        {loading ? 'Booking...' : 'Confirm Booking'}
+                    </button>
+                    
+                    {error && <p className="error-message">{error}</p>}
+                    {bookingResponse && <p className="success-message">Booking Successful! ID: {bookingResponse}</p>}
                 </div>
-                <button onClick={handleSubmit} disabled={loading} className='booking-submit-button'>
-                    {loading ? 'Booking...' : 'Confirm Booking'}
-                </button>
-                
-                {error && <p className="error-message">{error}</p>}
-                {bookingResponse && <p className="success-message">Booking Successful! ID: {bookingResponse.bookingId}</p>}
-            </div>
+            )}
         </div>
     );
 };

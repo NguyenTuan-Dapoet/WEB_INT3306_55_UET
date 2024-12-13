@@ -117,7 +117,7 @@ import BookingFeild from './BookingField/BookingFeild'
 import "./BookingPage.css"
 function Home() {
     return (
-        <div>
+        <div className='booking-page-backround'>
             <BookingFeild/>
         </div>
     )

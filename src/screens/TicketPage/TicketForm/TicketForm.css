@@ -1,0 +1,210 @@
+.ticket {
+  display: flex;
+  width: 900px;
+  height: 350px;
+  margin: 20px auto 50px;
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ticket::after,
+.ticket::before {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 3px solid #ffffff;
+}
+
+.ticket::after {
+  top: -10%;
+  right: 24.58%;
+}
+
+.ticket::before {
+  bottom: -10%;
+  right: 24.58%;
+}
+
+.ticket-left {
+  font-size: 25px;
+  font-weight: 600;
+  background: rgb(218, 218, 101);
+  flex: 3;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ticket-left-header {
+  position: relative;
+  font-size: 40px;
+  font-weight: 600;
+  color: white;
+  text-align: left;
+  border-radius: 10px;
+  background-color: transparent;
+  z-index: 1;
+}
+
+.ticket-left-header::after {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 280%;
+  left: -80%;
+  top: -170%;
+  border-radius: 80px;
+  background-color: tomato;
+  z-index: -1;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.plane-icon-ticket {
+  font-size: 60px;
+}
+
+.section-label{
+  font-size: 16px;
+  color: grey;
+  font-weight: 500;
+}
+
+.section-details {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  text-align: center;
+}
+
+.airport-code {
+  font-size: 60px;
+  font-weight: 600;
+}
+
+.city {
+  font-size: 1rem;
+  color: #666;
+}
+
+.section-details .date-time,
+.info .info-section {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  text-align: center;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.info-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket-divider {
+  width: 30px;
+  background-color: rgb(218, 218, 101);
+  background-image: radial-gradient(circle, white 50%, rgba(255, 255, 255, 0) 50%);
+  background-size: 30px 35px;
+  background-repeat: repeat-y;
+}
+
+.ticket-right {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(218, 218, 101);
+}
+
+.ticket-right-header {
+  position: relative;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  text-align: right;
+  background-color: transparent;
+  z-index: 0;
+  white-space: pre-line;
+}
+
+.ticket-right-header {
+  position: relative;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  text-align: right;
+  background-color: transparent;
+  z-index: 0;
+  white-space: pre-line;
+}
+
+.ticket-right-header::after {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 250%;
+  right: -70%;
+  top: -130%;
+  border-radius: 100px;
+  background-color: tomato;
+  z-index: -1;
+}
+
+/* Trạng thái */
+.ticket-status {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+}
+.status {
+  font-weight: bold;
+}
+
+.status-accept {
+  color: green;
+}
+
+.status-pending {
+  color: orange;
+}
+
+/* Nút bấm in hóa đơn */
+.print-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #d84315;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  position: relative; /* Tạo ngữ cảnh xếp chồng cho nút */
+  z-index: 1; /* Đảm bảo nút nằm trên ::after */
+}
+
+.print-button:hover {
+  background-color: #bf360c;
+}
+
+.print-button:active {
+  background-color: #a12708;
+}

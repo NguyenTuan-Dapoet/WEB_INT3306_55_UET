@@ -6,7 +6,7 @@ import SignUpPage from './screens/SignUpPage/SignUpPage.jsx'
 import FlightPage from './screens/FlightPage/FlightPage.jsx'
 import BookingPage from './screens/BookingPage/BookingPage.jsx'
 import TicketPage from './screens/TicketPage/TicketPage.jsx'
-
+import LoadingState from './components/LoadingState/LoadingState.jsx'
 
 import { Routes, Route } from 'react-router-dom'
 import Footer from './components/Footer/Footer.jsx'
@@ -19,7 +19,7 @@ function App() {
       <div className="app">
         <NavBar_1 />
         <Routes>
-          {/* <Route path="/" element={<TicketPage />} /> */}
+          {/* <Route path="/" element={<LoadingState />} /> */}
           <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />

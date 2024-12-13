@@ -7,6 +7,10 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.ticket-container .ticket-list {
+    display: flex;
+    flex-direction: column;
+}
 .ticket-container h2 {
     font-size: 24px;
     color: #333;

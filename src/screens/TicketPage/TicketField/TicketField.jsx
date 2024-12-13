@@ -1,20 +1,20 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { TicketContext } from '../../../assets/api/TicketProvider.jsx';
+import TicketForm from '../TicketForm/TicketForm';
 import './TicketField.css';
 
 const TicketField = () => {
     const { tickets, loading, error, fetchTickets } = useContext(TicketContext);
     const [hasFetched, setHasFetched] = useState(false);
 
-    const handleFetchTickets = () => {
+    useEffect(() => {
         const token = localStorage.getItem('app_token'); // Lấy token từ localStorage
         if (token) {
-            fetchTickets(token);
-            setHasFetched(true); // Đánh dấu đã nhấn nút
+            fetchTickets(token); // Gọi API khi component được render lần đầu
         } else {
             alert('Token is missing. Please log in again.');
         }
-    };
+    }, [hasFetched]);
 
     if (loading) {
         return <p>Loading tickets...</p>;
@@ -27,15 +27,13 @@ const TicketField = () => {
     return (
         <div className="ticket-container">
             <h2>My Tickets</h2>
-            {!hasFetched ? (
-                <button onClick={handleFetchTickets} className="fetch-tickets-button">
-                    Show My Tickets
-                </button>
-            ) : tickets.length === 0 ? (
+            {tickets.length === 0 ? (
                 <p>No tickets available.</p>
             ) : (
                 <div className="ticket-list">
-                    <pre>{JSON.stringify(tickets, null, 2)}</pre> {/* Hiển thị toàn bộ dữ liệu JSON */}
+                    {tickets.map((ticket, index) => (
+                        <TicketForm key={index} ticket={ticket} />
+                    ))}
                 </div>
             )}
         </div>

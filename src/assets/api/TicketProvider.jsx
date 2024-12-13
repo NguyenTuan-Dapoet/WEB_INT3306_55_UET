@@ -13,7 +13,7 @@ export const TicketProvider = ({ children }) => {
         setLoading(true);
         setError(null); // Reset lỗi trước khi gửi yêu cầu
         try {
-            const response = await fetch('http://localhost:8080/bookings/pdfs', {
+            const response = await fetch('http://localhost:8080/bookings/bookingInformation', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`, // Thêm token vào header
@@ -27,7 +27,7 @@ export const TicketProvider = ({ children }) => {
 
             const data = await response.json(); // API trả về dữ liệu dạng JSON
             setTickets(data); // Lưu dữ liệu vào state
-            
+        
             //--------------test----------------
             console.log("ticket response" ,response);
             console.log("ticket data",data);

@@ -18,7 +18,7 @@ export const TripForm = () => {
   console.log("(Home)Flight data from context:", flightData);
 
   const flightStorage = JSON.parse(localStorage.getItem("flightData"));
-  if (flightData) {
+  if (flightStorage) {
     console.log("(Home)Dữ liệu chuyến bay từ localStorage:", flightStorage);
   } else {
     console.log("(Home)Không có dữ liệu chuyến bay trong localStorage");
