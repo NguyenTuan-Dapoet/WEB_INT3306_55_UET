@@ -1,0 +1,116 @@
+    /* Container của news-card */
+    .news-card {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e0e0e0;
+        font-family: Arial, sans-serif;
+        color: tomato;
+
+    }
+
+    /* Icon và Tiêu đề */
+    .news-icon-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        height: 100%;
+    }
+
+    .news-icon {
+        font-size: 24px;
+    }
+
+    .news-title {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .news-divider {
+        width: 1px;
+        height: 100px;
+        background-color: tomato;
+        margin: 0 15px;
+    }
+
+    .news-date {
+        font-size: 14px;
+    }
+
+    /* Nội dung */
+    .news-content {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        flex: 1;
+        margin-left: 20px;
+        overflow: hidden;
+    }
+        
+    .news-link {
+        font-size: 16px;
+        text-decoration: none;
+        color: tomato;
+        cursor: pointer;
+    
+        white-space: nowrap; /* Ngăn xuống dòng */
+        overflow: hidden; /* Ẩn nội dung tràn */
+        text-overflow: ellipsis; /* Thêm dấu "..." nếu nội dung quá dài */
+        display: inline-block; /* Cần để "ellipsis" hoạt động chính xác */
+    }
+    
+    .news-link:hover {
+        text-decoration: underline;
+    }
+
+    /* Navigation (up, down, index) */
+    .news-navigation {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+    }
+
+    .news-button {
+        font-size: 20px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        color: tomato;
+    }
+
+    .news-button:hover {
+        background: transparent;
+    }
+
+    .news-index {
+        font-size: 14px;
+    }
+
+    /* Nút Xem Thêm */
+    .news-actions {
+        margin-left: 20px;
+    }
+
+    .news-read-more {
+        height: 100%;
+        font-size: 14px;
+        color: white;
+        text-decoration: none;
+        background-color: tomato;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .news-read-more:hover {
+        text-decoration: underline;
+    }

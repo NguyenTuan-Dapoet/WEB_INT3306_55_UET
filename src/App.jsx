@@ -7,6 +7,7 @@ import FlightPage from './screens/FlightPage/FlightPage.jsx'
 import BookingPage from './screens/BookingPage/BookingPage.jsx'
 import TicketPage from './screens/TicketPage/TicketPage.jsx'
 import LoadingState from './components/LoadingState/LoadingState.jsx'
+import Error from './components/Error/Error.jsx'
 
 import { Routes, Route } from 'react-router-dom'
 import Footer from './components/Footer/Footer.jsx'
@@ -27,6 +28,7 @@ function App() {
           <Route path="/flight" element={<FlightPage />} />
           <Route path="/booking" element={<BookingPage />} />
           <Route path="/tickets" element={<TicketPage />} />
+          <Route path="/401" element={<Error/>} />
         </Routes>
       </div>
       <Footer />

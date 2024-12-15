@@ -115,7 +115,7 @@
 import React from 'react'   
 import BookingFeild from './BookingField/BookingFeild'
 import "./BookingPage.css"
-function Home() {
+function BookingPage() {
     return (
         <div className='booking-page-backround'>
             <BookingFeild/>
@@ -123,4 +123,4 @@ function Home() {
     )
 }
 
-export default Home 
+export default BookingPage 

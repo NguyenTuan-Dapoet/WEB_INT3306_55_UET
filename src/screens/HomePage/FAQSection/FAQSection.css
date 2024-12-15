@@ -1,0 +1,152 @@
+.faq-section-container {
+  padding: 20px;
+  background: #fdfdfd;
+  color: #333;
+  box-sizing: border-box;
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 30% ;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 0.5;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+} 
+
+.faq-and-form-wrapper {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .faq-and-form-wrapper {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.faq-section,
+.inquiry-section {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .faq-section,
+  .inquiry-section {
+    width: 100%;
+  }
+}
+
+.faq-section h2,
+.inquiry-section h2 {
+  margin: 0 0 15px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.faq-list {
+  margin-top: 20px;
+}
+
+.faq-item {
+  background-color: pink;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.faq-item:hover {
+  background-color: #ffccd5;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+
+.faq-toggle {
+  font-size: 22px;
+  color: #333; 
+}
+
+
+.faq-answer {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #555;
+  transition: all 0.3s ease-in-out;
+}
+
+.inquiry-section p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+}
+
+.inquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.inquiry-form input,
+.inquiry-form textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
+.inquiry-form button {
+  background: #ff5a3c;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.inquiry-form button:hover {
+  background: #e04b30;
+}
+
+@media (max-width: 480px) {
+
+  .faq-section h2,
+  .inquiry-section h2 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .faq-item {
+    padding: 10px;
+  }
+
+  .inquiry-form button {
+    font-size: 14px;
+  }
+}

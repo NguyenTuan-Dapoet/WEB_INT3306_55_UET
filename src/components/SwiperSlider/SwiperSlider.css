@@ -1,0 +1,68 @@
+/* Swiper styles */
+
+.trading {
+  margin: 50px 0px;
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 30% ;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 0.5;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+} 
+
+.trading-slider {
+  height: 52rem;
+  padding: 2rem 0;
+  position: relative;
+}
+
+.tranding-slide {
+  width: 27rem;
+  height: 32rem;
+  position: relative;
+}
+
+.tranding-slide .tranding-slide-img img {
+  width: 27rem !important;
+  height: 32rem !important;
+  border-radius: 2rem;
+  object-fit: cover;
+}
+
+.tranding-slide .tranding-slide-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.tranding-slide-content .food-price {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: white;
+}
+
+.tranding-slide-content .tranding-slide-content-bottom {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  color: white;
+}
+
+.food-rating {
+  padding-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+

@@ -1,0 +1,8 @@
+.new-field{
+    margin: 40px 0px;
+}
+
+.new-field .new-header {
+    font-size: max(2vw, 24px);
+    font-weight: 600;
+}

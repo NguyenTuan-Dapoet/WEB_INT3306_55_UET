@@ -17,6 +17,7 @@ function AuthProvider({ children }) {
   }, []);
 
   // Khi token thay đổi, lưu vào localStorage
+  // có thể token bị lỗi -> thay đổi trong localStorage
   useEffect(() => {
     if (token) {
       localStorage.setItem('app_token', token);
