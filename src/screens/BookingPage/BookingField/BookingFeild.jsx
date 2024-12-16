@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useSelector } from 'react-redux'; // Import useSelector để lấy dữ liệu từ Redux
 import { BookingContext } from '../../../assets/api/BookingProvider.jsx';
 import { UserInfoContext } from '../../../assets/api/UserInfoProvider.jsx';
 import { FlightCard } from '../../FlightPage/FlightCard/FlightCard.jsx';
@@ -12,36 +13,41 @@ const BookingFeild = () => {
     const { userInfo } = useContext(UserInfoContext);
     const { createBooking, loading, error, bookingResponse } = useContext(BookingContext);
 
-    if (!selectedFlight) {
-        return <p>No flight selected. Please go back and choose a flight.</p>;
+    // Lấy dữ liệu hành khách từ Redux
+    const passengers = useSelector((state) => state.trip.passengers);
+
+    if (!selectedFlight || !userInfo) {
+        return <p>No flight or user selected. Please go back and try again.</p>;
     }
 
     const [bookingData, setBookingData] = useState({
         passengerName: '',
         email: '',
         phoneNumber: '',
-        totalPrices: selectedFlight ? selectedFlight.price : 0,
-        totalPeople: 1,
+        totalPrices: selectedFlight.price,
+        totalPeople: passengers.adult + passengers.children, // Lấy từ Redux
+        ticketClass: passengers.classType, // Lấy từ Redux
     });
 
-    if (!selectedFlight || !userInfo) {
-        return <p>No flight or user selected. Please go back and try again.</p>;
-    }
+    console.log("bookingData",bookingData);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setBookingData({
             ...bookingData,
             [name]: value,
-            totalPrices: name === 'totalPeople' ? value * selectedFlight.price : bookingData.totalPrices // Cập nhật giá vé khi thay đổi số lượng người
         });
     };
 
     const handleSubmit = () => {
-        createBooking(userInfo.id, selectedFlight.flightId, token, bookingData);
-    };
+        // Cập nhật lại totalPeople và totalPrices từ Redux trước khi gửi
+        const updatedBookingData = {
+            ...bookingData,
+            totalPrices: (passengers.adult + passengers.children * 0.5) * selectedFlight.price, // trẻ em giảm 50%
+        };
 
-    console.log("bookingResponse", bookingResponse);
+        createBooking(userInfo.id, selectedFlight.flightId, token, updatedBookingData);
+    };
 
     return (
         <div className='booking-feild-background'>
@@ -67,7 +73,7 @@ const BookingFeild = () => {
 
                     <div className="booking-form">
                         <label>
-                            {/* <p>Name:</p> */}
+                            <p>Your name:</p>
                             <input
                                 type="text"
                                 name="passengerName"
@@ -76,7 +82,7 @@ const BookingFeild = () => {
                             />
                         </label>
                         <label>
-                            {/* <p>Email:</p> */}
+                            <p>Email:</p>
                             <input
                                 type="email"
                                 name="email"
@@ -85,7 +91,7 @@ const BookingFeild = () => {
                             />
                         </label>
                         <label>
-                            {/* <p>Phone Number:</p> */}
+                            <p>Phone number:</p>
                             <input
                                 type="text"
                                 name="phoneNumber"
@@ -93,18 +99,9 @@ const BookingFeild = () => {
                                 onChange={handleChange}
                             />
                         </label>
-                        {/* <label>
-                            Total People:
-                            <input
-                                type="number"
-                                name="totalPeople"
-                                value={bookingData.totalPeople}
-                                onChange={handleChange}
-                            />
-                        </label> */}
 
                         <label>
-                            {/* <p>Total People:</p> */}
+                            <p>Passenger select:</p>
                             <div className="book-passenger">
                                 <PassengerClassSelect />
                             </div>

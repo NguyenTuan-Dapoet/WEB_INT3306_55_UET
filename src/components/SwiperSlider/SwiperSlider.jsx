@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, EffectCoverflow } from "swiper/modules"; // Import từ modules
+import { Navigation, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
@@ -17,7 +17,24 @@ import vinhPic from "../../assets/pictures/vinh.jpg";
 import quyNhonPic from "../../assets/pictures/quy-nhon.jpg";
 import "./SwiperSlider.css";
 
+// Tạo component Popup
+const Popup = ({ city, content, onClose }) => {
+    return (
+        <div className="popup-overlay" onClick={onClose}>
+            <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+                <h2>{city.cityName}</h2>
+                <img src={city.cityImage} alt={city.cityName} />
+                <p>{content}</p>
+                <button onClick={onClose}>Close</button>
+            </div>
+        </div>
+    );
+};
+
 const SwiperSlider = () => {
+    const [popupOpen, setPopupOpen] = useState(false);
+    const [selectedCity, setSelectedCity] = useState(null);
+
     const slides = [
         { id: 1, cityName: "Hà Nội", cityImage: haNoiPic },
         { id: 2, cityName: "Hồ Chí Minh", cityImage: hoChiMinhPic },
@@ -31,13 +48,18 @@ const SwiperSlider = () => {
         { id: 10, cityName: "Quy Nhơn", cityImage: quyNhonPic },
     ];
 
+    const openPopup = (city) => {
+        setSelectedCity(city);
+        setPopupOpen(true);
+    };
+
+    const closePopup = () => {
+        setPopupOpen(false);
+        setSelectedCity(null);
+    };
+
     return (
         <div className="trading">
-            {/* <div className="container">
-                <p className="section-heading">Fly with us: ✈️✈️✈️</p>
-                <p className="section-subheading">Trending this year</p>
-            </div> */}
-
             <div className="swiper-wrap">
                 <Swiper
                     pagination={{ clickable: false }}
@@ -56,7 +78,11 @@ const SwiperSlider = () => {
                     className="trading-slider"
                 >
                     {slides.map((slide) => (
-                        <SwiperSlide key={slide.id} className="tranding-slide">
+                        <SwiperSlide
+                            key={slide.id}
+                            className="tranding-slide"
+                            onClick={() => openPopup(slide)}
+                        >
                             <div className="tranding-slide-img">
                                 <img src={slide.cityImage} alt={slide.cityName} />
                             </div>
@@ -73,13 +99,17 @@ const SwiperSlider = () => {
                     ))}
                 </Swiper>
             </div>
+
+            {popupOpen && selectedCity && (
+                <Popup
+                    city={selectedCity}
+                    content={`Khám phá ${selectedCity.cityName}, một điểm đến tuyệt vời cho những ai yêu thích du lịch và trải nghiệm văn hóa đặc sắc. Với cảnh sắc thiên nhiên tuyệt đẹp, những món ăn phong phú và lịch sử văn hóa lâu đời, ${selectedCity.cityName} hứa hẹn sẽ mang đến cho bạn những trải nghiệm khó quên. Hãy đến và khám phá những địa danh nổi bật, hòa mình vào nhịp sống nơi đây và tận hưởng những khoảnh khắc thư giãn bên gia đình và bạn bè!`}
+                    onClose={closePopup}
+                />
+            )}
         </div>
-
-
-
     );
 };
 
 export default SwiperSlider;
-
 

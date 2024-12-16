@@ -32,7 +32,7 @@ export const TripForm = () => {
     dispatch(setTripOption(option));
   };
 
-  var isError = !formData.From.code || !formData.To.code || !formData.startDate
+  var isError = !formData.From.code || !formData.To.code || !formData.startDate || !formData.passengers;
 
   const handleSubmit = () => {
     // Kiểm tra xem dữ liệu cần thiết đã được nhập hay chưa
@@ -43,7 +43,9 @@ export const TripForm = () => {
     
     // Nếu dữ liệu hợp lệ, gọi searchFlights từ context khi submit form và đợi kết quả
     console.log("bắt đầu tìm kiếm chuyến bay");
-    flightData.searchFlights(formData.From.code, formData.To.code, formData.startDate);    
+    const totalSeat = formData.passengers.adult + formData.passengers.children;
+    const ticketClass = formData.passengers.classType.toLowerCase();
+    flightData.searchFlights(formData.From.code, formData.To.code, formData.startDate, totalSeat, ticketClass);    
     navigate('/flight');
   };
 

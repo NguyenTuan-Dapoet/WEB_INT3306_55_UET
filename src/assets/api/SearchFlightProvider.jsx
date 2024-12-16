@@ -12,12 +12,12 @@ export const SearchFlightProvider = ({ children }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const searchFlights = async (originCode, destinationCode, departureTime) => {
+  const searchFlights = async (originCode, destinationCode, departureTime, totalSeat , ticketClass) => {
     setLoading(true);
     setError('');
     try {
       const response = await fetch(
-        `http://localhost:8080/flights/search?originCode=${originCode}&destinationCode=${destinationCode}&departureTime=${departureTime}`
+        `http://localhost:8080/flights/search?originCode=${originCode}&destinationCode=${destinationCode}&departureTime=${departureTime}&totalSeat=${totalSeat}&ticketClass=${ticketClass}`
       );
       if (!response.ok) {
         throw new Error('server không có chuyến bay này');

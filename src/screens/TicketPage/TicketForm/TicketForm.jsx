@@ -55,6 +55,11 @@ const TicketForm = ({ ticket }) => {
                     </div>
 
                     <div className="info-section">
+                        <span>Class: </span>
+                        <span>{ticket.ticketClass}</span>
+                    </div>
+
+                    <div className="info-section">
                         <span>Seat: </span>
                         <span>trống</span>
                     </div>
