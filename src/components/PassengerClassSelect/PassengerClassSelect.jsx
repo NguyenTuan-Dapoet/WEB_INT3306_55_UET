@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from 'react-redux';  // import useDispatch để sử dụng dispatch
+import React, { useState, useRef, useEffect } from "react";
+import { useDispatch } from "react-redux"; // import useDispatch để sử dụng dispatch
 import { setPassengers } from "../../Redux/tripSlice"; // Import action setPassengers
 import "./PassengerClassSelect.css";
 
@@ -11,8 +11,8 @@ const PassengerClassSelect = () => {
     children: 0,
   });
 
-  const dispatch = useDispatch();  // Khởi tạo dispatch
-
+  const dispatch = useDispatch(); // Khởi tạo dispatch
+  const dropdownRef = useRef(null); // Reference cho dropdown
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Trạng thái mở/đóng dropdown
 
   // Toggle trạng thái dropdown
@@ -44,6 +44,21 @@ const PassengerClassSelect = () => {
   // Tổng số hành khách
   const people = passengers.adult + passengers.children;
 
+  // Đóng dropdown khi bấm ngoài dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false); // Đóng dropdown nếu click ngoài
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside); // Cleanup event listener
+      console.log("cleanup");
+    };
+  }, []);
+
   return (
     <div className="passenger-class-container">
       {/* Ô hiển thị */}
@@ -58,7 +73,7 @@ const PassengerClassSelect = () => {
 
       {/* Dropdown nội dung */}
       {isDropdownOpen && (
-        <div className="passenger-class-dropdown">
+        <div className="passenger-class-dropdown" ref={dropdownRef}>
           {/* Lựa chọn Class */}
           <div className="dropdown-section">
             <label htmlFor="class-select">Class</label>
