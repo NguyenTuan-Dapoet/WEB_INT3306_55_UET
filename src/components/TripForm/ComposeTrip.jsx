@@ -17,7 +17,7 @@ export const ComposeTrip = ({ formType }) => {
 
   // Lấy danh sách địa điểm từ context
   const location_list = useContext(LocationContext);
-  console.log(location_list);
+  // console.log(location_list);
   
   // Khai báo state để lưu giá trị của select-from và select-to
   const [fromOption, setFromState] = useState(null); // option

@@ -24,6 +24,7 @@ import { SearchFlightProvider } from './assets/api/SearchFlightProvider.jsx';
 import { UserInfoProvider } from './assets/api/UserInfoProvider.jsx';
 import { BookingProvider } from './assets/api/BookingProvider.jsx';
 import { TicketProvider } from './assets/api/TicketProvider.jsx';
+import { NewsProvider } from './assets/api/NewsProvider.jsx';
 createRoot(document.getElementById('root')).render(
   // <StrictMode>
     <BrowserRouter>
@@ -32,13 +33,15 @@ createRoot(document.getElementById('root')).render(
          <RegisterProvider>
           <UserInfoProvider>
             <LocationProvider>
-              <SearchFlightProvider>
-                <BookingProvider>
-                  <TicketProvider>
-                    <App />
-                  </TicketProvider>
-                </BookingProvider>
-              </SearchFlightProvider>
+              <NewsProvider>
+                <SearchFlightProvider>
+                  <BookingProvider>
+                    <TicketProvider>
+                      <App />
+                    </TicketProvider>
+                  </BookingProvider>
+                </SearchFlightProvider>
+                </NewsProvider>
           </LocationProvider>
           </UserInfoProvider>
          </RegisterProvider>
