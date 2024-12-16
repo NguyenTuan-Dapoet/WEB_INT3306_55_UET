@@ -40,6 +40,8 @@
 }
 
 .booking-form label {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column; /* Đảm bảo nhãn và input xếp theo chiều dọc */
     font-size: 14px;
@@ -47,11 +49,17 @@
 }
 
 .booking-form input {
-    padding: 10px;
+    padding: 15px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
+}
+
+.book-passenger {
+    margin-top: 5px;
+    width: 100%;
+    height: 100%;
 }
 
 .booking-submit-button {
@@ -70,24 +78,11 @@
     cursor: not-allowed;
 }
 
-.error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 20px;
-}
-
-.success-message {
-    color: green;
-    font-size: 14px;
-    margin-top: 20px;
-}
-
-/* Thông báo lỗi và thành công */
 .error-message,
 .success-message {
     font-size: 16px;
     text-align: center;
-    /* margin-top: 20px; */
+    margin-top: 20px;
 }
 
 .error-message {
@@ -98,23 +93,37 @@
     color: #5bc0de;
 }
 
-/* Cải thiện giao diện di động */
-/* @media (max-width: 768px) {
-    .booking-page-container {
-        padding: 15px;
-        width: 100%;
-        max-width: 100%;
+/* Responsive CSS */
+@media (max-width: 768px) {
+    .booking-form {
+        grid-template-columns: 1fr; /* Chuyển về 1 cột trên màn hình nhỏ */
     }
 
-    .booking-detail h2 {
-        font-size: 24px;
+    .booking-feild-container {
+        padding: 30px 20px;
     }
 
-    .booking-form h3 {
-        font-size: 20px;
+    .booking-form input {
+        font-size: 12px; /* Giảm kích thước input */
     }
 
     .booking-submit-button {
-        font-size: 16px;
+        font-size: 14px;
     }
-} */
+}
+
+@media (max-width: 480px) {
+    .booking-feild-container {
+        padding: 20px 10px;
+    }
+
+    .booking-form input {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .booking-submit-button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}

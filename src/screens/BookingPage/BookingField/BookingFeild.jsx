@@ -3,6 +3,7 @@ import { BookingContext } from '../../../assets/api/BookingProvider.jsx';
 import { UserInfoContext } from '../../../assets/api/UserInfoProvider.jsx';
 import { FlightCard } from '../../FlightPage/FlightCard/FlightCard.jsx';
 import { LoadingState } from '../../../components/LoadingState/LoadingState.jsx';
+import PassengerClassSelect from '../../../components/PassengerClassSelect/PassengerClassSelect.jsx';
 import './BookingFeild.css';
 
 const BookingFeild = () => {
@@ -29,8 +30,8 @@ const BookingFeild = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setBookingData({ 
-            ...bookingData, 
+        setBookingData({
+            ...bookingData,
             [name]: value,
             totalPrices: name === 'totalPeople' ? value * selectedFlight.price : bookingData.totalPrices // Cập nhật giá vé khi thay đổi số lượng người
         });
@@ -47,26 +48,26 @@ const BookingFeild = () => {
             {loading ? (
                 <div className='booking-feild-loading'>
                     <LoadingState />
-                </div> 
+                </div>
             ) : (
                 <div className="booking-feild-container">
                     <div className='booking-detail'>
-                        <FlightCard 
-                        flightNumber= {selectedFlight.flightNumber}
-                        origin= {selectedFlight.origin.locationName}
-                        destination={selectedFlight.destination.locationName}
-                        departure={selectedFlight.departureTime}
-                        arrival= {selectedFlight.arrivalTime}
-                        price={selectedFlight.price}
-                        availableSeats={selectedFlight.availableSeats}
-                      />
+                        <FlightCard
+                            flightNumber={selectedFlight.flightNumber}
+                            origin={selectedFlight.origin.locationName}
+                            destination={selectedFlight.destination.locationName}
+                            departure={selectedFlight.departureTime}
+                            arrival={selectedFlight.arrivalTime}
+                            price={selectedFlight.price}
+                            availableSeats={selectedFlight.availableSeats}
+                        />
                     </div>
-                    
+
                     <h3>Passenger Information</h3>
 
                     <div className="booking-form">
                         <label>
-                            Name:
+                            {/* <p>Name:</p> */}
                             <input
                                 type="text"
                                 name="passengerName"
@@ -75,7 +76,7 @@ const BookingFeild = () => {
                             />
                         </label>
                         <label>
-                            Email:
+                            {/* <p>Email:</p> */}
                             <input
                                 type="email"
                                 name="email"
@@ -84,7 +85,7 @@ const BookingFeild = () => {
                             />
                         </label>
                         <label>
-                            Phone Number:
+                            {/* <p>Phone Number:</p> */}
                             <input
                                 type="text"
                                 name="phoneNumber"
@@ -92,7 +93,7 @@ const BookingFeild = () => {
                                 onChange={handleChange}
                             />
                         </label>
-                        <label>
+                        {/* <label>
                             Total People:
                             <input
                                 type="number"
@@ -100,12 +101,19 @@ const BookingFeild = () => {
                                 value={bookingData.totalPeople}
                                 onChange={handleChange}
                             />
+                        </label> */}
+
+                        <label>
+                            {/* <p>Total People:</p> */}
+                            <div className="book-passenger">
+                                <PassengerClassSelect />
+                            </div>
                         </label>
                     </div>
                     <button onClick={handleSubmit} disabled={loading} className='booking-submit-button'>
                         {loading ? 'Booking...' : 'Confirm Booking'}
                     </button>
-                    
+
                     {error && <p className="error-message">{error}</p>}
                     {bookingResponse && <p className="success-message">Booking Successful! ID: {bookingResponse}</p>}
                 </div>
