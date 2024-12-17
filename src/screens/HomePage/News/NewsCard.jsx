@@ -16,7 +16,7 @@ const NewsCard = ({ date, title, content, currentIndex, total, onNext, onPrev })
     <div className="news-card">
       <div className="news-icon-title">
         <FaCalendarAlt className="news-icon" />
-        <span className="news-title">Tin tức</span>
+        <span className="news-title">News</span>
       </div>
 
       <div className="news-divider"></div>

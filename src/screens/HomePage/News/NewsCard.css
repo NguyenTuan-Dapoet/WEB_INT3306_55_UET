@@ -21,7 +21,7 @@
         align-items: center;
         gap: 10px;
         height: 100%;
-        color: tomato;
+        color: var(--primary-color);
     }
 
     .news-icon {
@@ -36,38 +36,39 @@
     .news-divider {
         width: 1px;
         height: 100px;
-        background-color: tomato;
+        background-color: var(--primary-color);
         margin: 0 15px;
     }
 
     .news-date {
         font-size: 14px;
-        color: tomato;
+        color: var(--primary-color);
     }
 
     /* Nội dung */
     .news-content {
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 10px;
         flex: 1;
         margin-left: 20px;
         overflow: hidden;
         transition: translate 0.3s ease-in-out;
     }
-        
+
     .news-link {
         font-size: 16px;
         text-decoration: none;
-        color: tomato;
+        color: var(--primary-color);
+        font-weight: 600;
         cursor: pointer;
-    
-        white-space: nowrap; /* Ngăn xuống dòng */
-        overflow: hidden; /* Ẩn nội dung tràn */
-        text-overflow: ellipsis; /* Thêm dấu "..." nếu nội dung quá dài */
-        display: inline-block; /* Cần để "ellipsis" hoạt động chính xác */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        /* Cần để "ellipsis" hoạt động chính xác */
     }
-    
+
     .news-link:hover {
         text-decoration: underline;
     }
@@ -87,7 +88,7 @@
         border: none;
         background-color: transparent;
         cursor: pointer;
-        color: tomato;
+        color: var(--primary-color);
     }
 
     .news-button:hover {
@@ -96,7 +97,7 @@
 
     .news-index {
         font-size: 14px;
-        color: tomato;
+        color: var(--primary-color);
     }
 
     /* Nút Xem Thêm */
@@ -109,11 +110,12 @@
         font-size: 14px;
         color: white;
         text-decoration: none;
-        background-color: tomato;
+        background-color: var(--primary-color);
         padding: 10px;
         border-radius: 10px;
     }
 
     .news-read-more:hover {
         text-decoration: underline;
+        background-color: var(--button-color-hover);
     }
