@@ -1,0 +1,4 @@
+.homepage {
+    margin-bottom: 50px;
+    animation: slideUp 0.8s ease-out, fadeIn 0.8s ease-in-out;
+}

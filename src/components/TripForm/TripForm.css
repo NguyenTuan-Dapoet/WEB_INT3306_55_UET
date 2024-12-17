@@ -49,12 +49,12 @@
   justify-content: flex-end;
   gap: 1rem;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 15px;
   padding: 0 16px 16px 0;
 }
 
 .form-submit-button {
-  background-color: #8DD3BA;
+  background-color: var(--primary-color);
   color: #ffffff;
   border: none;
   padding: 0.8rem 1.5rem;
@@ -68,8 +68,12 @@
 }
 
 .form-submit-button:hover {
-  background-color: #00a877;
-  transform: scale(1.05);
+  background-color: var(--button-color-hover);
+}
+
+.form-submit-button:active {
+  background-color: #00a8789d;
+  transform: scale(0.95);
 }
 
 .show_result {
@@ -77,4 +81,23 @@
   font-size: 1rem;
   color: #555;
   text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .form-submit {
+    padding: 0 16px 20px 16px;
+    flex-direction: column;
+  }
+
+  .form-submit-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .form-submit {
+    justify-content: center;
+  }
 }

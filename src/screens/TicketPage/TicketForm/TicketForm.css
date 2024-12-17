@@ -96,12 +96,6 @@
   font-size: 60px;
 }
 
-/* .section-label {
-  font-size: 16px;
-  color: grey;
-  font-weight: 500;
-} */
-
 .section-details {
   display: flex;
   flex-direction: column;
@@ -196,8 +190,7 @@
 }
 
 .status-pending {
-  color: rgb(255, 181, 43);
-  text-shadow: #7a7a7a92 0 0 2px;
+  color: rgb(255, 115, 0);
 }
 
 /* Nút bấm in hóa đơn */

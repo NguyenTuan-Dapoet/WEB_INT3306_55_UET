@@ -4,7 +4,7 @@ import { NewsContext } from "../../../assets/api/NewsProvider";
 import "./News.css";
 
 const News = () => {
-  const { newList, error } = useContext(NewsContext); 
+  const { newList, error } = useContext(NewsContext);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   console.log("newList", newList);
@@ -31,7 +31,7 @@ const News = () => {
 
   return (
     <div className="new-field">
-      <div className="new-header">Tin Tức</div>
+      {/* <div className="new-header">News</div> */}
       <div className="new-card">
         <NewsCard
           date={new Date(newList[currentIndex].createdAt).toLocaleDateString()}
