@@ -18,7 +18,6 @@ export const NavBar_1 = () => {
   const navigate = useNavigate(); 
 
   const handleShowInfor = () => {
-    setTimeout(() => {}, 2000);
 
     if (!userInfo && loading) {
       // Nếu đang loading và userInfo chưa có, chỉ bật trạng thái menu nhưng không hiển thị thông tin
@@ -37,6 +36,13 @@ export const NavBar_1 = () => {
   return (
     <div className="navbar">
       <Link to="/home" className="navbar-logo">Qairline</Link>
+
+      <div className="navbar-tab">
+        <Link to="/explore" className="navbar-tab-explore">Explore</Link>
+        <Link to="/club" className="Login-Logout">Club</Link>
+        <Link to="/help" className="Login-Logout">Help</Link>
+        <Link to="/contact" className="Login-Logout">Contact</Link>
+      </div>
 
       <ul className="navbar-sign">
         {isUserLogin ? (

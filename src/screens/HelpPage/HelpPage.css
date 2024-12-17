@@ -1,0 +1,111 @@
+/* Tổng thể trang Help */
+.help-page {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .help-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #007bff;
+  }
+  
+  /* Section chung */
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  /* FAQ Section */
+  .faq-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .faq-item details {
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .faq-item summary {
+    font-weight: bold;
+    color: #007bff;
+    transition: color 0.3s;
+  }
+  
+  .faq-item summary:hover {
+    color: #0056b3;
+  }
+  
+  .faq-item p {
+    margin-top: 5px;
+    padding-left: 10px;
+  }
+  
+  /* Contact Section */
+  .contact-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .contact-info p {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  
+  .contact-info svg {
+    color: #007bff;
+    font-size: 1.2rem;
+  }
+  
+  /* Form Section */
+  .form-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-section input,
+  .form-section textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .form-section button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-section button:hover {
+    background-color: #0056b3;
+  }
+  

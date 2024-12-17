@@ -6,17 +6,18 @@ import { BsArrowDownCircle, BsArrowUpCircle } from 'react-icons/bs';
 
 function FAQItem({ question, answer }) {
   const [open, setOpen] = useState(false);
-  
+
   return (
-    <div className={`faq-item`} onClick={() => setOpen(!open)}>
-      <div className="faq-question" onClick={() => setOpen(!open)}>
+    <div className={`faq-item ${open ? "open" : ""}`} onClick={() => setOpen(!open)}>
+      <div className="faq-question">
         <span>{question}</span>
-        <span className="faq-toggle">{open ? <BsArrowDownCircle/> : <BsArrowUpCircle/>}</span>
+        <span className="faq-toggle">{open ? <BsArrowDownCircle /> : <BsArrowUpCircle />}</span>
       </div>
-      {open && <div className="faq-answer">{answer}</div>}
+      <div className="faq-answer">{answer}</div>
     </div>
   );
 }
+
 
 function FAQList({ faqs }) {
   return (

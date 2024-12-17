@@ -12,13 +12,15 @@ export const SearchFlightProvider = ({ children }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const searchFlights = async (originCode, destinationCode, departureTime, totalSeat, ticketClass) => {
+  const searchFlights = async (originCode, destinationCode, departureTime, returnTime, totalSeat , ticketClass) => {
     setLoading(true);
     setError('');
     try {
-      const response = await fetch(
-        `http://localhost:8080/flights/search?originCode=${originCode}&destinationCode=${destinationCode}&departureTime=${departureTime}&totalSeat=${totalSeat}&ticketClass=${ticketClass}`
-      );
+      let api = returnTime ? 
+      `http://localhost:8080/flights/search?originCode=${originCode}&destinationCode=${destinationCode}&departureTime=${departureTime}&totalSeat=${totalSeat}&ticketClass=${ticketClass}`
+      : `http://localhost:8080/flights/searchRoundTrip?originCode=${originCode}&destinationCode=${destinationCode}&departureTime=${departureTime}&departureTime=${departureTime}&totalSeat=${totalSeat}&ticketClass=${ticketClass}`;
+      
+      const response = await fetch(api);
       if (!response.ok) {
         throw new Error('server không có chuyến bay này');
       }

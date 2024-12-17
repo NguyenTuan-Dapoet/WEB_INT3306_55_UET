@@ -45,7 +45,7 @@ export const TripForm = () => {
     console.log("bắt đầu tìm kiếm chuyến bay");
     const totalSeat = formData.passengers.adult + formData.passengers.children;
     const ticketClass = formData.passengers.classType.toLowerCase();
-    flightData.searchFlights(formData.From.code, formData.To.code, formData.startDate, totalSeat, ticketClass);    
+    flightData.searchFlights(formData.From.code, formData.To.code, formData.startDate,formData.endDate, totalSeat, ticketClass);    
     navigate('/flight');
   };
 

@@ -11,6 +11,10 @@ import Error from './components/Error/Error.jsx'
 
 import { Routes, Route } from 'react-router-dom'
 import Footer from './components/Footer/Footer.jsx'
+import ExplorePage from './screens/ExplorePage/ExplorePage.jsx'
+import ClubPage from './screens/ClubPage/ClubPage.jsx'
+import HelpPage from './screens/HelpPage/HelpPage.jsx'
+import ContactPage from './screens/ContactPage/ContactPage.jsx'
 
 // import { FlightSearchPage } from './screens/FlightSearch/FlightSearchPage.jsx'
 
@@ -28,6 +32,10 @@ function App() {
           <Route path="/flight" element={<FlightPage />} />
           <Route path="/booking" element={<BookingPage />} />
           <Route path="/tickets" element={<TicketPage />} />
+          <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/club" element={<ClubPage/>} />
+          <Route path="/help" element={<HelpPage/>} />
+          <Route path="/contact" element={<ContactPage/>} />
           <Route path="/401" element={<Error/>} />
         </Routes>
       </div>

@@ -9,8 +9,22 @@
 }
 
 .footer-logo {
+    position: relative;
+}
+
+.footer-logo a {
     font-size: 3rem;
     font-weight: bold;
+}
+
+.footer-logo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    transform: translateY(-50%);
 }
 
 

@@ -1,0 +1,61 @@
+/* Tổng thể container */
+.club-page {
+    display: grid; /* Sử dụng grid layout */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; /* Khoảng cách giữa các phần tử */
+    padding: 20px;
+    background-color:white; /* Màu nền nhẹ */
+    font-family: Arial, sans-serif;
+}
+
+/* Mỗi section trong grid */
+.club-section {
+    height: 350px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng nhẹ */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hiệu ứng hover */
+.club-section:hover {
+    transform: translateY(-10px); /* Nổi lên nhẹ khi hover */
+    box-shadow: 0 8px 16px #00000033;
+}
+
+/* Hình ảnh trong mỗi section */
+.club-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Phóng to ảnh khi hover */
+.club-section:hover img {
+    transform: scale(1.1);
+}
+
+/* Tiêu đề section */
+.club-section .title {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .club-page {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Giảm kích thước cột */
+    }
+
+    .club-section .title {
+        font-size: 14px; /* Giảm kích thước chữ trên màn hình nhỏ */
+    }
+}

@@ -121,7 +121,7 @@ const TicketForm = ({ ticket }) => {
                 </div>
             </div>
 
-            <div className="ticket-divider"></div>
+      <div className="ticket-divider"></div>
 
             <div className="ticket-right">
                 <div className="ticket-right-header">
@@ -139,24 +139,47 @@ const TicketForm = ({ ticket }) => {
                     <p>{formattedDate}</p>
                 </div>
 
-                {/* Thêm phần trạng thái */}
-                <div className="ticket-status">
-                    <span>Status: </span>
-                    <span
-                        className={`status ${ticket.status === "accept" ? "status-accept" : "status-pending"}`}
-                    >
-                        {ticket.status}
-                    </span>
-                </div>
-
-                {/* Nút bấm in hóa đơn */}
-                <button className="print-button" onClick={handlePrintInvoice}>
-                    Print Invoice
-                </button>
-
-            </div>
+        {/*      nếu được duyệt:    accept
+            nếu chưa được duyệt:    nếu còn thời gian: pending/cancel
+                                    nếu hết thời gian: pending*/}
+        <div className="ticket-status">
+          <span>Status: </span>
+          <span
+            className={`status ${
+              status === "Accept"
+                ? "status-accept"
+                : status === "Cancel"
+                ? "status-cancel"
+                : "status-pending"
+            }`}
+          >
+            {status}
+          </span>
         </div>
-    );
+
+        {/* Hiển thị bộ đếm */}
+        {cancelEnabled && (
+          <div className="countdown-timer">
+            <p>Time to cancel: <strong>{timeLeft} s</strong></p>
+          </div>
+        )}
+
+        {/* Nút hủy */}
+        <button
+          className="cancel-button"
+          onClick={handleCancelTicket}
+          disabled={!cancelEnabled}
+        >
+          Cancel Ticket
+        </button>
+
+        {/* Nút in hóa đơn */}
+        <button className="print-button" onClick={handlePrintInvoice}>
+          Print Invoice
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default TicketForm;
