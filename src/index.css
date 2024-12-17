@@ -1,14 +1,14 @@
 /* css for main */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
 
-body{
+body {
     min-height: 100vh;
     /* min-width: 800px; */
     background-color: #EDEDED;
@@ -23,4 +23,15 @@ a {
 .app {
     width: 80%;
     margin: auto;
+}
+
+:root {
+    --primary-color: #8DD3BA;
+    --secondary-color: #ffffff;
+    --text-color: #4f4f4f;
+    --normal-text-color: #6c757d;
+    --prominent-color: #fa7e70;
+    --button-color: #8DB883;
+    --button-color-hover: #98dfc5;
+    --background-hover: #ffffffbf;
 }

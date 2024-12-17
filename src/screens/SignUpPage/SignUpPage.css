@@ -1,63 +1,72 @@
-/* Định dạng nền cho login-background */
-.signup-background {
-    min-height: 100vh;
+.signup-container {
     width: 100%;
-    margin-bottom: 3%;
-    background: url('../../assets/login-background.jpeg') no-repeat center center;
-    background-size: cover;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
 
+    background: transparent;
+    padding: 50px 0px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.signup-image {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.signup-container {
-    margin: 10%;
-    width: 420px;
-    max-width: 90%;
-    max-height: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    background: transparent;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(30px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    padding: 50px 40px;
-    animation: fadeIn 0.5s ease-out;
+.signup-image img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
 }
 
 /* Định dạng cho tiêu đề */
 .signup-container h1 {
-    color: white;
+    color: black;
     font-size: 36px;
     text-align: center;
     animation: bounce 0.67s ease-out;
     animation-iteration-count: 2;
+    padding-bottom: 20px;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20% 10%;
 }
 
 /* Định dạng cho các ô nhập liệu (input-box) */
-.input-box {
+.signup-form .input-box {
     position: relative;
-    width: 330px;
+    width: 100%;
     height: 50px;
-    margin: 40px 0;
+    margin: 20px 0;
+    animation: slideUp 1s ease-in-out;
 }
 
-.input-box input {
+.signup-form .input-box input {
     width: 100%;
     height: 100%;
     background: transparent;
-    border: none;
+    border: 2px solid rgba(144, 143, 143, 0.537);
     outline: none;
-    border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 40px;
     font-size: 16px;
-    color: white;
+    color: rgb(53, 51, 51);
     padding: 20px 45px 20px 20px;
+    transition: border 0.3s ease;
+}
+
+.signup-form .input-box input:focus {
+    border: 2px solid rgba(95, 93, 93, 0.618);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .input-box input.invalid {
@@ -72,17 +81,18 @@
 }
 
 /* Định dạng cho placeholder trong input */
-.input-box input::placeholder {
-    color: white;
+.singup-form .input-box input::placeholder {
+    color: rgba(92, 89, 89, 0.7);
 }
 
 /* Định dạng cho icon trong input */
-.input-box .icon {
+.signup-form .input-box .icon {
     position: absolute;
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
-    font-size: 16px;
+    font-size: 18px;
+    color: black;
 }
 
 /* Định dạng nút login */
@@ -94,24 +104,25 @@
     align-items: center;
 }
 
-.signup-box .login {
+.signup-box .signup {
     width: 100%;
-    background: white;
+    background: rgb(141, 214, 172);
+    color: white;
     border: none;
+    outline: none;
     border-radius: 40px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
     cursor: pointer;
     font-weight: 700;
     font-size: 16px;
-    color: black;
     margin: 20px 0;
-    padding: 15px 0;
+    padding: 15px 0px;
     text-align: center;
     transition: transform 0.1s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.signup-box .login:hover {
-    background: rgba(255, 255, 255, 0.9);
+.signup-box .signup:hover {
+    background: rgba(141, 214, 171, 0.7);
     transform: translateY(-5px);
     box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
 }
@@ -163,22 +174,21 @@
 }
 
 .login-link a {
-    color: white;
+    color: rgb(141, 214, 172);
     text-decoration: none;
     font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 .login-link a:hover {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(143, 214, 173, 0.7);
     text-decoration: underline;
-    transform: scale(0.95);
-    outline: none;
 }
 
 .login-link a:focus {
-    transform: scale(0.95);
-    text-decoration: underline;
     color: rgba(255, 255, 255, 0.6);
+    text-decoration: underline;
+    transform: scale(0.95);
     outline: none;
 }
 
@@ -238,15 +248,31 @@ p.success-value {
 }
 
 @media screen and (max-width: 768px) {
+    .signup-container .signup-image {
+        display: none;
+    }
+
+    .signup-container {
+        grid-template-columns: 1fr;
+        padding: 50px;
+    }
+
+    .singup-container .login-form {
+        padding: 0;
+    }
+
+    .signup-box .singup,
+    .google-box .login-google {
+        font-size: 14px;
+        padding: 12px 0;
+    }
+
     h1 {
         font-size: 28px;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .signup-container {
-        padding: 30px 20px;
-    }
 
     h1 {
         font-size: 24px;

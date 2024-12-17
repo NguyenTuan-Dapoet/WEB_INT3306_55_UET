@@ -12,7 +12,7 @@ export const SearchFlightProvider = ({ children }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const searchFlights = async (originCode, destinationCode, departureTime, totalSeat , ticketClass) => {
+  const searchFlights = async (originCode, destinationCode, departureTime, totalSeat, ticketClass) => {
     setLoading(true);
     setError('');
     try {

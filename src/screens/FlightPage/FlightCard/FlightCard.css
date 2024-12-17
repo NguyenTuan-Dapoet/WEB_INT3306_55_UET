@@ -1,6 +1,5 @@
-
 .flight-card {
-    width: 100%; 
+    width: 100%;
     border: 1px solid #ddd;
     border-radius: 10px;
     overflow: hidden;
@@ -10,72 +9,199 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;
+    color: var(--normal-text-color);
+    padding: 25px;
+    animation: fadeIn 0.8s ease-in-out;
 }
 
 .flight-card:hover {
     transform: translateY(-10px);
+    background-color: var(--background-hover);
+}
+
+.flight-info-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.flight-card .vertical-divider {
+    margin: 0 10px;
+}
+
+.flight-card .horizontal-divider {
+    border-bottom: 0px solid #e2e8f0;
+    margin-bottom: 25px;
+}
+
+.flight-card .price-seats {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: 15px;
+    padding-bottom: 0;
+}
+
+.flight-card .price-seats p:first-child {
+    font-weight: 600;
+    font-size: 12px;
 }
 
 .flight-info {
-    padding: 15px;
+    padding: 20px 15px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
+    width: 100%;
 }
 
 .flight-info .section {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    gap: 10px 20px;
+}
+
+.flight-info .section .flight-time {
+    font-size: 13px;
 }
 
 .flight-info .section.flight-icons {
-    font-size: 40px;
-    color: tomato;
+    font-size: 70px;
+    color: black;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    scale: 1.2;
+}
+
+.flight-info .section.flight-icons .line-dashed {
+    width: 100%;
+    border-top: 2px dashed rgb(95, 92, 92);
 }
 
 .flight-number {
-    font-size: 32px;
-    color: tomato;
+    font-size: 25px;
+    color: var(--primary-color);
     font-weight: bold;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.flight-origin-destination {
-    font-size: 16px;
-    margin: 10px 0;
     text-align: center;
 }
 
 .flight-price {
-    font-size: 20px;
-    color: tomato;
+    font-size: 18px;
+    color: var(--prominent-color);
     font-weight: bold;
     margin: 10px 0;
     text-align: center;
+    text-wrap: nowrap;
 }
 
 .flight-seats {
-    font-size: 18px;
-    color: darkgreen;
+    font-size: 12px;
     text-align: center;
+    margin-top: 10px;
 }
 
-.book-now-btn {
-    background-color: tomato;
+.flight-card .book-now-btn {
+    background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: 10px;
+    padding: 20px;
     width: 100%;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+
 }
 
 .book-now-btn:hover {
-    background-color: tomato;
+    background-color: var(--button-color-hover);
+    box-shadow: 0 4px 12px rgba(67, 66, 66, 0);
+    border: none;
+}
+
+.book-now-btn:active {
+    background-color: rgba(104, 205, 171, 0.512);
+    transform: scale(0.95);
+    box-shadow: 0 0 0 5px rgba(141, 211, 186, 0.3);
+}
+
+.book-now-btn:focus {
+    box-shadow: 0 0 0 3px rgba(141, 211, 186, 0.5);
+}
+
+.flight-card .book-now-btn:focus {
+    outline: 2px solid var(--primary-color);
+}
+
+.flight-card .book-now-btn:active {
+    transform: scale(0.95);
+}
+
+/* Ripple Effect */
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .flight-info {
+        max-width: 100%;
+        grid-template-columns: 1fr;
+    }
+
+    .flight-info .section.flight-icons {
+        justify-self: stretch;
+        padding: 0 35px;
+        font-size: 50px;
+    }
+
+    .flight-info .section {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .flight-info .section p:last-child {
+        text-align: end;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .flight-card .book-now-btn {
+        padding: 15px;
+    }
+
+    .flight-info-container {
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+
+    .flight-info-container .price-seats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 15px
+    }
+
+    .flight-info-container .price-seats .flight-seats {
+        text-align: start;
+        margin-top: 0;
+    }
+
+    .flight-info-container .price-seats .flight-price {
+        text-align: end;
+    }
 }
