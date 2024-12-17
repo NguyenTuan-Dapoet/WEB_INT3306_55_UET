@@ -25,3 +25,7 @@ npm create vite@latest (how to make react project)
 
 - new làm sạch HTML trước khi render news (tin tức)
 => npm install dompurify
+
+- emailJs
+=> npm install @emailjs/browser
+

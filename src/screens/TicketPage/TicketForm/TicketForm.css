@@ -144,16 +144,7 @@
   white-space: pre-line;
 }
 
-.ticket-right-header {
-  position: relative;
-  font-size: 18px;
-  font-weight: 600;
-  color: white;
-  text-align: right;
-  background-color: transparent;
-  z-index: 0;
-  white-space: pre-line;
-}
+
 
 .ticket-right-header::after {
   content: '';
@@ -186,11 +177,14 @@
   color: orange;
 }
 
-/* Nút bấm in hóa đơn */
-.print-button {
-  margin-top: 20px;
+.status-cancel {
+  color: red;
+}
+
+.ticket-right button {
+  /* margin-top: 20px; */
   padding: 10px 20px;
-  background-color: #d84315;
+  background-color: tomato;
   color: white;
   border: none;
   border-radius: 5px;
@@ -199,6 +193,29 @@
   transition: background-color 0.3s ease;
   position: relative; /* Tạo ngữ cảnh xếp chồng cho nút */
   z-index: 1; /* Đảm bảo nút nằm trên ::after */
+}
+
+/* bộ đếm thời gian  */
+.countdown-timer {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+}
+
+.cancel-button {
+  background-color: #bf360c;
+}
+  
+.cancel-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+/* Nút bấm in hóa đơn */
+.ticket-right .print-button {
+  background-color: green;
 }
 
 .print-button:hover {

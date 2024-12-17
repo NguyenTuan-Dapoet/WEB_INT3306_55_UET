@@ -1,7 +1,6 @@
 import React from 'react'
 import aeroplane from '../../../assets/pictures/aeroplane.png'
 import plane from '../../../assets/pictures/plane.png'
-import videoHome from '../../../assets/pictures/video-home.mp4'
 import nature from '../../../assets/pictures/nature.mp4'
 
 import './VideoHeader.css'

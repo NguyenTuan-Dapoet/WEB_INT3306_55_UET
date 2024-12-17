@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from "react";
 import { DateRange } from "react-date-range";
 import format from "date-fns/format";
@@ -5,7 +6,6 @@ import { addDays } from "date-fns";
 import "./SelectDateComp.css";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import "./SelectDateComp.css";
 
 import { useDispatch } from "react-redux";
 import { setStartDate, setEndDate } from "../../Redux/tripSlice";
@@ -13,6 +13,7 @@ import { setStartDate, setEndDate } from "../../Redux/tripSlice";
 const DateRangeComp = () => {
   const dispatch = useDispatch();
 
+  // State cho khoảng ngày
   const [range, setRange] = useState([
     {
       startDate: new Date(),
@@ -20,9 +21,9 @@ const DateRangeComp = () => {
       key: "selection",
     },
   ]);
+
+  // State để hiển thị trên input
   const [open, setOpen] = useState(false);
-  const [startDate, setStartDate_state] = useState(format(range[0].startDate, "dd/MM/yyyy"));
-  const [endDate, setEndDate_state] = useState(format(range[0].endDate, "dd/MM/yyyy"));
   const refOne = useRef(null);
 
   useEffect(() => {
@@ -48,24 +49,24 @@ const DateRangeComp = () => {
 
   const handleDateChange = (item) => {
     const selectedRange = item.selection;
-    setRange([selectedRange]);
-    setStartDate(format(selectedRange.startDate, "dd/MM/yyyy"));
-    setEndDate(format(selectedRange.endDate, "dd/MM/yyyy"));
 
-    // Dispatch ngày vào Redux
+    // Cập nhật state range
+    setRange([selectedRange]);
+
+    // Dispatch vào Redux store
     dispatch(setStartDate(format(selectedRange.startDate, "dd/MM/yyyy")));
     dispatch(setEndDate(format(selectedRange.endDate, "dd/MM/yyyy")));
   };
 
-  // Hàm toggle (đóng/mở lịch)
+  // Hàm toggle đóng/mở lịch
   const toggleCalendar = () => {
-    setOpen((prevOpen) => !prevOpen); // Đảo ngược trạng thái của 'open'
+    setOpen((prevOpen) => !prevOpen);
   };
 
   return (
     <div className="calendarWrap">
       <input
-        value={`${startDate} - ${endDate}`}
+        value={`${format(range[0].startDate, "dd/MM/yyyy")} - ${format(range[0].endDate, "dd/MM/yyyy")}`}
         readOnly
         className="inputBox"
         onClick={toggleCalendar} // Bấm vào ô input để đóng/mở lịch

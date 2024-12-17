@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { TicketContext } from '../../../assets/api/TicketProvider.jsx';
 import TicketForm from '../TicketForm/TicketForm';
 import './TicketField.css';
-
+import LoadingState from '../../../components/LoadingState/LoadingState.jsx'; // Import LoadingState
 const TicketField = () => {
     const { tickets, loading, error, fetchTickets } = useContext(TicketContext);
     const [hasFetched, setHasFetched] = useState(false);
@@ -17,7 +17,7 @@ const TicketField = () => {
     }, [hasFetched]);
 
     if (loading) {
-        return <p>Loading tickets...</p>;
+        return <LoadingState />; 
     }
 
     if (error) {
@@ -32,7 +32,10 @@ const TicketField = () => {
             ) : (
                 <div className="ticket-list">
                     {tickets.map((ticket, index) => (
-                        <TicketForm key={index} ticket={ticket} />
+                        <>
+                            <TicketForm key={index} ticket={ticket} createAt={"2024-12-17 15:58:12.217419"} />
+                            <TicketForm key={index} ticket={ticket} createAt={"2024-12-17 15:56:12.217419"} />
+                        </>
                     ))}
                 </div>
             )}

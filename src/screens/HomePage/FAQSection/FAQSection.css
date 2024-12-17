@@ -67,6 +67,7 @@
   margin-bottom: 10px;
   border-radius: 10px;
   cursor: pointer;
+  /* transition: translate 3s ease-in-out; */
 }
 
 .faq-item:hover {
@@ -87,14 +88,20 @@
   color: #333; 
 }
 
-
 .faq-answer {
-  margin-top: 10px;
-  font-size: 14px;
-  line-height: 1.4;
-  color: #555;
-  transition: all 0.3s ease-in-out;
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
+
+.faq-item.open .faq-answer {
+  max-height: 500px; 
+  margin-top: 10px;
+  opacity: 1;
+}
+
 
 .inquiry-section p {
   margin-top: 10px;

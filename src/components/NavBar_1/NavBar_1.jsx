@@ -38,6 +38,13 @@ export const NavBar_1 = () => {
     <div className="navbar">
       <Link to="/home" className="navbar-logo">Qairline</Link>
 
+      <div className="navbar-tab">
+        <Link to="/explore" className="navbar-tab-explore">Explore</Link>
+        <Link to="/club" className="Login-Logout">Club</Link>
+        <Link to="/help" className="Login-Logout">Help</Link>
+        <Link to="/contact" className="Login-Logout">Contact</Link>
+      </div>
+
       <ul className="navbar-sign">
         {isUserLogin ? (
           <>

@@ -39,6 +39,46 @@
     transform-origin: left; /* Kết thúc từ trái */
 }
 
+.navbar .navbar-tab {
+    display: flex;
+    gap: 30px;
+}
+/* Navbar Tabs */
+.navbar .navbar-tab {
+    display: flex;
+    gap: 30px;
+}
+
+.navbar-tab a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar-tab a:hover {
+    color: #007bff; /* Màu chữ khi hover */
+}
+
+.navbar-tab a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #007bff, #8DB883);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar-tab a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
 
 .navbar .navbar-sign {
     position: relative;

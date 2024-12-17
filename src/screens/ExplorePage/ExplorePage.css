@@ -1,0 +1,108 @@
+/* Tổng thể trang */
+.explore-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+/* Row chứa các card */
+.explore-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Card tổng quan */
+.explore-row .destinations,
+.explore-row .offers,
+.explore-flight {
+    position: relative;
+    flex: 1;
+    height: 400px;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ảnh trong các card */
+.destinations img,
+.offers img,
+.explore-flight img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+}
+
+/* Hiệu ứng hover */
+.destinations:hover,
+.offers:hover,
+.explore-flight:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.destinations:hover img,
+.offers:hover img,
+.explore-flight:hover img {
+    transform: scale(1.1); /* Phóng to ảnh */
+    filter: brightness(0.8); /* Làm tối ảnh nhẹ */
+}
+
+/* Tiêu đề card */
+.title {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Card vé máy bay */
+.explore-flight {
+    background: linear-gradient(to bottom, #4facfe, #00f2fe);
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.explore-flight .title {
+    bottom: 30px;
+    left: 30px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.explore-flight img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.explore-flight:hover img {
+    opacity: 1;
+}
+
+.destinations:hover::after,
+.offers:hover::after,
+.explore-flight:hover::after {
+    transform: translateX(10px);
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+    .explore-row {
+        flex-direction: column;
+    }
+}

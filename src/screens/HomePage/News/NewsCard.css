@@ -12,8 +12,7 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         border: 1px solid #e0e0e0;
         font-family: Arial, sans-serif;
-        color: tomato;
-
+        /* color: tomato; */
     }
 
     /* Icon và Tiêu đề */
@@ -22,6 +21,7 @@
         align-items: center;
         gap: 10px;
         height: 100%;
+        color: tomato;
     }
 
     .news-icon {
@@ -42,6 +42,7 @@
 
     .news-date {
         font-size: 14px;
+        color: tomato;
     }
 
     /* Nội dung */
@@ -52,6 +53,7 @@
         flex: 1;
         margin-left: 20px;
         overflow: hidden;
+        transition: translate 0.3s ease-in-out;
     }
         
     .news-link {
@@ -94,6 +96,7 @@
 
     .news-index {
         font-size: 14px;
+        color: tomato;
     }
 
     /* Nút Xem Thêm */
