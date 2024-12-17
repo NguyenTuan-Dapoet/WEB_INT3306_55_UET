@@ -24,7 +24,7 @@ const BookingField = () => {
     const [human, setHuman] = useState({
         title: 'Mr',
         firstAndMiddleName: '',
-        lastName: '',
+        lastName: 'Mr',
         fullName: '',
         dateOfBirth: '',
         email: '',
@@ -78,7 +78,7 @@ const BookingField = () => {
     };
 
     const handleSubmit = () => {
-        const full_name = human.firstAndMiddleName + ' ' + human.lastName;
+        const full_name = human.lastName + ' ' + human.firstAndMiddleName;
 
         const updatedBookingData = {
             ...bookingData,

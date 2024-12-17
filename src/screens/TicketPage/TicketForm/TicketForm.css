@@ -191,6 +191,10 @@
   color: green;
 }
 
+.status-cancel {
+  color: red;
+}
+
 .status-pending {
   color: rgb(255, 181, 43);
   text-shadow: #7a7a7a92 0 0 2px;
@@ -237,6 +241,13 @@
   transform: translate(-50%, -50%) scale(0);
   animation: ripple 0.6s ease-out;
   z-index: -1;
+}
+
+.cancel-button:disabled {
+  background-color: #ccc; /* Màu nền xám */
+  color: #666;            /* Màu chữ xám nhạt */
+  cursor: not-allowed;     /* Biểu tượng chuột không thể bấm */
+  opacity: 0.6;           /* Làm mờ nút */
 }
 
 @keyframes ripple {
