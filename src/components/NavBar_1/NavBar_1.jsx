@@ -4,49 +4,63 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../assets/api/AuthProvider';
 import { UserInfoContext } from '../../assets/api/UserInfoProvider';
-import LoadingState from '../LoadingState/LoadingState'; // Import LoadingState
+import LoadingState from '../LoadingState/LoadingState';
 import avatarProfilePath from '../../assets/avatar.png';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 
-
 export const NavBar_1 = () => {
-  const { status, logout } = useContext(AuthContext); // Login
-  const { userInfo, loading } = useContext(UserInfoContext); // User
+  const { status, logout } = useContext(AuthContext);
+  const { userInfo, loading } = useContext(UserInfoContext);
+
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(false); // State cho sidebar
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const isUserLogin = status === 'succeeded';
   const navigate = useNavigate();
 
+  // Tạo ref cho user-menu
+  const userMenuRef = useRef(null);
+
   const handleShowInfor = () => {
     if (!userInfo && loading) {
-      // Nếu đang loading và userInfo chưa có, chỉ bật trạng thái menu nhưng không hiển thị thông tin
-      setShowUserMenu(true);
+      setShowUserMenu(false);
     } else if (userInfo) {
-      // Khi userInfo có sẵn, toggle hiển thị menu
       setShowUserMenu((prev) => !prev);
     }
   };
 
   const handleShowTicket = () => {
     navigate('/tickets');
-    setShowUserMenu(false); // Đóng menu sau khi nhấn nút
+    setShowUserMenu(false);
+    setSidebarOpen(false);
   };
 
   const toggleSidebar = () => {
     setSidebarOpen((prev) => !prev);
   };
 
-  const NavbarTab = () => {
-    return (
-      <div className="navbar-tab">
-        <Link to="/explore" className="navbar-tab-explore">Explore</Link>
-        <Link to="/club" className="Login-Logout">Club</Link>
-        <Link to="/help" className="Login-Logout">Help</Link>
-        <Link to="/contact" className="Login-Logout">Contact</Link>
-      </div>
-    )
-  };
+  // Đóng user-menu khi click bên ngoài
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+        setShowUserMenu(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const NavbarTab = () => (
+    <div className="navbar-tab">
+      <Link to="/explore" className="navbar-tab-explore">Explore</Link>
+      <Link to="/club" className="Login-Logout">Club</Link>
+      <Link to="/help" className="Login-Logout">Help</Link>
+      <Link to="/contact" className="Login-Logout">Contact</Link>
+    </div>
+  );
 
   return (
     <>
@@ -57,13 +71,13 @@ export const NavBar_1 = () => {
         <div className="navbar-sign">
           {isUserLogin ? (
             <div className='navbar-user'>
-              <div className='avatar-user-profile' onClick={handleShowInfor}>
+              <div className='avatar-user-profile' onClick={handleShowInfor} ref={userMenuRef}>
                 <img src={avatarProfilePath} alt="Profile" />
 
                 {showUserMenu && (
                   <div className="user-menu">
                     {loading ? (
-                      <LoadingState /> // Hiển thị LoadingState khi loading = true
+                      <LoadingState />
                     ) : userInfo ? (
                       <>
                         <h3>User Information</h3>
@@ -85,14 +99,12 @@ export const NavBar_1 = () => {
                 )}
               </div>
             </div>
-          )
-            : (
-              <div className='navbar-signup-login-button'>
-                <Link to="/signup" className="SignUp">Sign Up</Link>
-                <Link to="/login" className="Login">Login</Link>
-              </div>
-            )
-          }
+          ) : (
+            <div className='navbar-signup-login-button'>
+              <Link to="/signup" className="SignUp">Sign Up</Link>
+              <Link to="/login" className="Login">Login</Link>
+            </div>
+          )}
 
           <div className='navbar-icon' onClick={toggleSidebar}>
             {sidebarOpen
