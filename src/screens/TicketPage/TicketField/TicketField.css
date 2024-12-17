@@ -2,18 +2,26 @@
 
 .ticket-container {
     padding: 20px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    min-height: 100vh;
+    margin-bottom: 50px;
+}
+
+.ticket-container .notification {
+    font-size: 20px;
+    color: var(--normal-text-color);
+    margin: 5px 0;
+    text-align: center;
 }
 
 .ticket-container .ticket-list {
     display: flex;
     flex-direction: column;
 }
+
 .ticket-container h2 {
-    font-size: 24px;
-    color: #333;
+    font-size: 40px;
+    color: var(--primary-color);
     text-align: center;
     margin-bottom: 20px;
 }
