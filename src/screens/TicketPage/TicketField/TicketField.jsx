@@ -28,13 +28,13 @@ const TicketField = () => {
         <div className="ticket-container">
             <h2>My Tickets</h2>
             {tickets.length === 0 ? (
-                <p>No tickets available.</p>
+                <p className='notification'>No tickets available.</p>
             ) : (
                 <div className="ticket-list">
                     {tickets.map((ticket, index) => (
                         <>
-                            <TicketForm key={index} ticket={ticket} createAt={"2024-12-17 17:58:12.217419"} />
-                            <TicketForm key={index} ticket={ticket} createAt={"2024-12-17 17:56:12.217419"} />
+                            <TicketForm key={index} ticket={ticket} createAt={"2024-12-18 00:20:12.217419"} />
+                            <TicketForm key={index} ticket={ticket} createAt={"2024-12-18 00:28:12.217419"} />
                         </>
                     ))}
                 </div>
