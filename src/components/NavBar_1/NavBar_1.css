@@ -11,38 +11,47 @@
     font-weight: bold;
 
     cursor: pointer;
-    transition: color 1s ease;  /* Chuyển đổi màu sắc với thời gian */
+    transition: color 1s ease;
+    /* Chuyển đổi màu sắc với thời gian */
 }
 
 .navbar-logo:hover {
-    color: #8DB883; /* Thay đổi màu khi hover */
-    transform: translateY(-5px) scale(1.1); /* Nhảy lên và phóng to */
-    text-shadow: 0 4px 10px #8db8838f; /* Thêm bóng động */
+    color: #8bd1b9e2;
+    transform: translateY(-5px) scale(1.1);
+    text-shadow: 0 4px 10px #b9f1ac8f;
 }
 
 /* Hiệu ứng lặp lại khi hover */
 .navbar-logo::after {
-    content: ''; /* Nội dung trống để tạo hiệu ứng */
+    content: '';
+    /* Nội dung trống để tạo hiệu ứng */
     position: absolute;
     left: 0;
     right: 0;
     bottom: -5px;
     height: 3px;
-    background: linear-gradient(to right, #007bff, #8DB883); /* Hiệu ứng gradient */
-    transform: scaleX(0); /* Thu nhỏ đường kẻ */
-    transform-origin: right; /* Bắt đầu từ phải */
-    transition: transform 1s ease-in-out; /* Mượt mà khi hover */
+    background: linear-gradient(to right, var(--button-color-hover), var(--primary-color));
+    /* Hiệu ứng gradient */
+    transform: scaleX(0);
+    /* Thu nhỏ đường kẻ */
+    transform-origin: right;
+    /* Bắt đầu từ phải */
+    transition: transform 1s ease-in-out;
+    /* Mượt mà khi hover */
 }
 
 .navbar-logo:hover::after {
-    transform: scaleX(1); /* Mở rộng đường kẻ */
-    transform-origin: left; /* Kết thúc từ trái */
+    transform: scaleX(1);
+    /* Mở rộng đường kẻ */
+    transform-origin: left;
+    /* Kết thúc từ trái */
 }
 
 .navbar .navbar-tab {
     display: flex;
     gap: 30px;
 }
+
 /* Navbar Tabs */
 .navbar .navbar-tab {
     display: flex;
@@ -51,7 +60,7 @@
 
 .navbar-tab a {
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 16px;
     font-weight: 500;
     color: #333;
     position: relative;
@@ -59,7 +68,8 @@
 }
 
 .navbar-tab a:hover {
-    color: #007bff; /* Màu chữ khi hover */
+    color: var(--button-color-hover);
+    /* Màu chữ khi hover */
 }
 
 .navbar-tab a::after {
@@ -69,7 +79,7 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background: linear-gradient(to right, #007bff, #8DB883);
+    background: linear-gradient(to right, var(--button-color-hover), var(--primary-color));
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s ease-in-out;
@@ -84,151 +94,245 @@
     position: relative;
     display: flex;
     align-items: center;
-    gap: 30px;
 }
 
-.navbar .navbar-sign .SignUp-User,
-.navbar .navbar-sign .Login-Logout {
+.navbar-icon {
+    display: none;
+}
+
+.navbar .navbar-sign .navbar-user {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar .navbar-sign .avatar-user-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.navbar .navbar-sign .avatar-user-profile img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.navbar .navbar-sign .avatar-user-profile img:active {
+    box-shadow: 0 0 0 5px rgba(201, 201, 201, 0.3);
+    transform: scale(0.9);
+    opacity: 0.8;
+    transition: box-shadow 0.2s ease, transform 0.2s ease, opacity 0.5s ease;
+}
+
+.navbar .navbar-sign .Login {
     position: relative;
     background: transparent;
     font-size: 16px;
-    color: black;
-    border: 1px solid #8DB883;
+    color: white;
+    /* border: 1px solid var(--primary-color); */
+    background-color: var(--primary-color);
     padding: 10px 30px;
     border-radius: 50px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
-    overflow: hidden; /* Dùng để cắt phần ::before */
+    overflow: hidden;
 }
 
-.navbar .navbar-sign .SignUp-User::before,
-.navbar .navbar-sign .Login-Logout::before {
+.navbar .navbar-sign .Login:hover {
+    background-color: var(--button-color-hover);
+    color: white;
+}
+
+.navbar .navbar-sign .Login:active {
+    background-color: rgba(104, 205, 171, 0.512);
+    transform: scale(0.95);
+    box-shadow: 0 0 0 5px rgba(141, 211, 186, 0.3);
+}
+
+.navbar .navbar-sign .SignUp {
+    padding-right: 15px;
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.navbar .navbar-sign .SignUp:hover {
+    color: var(--button-color-hover);
+    text-decoration: underline;
+}
+
+.navbar .navbar-sign .Login:active:before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #8DB883;
-    border-radius: 15px;
-    transition: transform 0.3s ease;
-    transform: translateX(-100%);
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple 0.6s ease-out;
     z-index: -1;
 }
 
-.navbar .navbar-sign .SignUp-User:hover::before,
-.navbar .navbar-sign .Login-Logout:hover::before {
-    transform: translateX(0);
-}
-
-.user-menu {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: calc(100% + 10px);
-    left: 20%;
-    transform: translateX(-50%);
-    width: 350px;
-    background-color: #fff;
-    z-index: 999; /* Đảm bảo hiển thị trên các phần tử khác */
-    padding: 20px;
-    border: 3px solid #8DB883;
-    border-radius: 20px;
-    opacity: 1;
-}
-
-.navbar .navbar-sign .SignUp-User .user-menu {
+.navbar .navbar-sign .user-menu {
     display: flex;
     flex-direction: column;
     align-self: center;
     justify-content: center;
+
     position: absolute;
     top: calc(100% + 10px);
-    left: 50%;
-    transform: translateX(-50%);
-
-    width: 350px;
-    background-color: #fff;
+    right: 40%;
     z-index: 10;
+
+    background-color: #fff;
+    color: var(--text-color);
+
     padding: 20px;
-    border: 3px solid #8DB883;
+    border: 3px solid rgba(0, 0, 0, 0.2);
     border-radius: 20px;
+    border-top-right-radius: 0;
+
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.navbar .navbar-sign .SignUp-User .user-menu ul {
-    /* padding-left: 20px;  */
-    list-style-type: none;
-    margin: 5px 20px;
+.navbar .navbar-sign .user-menu h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--primary-color);
 }
 
-.navbar .navbar-sign .SignUp-User .user-menu li {
+.navbar .navbar-sign .user-menu ul {
+    list-style-type: none;
+    margin: 5px 0px;
+    padding: 0;
+}
+
+.navbar .navbar-sign .user-menu li {
     text-align: left;
-    /* margin: 5px 0;   */
+    padding: 5px 0;
 }
 
 .show-tickets {
     display: inline-block;
-    padding: 10px 20px; 
+    padding: 10px 20px;
     margin-top: 20px;
-    font-size: 16px; 
+    font-size: 16px;
     font-weight: bold;
-    color: white; 
-    background-color: #8DB883; 
-    border: none; 
-    border-radius: 10px; 
-    cursor: pointer; 
+    color: white;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
     text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease; 
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .show-tickets:hover {
-    background-color: #7fe268; 
-    transform: scale(1.05); 
+    background-color: var(--button-color-hover);
 }
 
 .show-tickets:active {
-    background-color: #8DB883;
-    transform: scale(0.95); 
+    background-color: rgba(104, 205, 171, 0.512);
+    transform: scale(0.95);
+    box-shadow: 0 0 0 5px rgba(141, 211, 186, 0.3);
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    /* Ẩn sidebar bên trái */
+    width: 250px;
+    height: 100vh;
+    background-color: var(--primary-color);
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease;
+    z-index: 15;
+    padding-top: 50px;
+}
+
+.sidebar.open {
+    left: 0;
+    /* Hiển thị sidebar bên phải */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: block;
+    transition: color 0.3s;
+}
+
+.sidebar a:hover {
+    color: #e6e6e6;
+}
+
+@media screen and (max-width: 1024px) {
+    .navbar .navbar-tab {
+        display: none;
+    }
+
+    .navbar-icon {
+        display: flex;
+        font-size: 1.5rem;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .navbar .navbar-sign {
+        gap: 10px;
+    }
+
+    .navbar .navbar-sign .SignUp,
+    .navbar .navbar-sign .Login {
+        padding: 10px 20px;
+    }
+
+    .navbar .navbar-sign .SignUp::before,
+    .navbar .navbar-sign .Login::before {
+        border-radius: 10px;
+    }
+
+    .navbar .navbar-sign .SignUp .user-menu {
+        width: 300px;
+    }
+
 }
 
 
 @media screen and (max-width: 768px) {
-    .navbar .navbar-sign .SignUp-User {
+    .navbar .navbar-sign .SignUp {
         white-space: nowrap;
-    }
-
-    .navbar .navbar-menu {
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-        display: none;
-        /* Mặc định ẩn menu */
-        background-color: #8DD3BA;
-        /* Sử dụng màu nền chủ đạo */
-        padding: 10px 0;
-        border-top: 1px solid #ffffff;
-    }
-
-    .navbar .navbar-menu.show {
-        display: flex;
-        /* Hiển thị khi nhấn nút toggle */
     }
 }
 
 @media screen and (max-width: 480px) {
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
         padding: 10px;
         gap: 5px;
 
     }
 
-    .navbar .navbar-sign {
-        width: 100%;
-        justify-content: flex-end;
-        gap: 10px;
+    .navbar .navbar-signup-login-button {
+        display: none;
     }
 }

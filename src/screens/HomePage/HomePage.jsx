@@ -1,4 +1,4 @@
-import React from 'react'   
+import React from 'react'
 import './HomePage.css'
 import Header from '../../components/Header/Header.jsx'
 // import FlightDisplay from './FlightDisplay/FlightDisplay.jsx'
@@ -13,16 +13,16 @@ import Error from '../../components/Error/Error.jsx'
 
 function Home() {
     return (
-        <div>
+        <div className='homepage'>
             <Header />
-            <TripForm/>
+            <TripForm />
             <VideoHeader />
-            <News/>
+            <News />
             {/* <FlightDisplay/> */}
-            <SwiperSlider/>
-            <WhyChooseUs/>
-            <ClientReviews/>
-            <FAQSection/>
+            <SwiperSlider />
+            <WhyChooseUs />
+            <ClientReviews />
+            <FAQSection />
             {/* <Error/> */}
         </div>
     )

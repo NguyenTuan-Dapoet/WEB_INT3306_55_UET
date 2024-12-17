@@ -78,7 +78,6 @@
 
 .form-trip .input-form .button-swap:focus {
     outline: none;
-    /* background-color: #f9f9f9; */
 }
 
 .form-trip .date-container {
@@ -117,6 +116,14 @@
     }
 
     .form-trip .input-form {
-        flex-direction: row;
+        flex-direction: column;
+    }
+
+    .form-trip .input-form .button-swap {
+        transform: rotate(90deg);
+    }
+
+    .form-trip .input-form .button-swap:hover {
+        transform: rotate(270deg);
     }
 }

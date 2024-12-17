@@ -1,11 +1,10 @@
 .faq-section-container {
-  padding: 20px;
-  background: #fdfdfd;
+  padding: 20px 0;
   color: #333;
   box-sizing: border-box;
   animation: appear linear;
   animation-timeline: view();
-  animation-range: entry 30% ;
+  animation-range: entry 30%;
 }
 
 @keyframes appear {
@@ -18,7 +17,7 @@
     opacity: 1;
     scale: 1;
   }
-} 
+}
 
 .faq-and-form-wrapper {
   display: flex;
@@ -34,16 +33,17 @@
   }
 }
 
-.faq-section,
+.faq-section-container .faq-section,
 .inquiry-section {
   background: #fff;
-  padding: 20px;
+  padding: 30px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   flex: 1;
 }
 
 @media (max-width: 768px) {
+
   .faq-section,
   .inquiry-section {
     width: 100%;
@@ -62,16 +62,16 @@
 }
 
 .faq-item {
-  background-color: pink;
+  background-color: var(--primary-color);
   padding: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
   border-radius: 10px;
   cursor: pointer;
-  /* transition: translate 3s ease-in-out; */
+  transition: background-color 0.3s ease;
 }
 
 .faq-item:hover {
-  background-color: #ffccd5;
+  background-color: var(--button-color-hover);
 }
 
 .faq-question {
@@ -85,7 +85,7 @@
 
 .faq-toggle {
   font-size: 22px;
-  color: #333; 
+  color: #333;
 }
 
 .faq-answer {
@@ -97,14 +97,14 @@
 }
 
 .faq-item.open .faq-answer {
-  max-height: 500px; 
+  max-height: 500px;
   margin-top: 10px;
   opacity: 1;
 }
 
 
 .inquiry-section p {
-  margin-top: 10px;
+  margin: 20px 0;
   font-size: 14px;
   color: #555;
   line-height: 1.4;
@@ -113,7 +113,7 @@
 .inquiry-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
 
 .inquiry-form input,
@@ -127,9 +127,9 @@
 }
 
 .inquiry-form button {
-  background: #ff5a3c;
+  background: var(--prominent-color);
   color: #fff;
-  padding: 10px;
+  padding: 13px;
   border: none;
   border-radius: 4px;
   font-size: 16px;
@@ -138,7 +138,27 @@
 }
 
 .inquiry-form button:hover {
-  background: #e04b30;
+  background: var(--prominent-color-hover);
+}
+
+.inquiry-form button:active {
+  transform: scale(0.95);
+  background-color: rgba(250, 126, 112, 0.82);
+  box-shadow: 0 0 0 5px rgba(255, 144, 131, 0.464);
+}
+
+.inquiry-form button:active::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple 0.6s ease-out;
+  z-index: -1;
 }
 
 @media (max-width: 480px) {

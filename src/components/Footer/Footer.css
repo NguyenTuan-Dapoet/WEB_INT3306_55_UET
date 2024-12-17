@@ -44,6 +44,12 @@
     gap: 20px;
 }
 
+.footer-content-left ul,
+.footer-content-center ul,
+.footer-content-right ul {
+    padding: 0;
+}
+
 .footer-content-left li,
 .footer-content-center li,
 .footer-content-right li {

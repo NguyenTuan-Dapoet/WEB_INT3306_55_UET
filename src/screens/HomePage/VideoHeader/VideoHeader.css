@@ -1,11 +1,12 @@
 .video-header {
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     position: relative;
-    margin-top: 10%;
+    margin-top: 18%;
     z-index: -10;
+    padding: 0 10px;
 }
 
 .video-header .text {
@@ -17,24 +18,28 @@
 }
 
 .video-section {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    height: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     position: relative;
+    width: 100%;
+    max-width: 1200px;
+    /* max-height: 500px; */
 }
 
 .video-section video {
-    border-radius: 60rem; 
-    width: 75rem; 
-    height: 20rem; 
-    object-fit: fill; 
+    border-radius: 50rem;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .picture-section {
     transform: scaleX(-1);
     position: absolute;
-    width: 50rem;
+    /* width: 50rem; */
+    width: 100%;
     height: auto;
     top: -35%;
 }
