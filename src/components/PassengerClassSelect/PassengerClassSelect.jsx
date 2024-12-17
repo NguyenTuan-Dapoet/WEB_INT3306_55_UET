@@ -1,80 +1,70 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux"; // import useDispatch để sử dụng dispatch
-import { setPassengers } from "../../Redux/tripSlice"; // Import action setPassengers
+import { useDispatch } from "react-redux";
+import { setPassengers } from "../../Redux/tripSlice";
 import "./PassengerClassSelect.css";
 
 const PassengerClassSelect = () => {
-  // State cho hành khách
   const [passengers, setPassengersState] = useState({
     classType: "Economy",
     adult: 1,
     children: 0,
   });
 
-  const dispatch = useDispatch(); // Khởi tạo dispatch
-  const dropdownRef = useRef(null); // Reference cho dropdown
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Trạng thái mở/đóng dropdown
+  const dispatch = useDispatch();
+  const dropdownRef = useRef(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // Toggle trạng thái dropdown
-  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prevState) => !prevState); // Toggle trạng thái
+  };
 
-  // Thay đổi loại hạng (class)
   const handleClassChange = (event) => {
     setPassengersState({ ...passengers, classType: event.target.value });
   };
 
-  // Thay đổi số lượng người lớn
   const handleAdultChange = (event) => {
-    const value = Math.min(Math.max(parseInt(event.target.value, 10) || 0, 0), 10); // Giới hạn từ 0 đến 10
+    const value = Math.min(Math.max(parseInt(event.target.value, 10) || 0, 0), 10);
     setPassengersState({ ...passengers, adult: value });
   };
 
-  // Thay đổi số lượng trẻ em
   const handleChildrenChange = (event) => {
-    const value = Math.min(Math.max(parseInt(event.target.value, 10) || 0, 0), 5); // Giới hạn từ 0 đến 5
+    const value = Math.min(Math.max(parseInt(event.target.value, 10) || 0, 0), 5);
     setPassengersState({ ...passengers, children: value });
   };
 
-  // Hàm xử lý khi nhấn nút Done
   const handleDoneButton = () => {
-    dispatch(setPassengers(passengers)); // Dispatch state hành khách vào Redux
-    setIsDropdownOpen(false); // Đóng dropdown sau khi bấm Done
+    dispatch(setPassengers(passengers));
+    setIsDropdownOpen(false);
   };
 
-  // Tổng số hành khách
   const people = passengers.adult + passengers.children;
 
-  // Đóng dropdown khi bấm ngoài dropdown
+  // Đóng dropdown khi click ngoài
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false); // Đóng dropdown nếu click ngoài
+        setIsDropdownOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside); // Cleanup event listener
-      console.log("cleanup");
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
-    <div className="passenger-class-container">
-      {/* Ô hiển thị */}
+    <div className="passenger-class-container" ref={dropdownRef}>
+      {/* Thanh hiển thị */}
       <div
         className="passenger-class-trigger"
-        onClick={toggleDropdown}
+        onClick={toggleDropdown} // Đảo ngược trạng thái dropdown
         role="button"
         tabIndex={0}
       >
         {`${people} ${people > 1 ? "people" : "person"}, ${passengers.classType}`}
       </div>
 
-      {/* Dropdown nội dung */}
+      {/* Dropdown */}
       {isDropdownOpen && (
-        <div className="passenger-class-dropdown" ref={dropdownRef}>
-          {/* Lựa chọn Class */}
+        <div className="passenger-class-dropdown">
           <div className="dropdown-section">
             <label htmlFor="class-select">Class</label>
             <select
@@ -87,12 +77,10 @@ const PassengerClassSelect = () => {
             </select>
           </div>
 
-          {/* Lựa chọn Person */}
           <div className="dropdown-section">
             <label htmlFor="passenger">Passenger</label>
             <div className="adult-input">Adult (max 10)</div>
             <input
-              id="adult-input"
               type="number"
               min="0"
               max="10"
@@ -102,7 +90,6 @@ const PassengerClassSelect = () => {
 
             <div className="children-input">Children (max 5)</div>
             <input
-              id="children-input"
               type="number"
               min="0"
               max="5"
@@ -111,7 +98,6 @@ const PassengerClassSelect = () => {
             />
           </div>
 
-          {/* Nút Done */}
           <button className="dropdown-close-button" onClick={handleDoneButton}>
             Done
           </button>
