@@ -63,10 +63,16 @@ export const BookingProvider = ({ children }) => {
     const { logout } = useContext(AuthContext);  // Lấy logout từ AuthContext
     const navigate = useNavigate();
 
+    // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
     const createBooking = async (userId, flightId, token, bookingData) => {
         setLoading(true);
         setError(null); // Đặt lại lỗi trước khi gửi yêu cầu
         try {
+
+            // console.log("Delaying API call for 10 seconds...");
+            // await delay(10000000); // Delay 10 giây
+
             const response = await fetch(
                 `http://localhost:8080/bookings/createBooking/user/${userId}/flight/${flightId}`,
                 {
