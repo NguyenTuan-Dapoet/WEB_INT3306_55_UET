@@ -5,7 +5,7 @@ import { setTripOption } from "../../Redux/tripSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useSearchFlight } from "../../assets/api/SearchFlightProvider";  // Import context
 import { useNavigate } from 'react-router-dom';  // Import useNavigate
- 
+
 export const TripForm = () => {
   const dispatch = useDispatch();
   const [tripOption, setTripOption_state] = useState("One-way");
@@ -38,9 +38,9 @@ export const TripForm = () => {
     // Kiểm tra xem dữ liệu cần thiết đã được nhập hay chưa
     if (isError) {
       setErrorMessage("Vui lòng nhập đầy đủ thông tin");
-      return;  
+      return;
     }
-    
+
     // Nếu dữ liệu hợp lệ, gọi searchFlights từ context khi submit form và đợi kết quả
     console.log("bắt đầu tìm kiếm chuyến bay");
     const totalSeat = formData.passengers.adult + formData.passengers.children;

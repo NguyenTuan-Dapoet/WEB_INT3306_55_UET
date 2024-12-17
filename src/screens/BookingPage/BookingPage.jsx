@@ -57,7 +57,7 @@
 //                     availableSeats={selectedFlight.availableSeats}
 //                   />
 //                 </div>
-                
+
 //                 <h3>Passenger Information</h3>
 
 //                 <div className="booking-form">
@@ -101,7 +101,7 @@
 //                 <button onClick={handleSubmit} disabled={loading} className='booking-submit-button'>
 //                     {loading ? 'Booking...' : 'Confirm Booking'}
 //                 </button>
-                
+
 //                 {error && <p className="error-message">{error}</p>}
 //                 {bookingResponse && <p className="success-message">Booking Successful! ID: {bookingResponse.bookingId}</p>}
 //             </div>
@@ -112,13 +112,13 @@
 // export default BookingPage;
 
 
-import React from 'react'   
-import BookingFeild from './BookingField/BookingFeild'
+import React from 'react'
+import BookingField from './BookingField/BookingField'
 import "./BookingPage.css"
 function BookingPage() {
     return (
         <div className='booking-page-backround'>
-            <BookingFeild/>
+            <BookingField />
         </div>
     )
 }

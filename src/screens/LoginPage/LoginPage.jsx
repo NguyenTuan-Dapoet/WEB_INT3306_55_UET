@@ -5,6 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from '../../assets/api/AuthProvider'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import loginBG from '../../assets/login-background.jpeg'
 
 export const LoginPage = () => {
   const authResult = useContext(AuthContext);
@@ -28,7 +29,7 @@ export const LoginPage = () => {
     // Kiểm tra username
     if (!cleanUsername.endsWith('@gmail.com')) {
       setUsernameError('Username must end with "@gmail.com"');
-      return; 
+      return;
     } else {
       setUsernameError('');
     }
@@ -38,59 +39,60 @@ export const LoginPage = () => {
   }
 
   return (
-    <div className='login-background'>
-      <div className='login-container'>
+    <div className="login-container">
+      <div className="login-image">
+        <img src={loginBG} alt="Login" />
+      </div>
+
+      <div className="login-form">
         <form onSubmit={handleSubmit}>
           <h1>Login</h1>
+          <p>Login to your account to continue!</p>
 
           <div className="input-box">
             <input
               type="text"
-              placeholder='Username'
+              placeholder="Username"
               value={username}
               onChange={(e) => {
                 setUsername(e.target.value);
-                if (usernameError) setUsernameError('');    //nếu có lỗi thì xóa lỗi
+                if (usernameError) setUsernameError('');
               }}
               required
               className={usernameError ? 'invalid' : ''}
             />
-            <FaUser className='icon'/>
-            {usernameError && (
-              <p className="error-message">{usernameError}</p>
-            )}
+            <FaUser className="icon" />
+            {usernameError && <p className="error-message">{usernameError}</p>}
           </div>
 
           <div className="input-box">
             <input
               type="password"
-              placeholder='Password'
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <FaLock className='icon'/>
+            <FaLock className="icon" />
           </div>
-          
-          <div className='login-box'>
-            {/* Không cần Link, chỉ cần button submit */}
-            <button type='submit' className='login'>
+
+          <div className="login-box">
+            <button type="submit" className="login">
               Login
             </button>
           </div>
-          
 
           <div className="signup-link">
             <p>
-                Don't have an account?<Link to="/signup"> Sign Up</Link>
+              Don't have an account?<Link to="/signup"> Sign Up</Link>
             </p>
           </div>
 
-          {authResult.error && <p className='error-value'>{authResult.error}</p>}
+          {authResult.error && <p className="error-value">{authResult.error}</p>}
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default LoginPage;

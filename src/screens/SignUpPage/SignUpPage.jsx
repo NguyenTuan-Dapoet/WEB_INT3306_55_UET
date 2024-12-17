@@ -6,6 +6,8 @@ import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
 import { useRegister } from '../../assets/api/RegisterProvider';
 import { Link } from 'react-router-dom';
+import signupBG from '../../assets/login-background.jpeg'
+
 
 export const SignUpPage = () => {
   const { register, status, error, data } = useRegister();  //useContext(RegisterContext)
@@ -23,8 +25,8 @@ export const SignUpPage = () => {
       // Nếu đăng ký thành công, chuyển hướng sang trang home
       setSuccessMessage('Đăng ký thành công!');
       setErrorMessage('');
-    // console.log('Dữ liệu trả về:', data);
-    //   navigate('/home');
+      // console.log('Dữ liệu trả về:', data);
+      //   navigate('/home');
     }
   }, [status, navigate]);
 
@@ -48,7 +50,7 @@ export const SignUpPage = () => {
       // Thông báo đăng ký thành công
       setSuccessMessage('Đăng ký thành công!');
       setErrorMessage('');
-    //   navigate('/home');
+      //   navigate('/home');
     } else {
       setSuccessMessage('');
       setErrorMessage(error || 'Có lỗi khi đăng ký!');
@@ -56,8 +58,12 @@ export const SignUpPage = () => {
   };
 
   return (
-    <div className="signup-background">
-      <div className="signup-container">
+    <div className="signup-container">
+      <div className="signup-image">
+        <img src={signupBG} alt="Signup" />
+      </div>
+
+      <div className="signup-form">
         <form onSubmit={handleSubmit}>
           <h1>Sign Up</h1>
 
@@ -111,14 +117,14 @@ export const SignUpPage = () => {
           </div>
 
           <div className="signup-box">
-            <button type="submit" className="login">
+            <button type="submit" className="signup">
               Sign Up
             </button>
           </div>
 
           <div className="login-link">
             <p>
-                Have an account?<Link to="/login"> Log In</Link>
+              Have an account?<Link to="/login"> Log In</Link>
             </p>
           </div>
 
