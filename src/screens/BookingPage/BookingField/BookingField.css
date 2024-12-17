@@ -1,13 +1,13 @@
 /* Tổng quan trang */
 .booking-field-background {
     /* background: url('../../../assets/booking-background.png') no-repeat center center; */
-    background-color: wheat;
     min-height: 100vh;
     width: 100%;
     margin-bottom: 3%;
     background-size: cover;
     display: grid;
     justify-content: center;
+    animation: fadeIn 0.8s ease-in-out;
 }
 
 .booking-field-price {
@@ -16,7 +16,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 20px;
+    gap: 30px;
     padding: 50px 0;
 }
 
@@ -25,19 +25,20 @@
     background-color: white;
     padding: 40px 20px;
     border-radius: 10px;
-    width: 30%;
+    width: 40%;
     max-height: 500px;
     position: sticky;
     top: 30px;
-    margin-left: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
+    margin-bottom: 50px;
 }
 
 .booking-price-container p:first-child {
     font-size: 15px;
     margin-bottom: 20px;
     font-weight: normal;
+    text-align: center;
     color: var(--text-color);
 }
 
