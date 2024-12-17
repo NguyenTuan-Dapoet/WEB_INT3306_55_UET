@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react';
-import { useSelector } from 'react-redux'; // Import useSelector để lấy dữ liệu từ Redux
+import React, { useContext, useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { BookingContext } from '../../../assets/api/BookingProvider.jsx';
 import { UserInfoContext } from '../../../assets/api/UserInfoProvider.jsx';
 import { FlightCard } from '../../FlightPage/FlightCard/FlightCard.jsx';
 import { LoadingState } from '../../../components/LoadingState/LoadingState.jsx';
 import PassengerClassSelect from '../../../components/PassengerClassSelect/PassengerClassSelect.jsx';
-import CalendarComp from '../../../components/DateSelect/CalendarComp.jsx'
+import CalendarComp from '../../../components/DateSelect/CalendarComp.jsx';
 import './BookingField.css';
 
 const BookingField = () => {
@@ -21,66 +21,72 @@ const BookingField = () => {
         return <p>No flight or user selected. Please go back and try again.</p>;
     }
 
-    const [name, setName] = useState({
+    const [human, setHuman] = useState({
+        title: 'Mr',
         firstAndMiddleName: '',
         lastName: '',
+        fullName: '',
         dateOfBirth: '',
-        passengerName: '',
         email: '',
         phoneNumber: '',
-        ticketClass: '',
     });
 
     const [bookingData, setBookingData] = useState({
-        title: '',
         passengerName: '',
         email: '',
         phoneNumber: '',
-        totalPrices: selectedFlight.price,
-        totalPeople: passengers.adult + passengers.children, // Lấy từ Redux
-        ticketClass: passengers.classType, // Lấy từ Redux
+        totalPrices: '',
+        totalPeople: '',
+        ticketClass: '',
     });
 
+    console.log("passengers", passengers);
+    console.log("human", human);
     console.log("bookingData", bookingData);
 
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setBookingData({
-    //         ...bookingData,
-    //         [name]: value,
-    //     });
-    // };
+    useEffect(() => {
+        // Cập nhật lại bookingData khi passengers thay đổi
+        const updatedBookingData = {
+            passengerName: `${human.lastName} ${human.firstAndMiddleName}`,
+            email: human.email,
+            phoneNumber: human.phoneNumber,
+            totalPrices: (passengers.adult + passengers.children * 0.5) * selectedFlight.price,
+            totalPeople: passengers.adult + passengers.children,
+            ticketClass: passengers.classType
+        };
+
+        setBookingData(updatedBookingData);
+    }, [passengers, human]); // Chạy lại khi passengers hoặc human thay đổi
 
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        // Cập nhật state name tạm thời
-        setName((prev) => {
-            const updatedName = { ...prev, [name]: value };
+        setHuman((prev) => {
+            const updatedHuman = { ...prev, [name]: value };
 
-            // Tạo passengerName từ lastName và firstAndMiddleName nếu cần
-            const passengerName = `${updatedName.lastName} ${updatedName.firstAndMiddleName}`.trim();
+            // Khi thay đổi title, cập nhật lại lastName
+            if (name === 'title') {
+                updatedHuman.lastName = '';
+                updatedHuman.lastName = `${value} ${updatedHuman.lastName}`;
+            }
 
-            // Cập nhật bookingData đồng thời
-            setBookingData((prevBookingData) => ({
-                ...prevBookingData,
-                [name]: value, // Cập nhật giá trị cho các trường khác (email, phoneNumber, v.v.)
-                ...(name === 'lastName' || name === 'firstAndMiddleName' ? { passengerName } : {}), // Chỉ cập nhật passengerName khi lastName hoặc firstAndMiddleName thay đổi
-            }));
+            // Tạo fullName từ lastName và firstAndMiddleName
+            const fullName = `${updatedHuman.lastName} ${updatedHuman.firstAndMiddleName}`;
 
-            return updatedName;
+            return updatedHuman;
         });
     };
 
     const handleSubmit = () => {
-        // Cập nhật lại totalPeople và totalPrices từ Redux trước khi gửi
-        const full_name = bookingData.firstAndMiddleName + ' ' + bookingData.lastName;
+        const full_name = human.firstAndMiddleName + ' ' + human.lastName;
 
         const updatedBookingData = {
             ...bookingData,
-            totalPrices: (passengers.adult + passengers.children * 0.5) * selectedFlight.price, // trẻ em giảm 50%
-            passengerName: full_name,
+            passengerName: full_name
         };
+        console.log("updatedBookingData", updatedBookingData);
+
+        setBookingData(updatedBookingData);
 
         createBooking(userInfo.id, selectedFlight.flightId, token, updatedBookingData);
     };
@@ -119,7 +125,7 @@ const BookingField = () => {
                                         <label> Title
                                             <select
                                                 name="title"
-                                                value={bookingData.title}
+                                                value={human.title}
                                                 onChange={handleChange}
                                                 required
                                             >
@@ -135,7 +141,7 @@ const BookingField = () => {
                                                 type="text"
                                                 name="lastName"
                                                 placeholder="Without title and punctuation"
-                                                value={bookingData.lastName}
+                                                value={human.lastName}
                                                 onChange={handleChange}
                                                 required
                                             />
@@ -148,7 +154,7 @@ const BookingField = () => {
                                                 type="text"
                                                 name="firstAndMiddleName"
                                                 placeholder="Without title and punctuation"
-                                                value={bookingData.firstAndMiddleName}
+                                                value={human.firstAndMiddleName}
                                                 onChange={handleChange}
                                                 required
                                             />
@@ -160,29 +166,18 @@ const BookingField = () => {
                                             <input
                                                 type="date"
                                                 name="dateOfBirth"
-                                                value={bookingData.dateOfBirth}
+                                                value={human.dateOfBirth}
                                                 onChange={handleChange}
                                                 required
                                             />
-                                            {/* sửa calender giống trong trip compose */}
-                                            {/* <CalendarComp /> */}
                                         </label>
 
-                                        {/* <label>
-                                    <p>Your name:</p>
-                                    <input
-                                        type="text"
-                                        name="passengerName"
-                                        value={bookingData.passengerName}
-                                        onChange={handleChange}
-                                    />
-                                </label> */}
                                         <label>
                                             <p>Email:</p>
                                             <input
                                                 type="email"
                                                 name="email"
-                                                value={bookingData.email}
+                                                value={human.email}
                                                 onChange={handleChange}
                                             />
                                         </label>
@@ -191,7 +186,7 @@ const BookingField = () => {
                                             <input
                                                 type="text"
                                                 name="phoneNumber"
-                                                value={bookingData.phoneNumber}
+                                                value={human.phoneNumber}
                                                 onChange={handleChange}
                                             />
                                         </label>

@@ -18,7 +18,6 @@ export const NavBar_1 = () => {
   const navigate = useNavigate(); 
 
   const handleShowInfor = () => {
-    setTimeout(() => {}, 2000);
 
     if (!userInfo && loading) {
       // Nếu đang loading và userInfo chưa có, chỉ bật trạng thái menu nhưng không hiển thị thông tin

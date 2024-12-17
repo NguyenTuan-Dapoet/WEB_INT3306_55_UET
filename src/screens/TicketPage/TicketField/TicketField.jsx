@@ -33,8 +33,8 @@ const TicketField = () => {
                 <div className="ticket-list">
                     {tickets.map((ticket, index) => (
                         <>
-                            <TicketForm key={index} ticket={ticket} createAt={"2024-12-17 15:58:12.217419"} />
-                            <TicketForm key={index} ticket={ticket} createAt={"2024-12-17 15:56:12.217419"} />
+                            <TicketForm key={index} ticket={ticket} createAt={"2024-12-17 17:58:12.217419"} />
+                            <TicketForm key={index} ticket={ticket} createAt={"2024-12-17 17:56:12.217419"} />
                         </>
                     ))}
                 </div>
