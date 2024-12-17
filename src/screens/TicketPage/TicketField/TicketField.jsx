@@ -28,7 +28,7 @@ const TicketField = () => {
         <div className="ticket-container">
             <h2>My Tickets</h2>
             {tickets.length === 0 ? (
-                <p>No tickets available.</p>
+                <p className='notification'>No tickets available.</p>
             ) : (
                 <div className="ticket-list">
                     {tickets.map((ticket, index) => (
