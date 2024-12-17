@@ -8,13 +8,19 @@ function CancelBookingProvider({ children }) {
   const [error, setError] = useState(null);                   // Lưu thông báo lỗi
   const [loading, setLoading] = useState(false);              // Trạng thái loading
 
+  // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
   // Hàm hủy booking qua API
   const cancelBooking = async (bookingId, token) => {
     setLoading(true);   // Bắt đầu loading
     setError(null);     // Reset lỗi trước đó
     setCancelResponse(null); // Reset phản hồi trước đó
+     
 
     try {
+      // console.log("Delaying API call for 10 seconds...");
+      // await delay(100000); // Delay 10 giây
+
       const response = await fetch(`http://localhost:8080/bookings/cancelBooking/${bookingId}`, {
         method: 'PUT', // PUT request
         headers: {

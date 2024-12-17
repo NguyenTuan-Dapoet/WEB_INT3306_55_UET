@@ -5,12 +5,10 @@ import verticalBarcode from "../../../assets/vertical-barcode.gif";
 import { CancelBookingContext } from '../../../assets/api/CancelBookingProvider';
 import { el } from "date-fns/locale";
 import LoadingState from "../../../components/LoadingState/LoadingState";
+import { formatDateTime } from "../../../components/DateSelect/formatDateTime";
 
 const TicketForm = ({ ticket, onCancelSuccess }) => {
   const { cancelBooking, loading } = useContext(CancelBookingContext);
-
-  const [formattedDate, setFormattedDate] = useState('');
-  const [formattedTime, setFormattedTime] = useState('');
   const [boardingTime, setBoardingTime] = useState('');
 
   const [timeLeft, setTimeLeft] = useState(60); // Bộ đếm thời gian mặc định là 60 giây
@@ -19,6 +17,10 @@ const TicketForm = ({ ticket, onCancelSuccess }) => {
   const token = localStorage.getItem('app_token');
   const createAt = ticket.createdAt;
   const countTime = 60 * 10;  // 10 phút đém ngược
+
+  const { formattedDate, formattedTime } = formatDateTime(ticket.departureTime);
+  // console.log("test", formattedDate, formattedTime);
+
   useEffect(() => {
     // Tính thời gian kết thúc = createAt + 10 phút
     const endTime = new Date(new Date(createAt).getTime() + countTime * 1000);
@@ -50,37 +52,11 @@ const TicketForm = ({ ticket, onCancelSuccess }) => {
   const handlePrintInvoice = () => {
     window.open(`http://localhost:8080/pdf/${ticket.pdfs}`, "_blank");
   };
-
-  useEffect(() => {
-    if (ticket.departureTime) {
-      const departureTime = ticket.departureTime;
-      const [datePart, timePart] = departureTime.split("T");
-
-      // Xử lý Date
-      const [year, month, day] = datePart.split("-");
-      const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-      const date = `${day} ${monthNames[parseInt(month, 10) - 1]} ${year}`;
-
-      // Xử lý Time
-      const time = timePart.substring(0, 5); // Chỉ lấy giờ và phút
-
-      // tính giá trị boarding time
-      const [hours, minutes] = time.split(":").map(Number);
-      const boardingHour = (hours - 1 + 24) % 24; // Đảm bảo giờ không âm (vòng về 24h nếu cần)
-      const formattedBoardingHour = boardingHour.toString().padStart(2, "0");
-      const boarding = `${formattedBoardingHour}:${minutes.toString().padStart(2, "0")}`;
-
-      setFormattedDate(date);
-      setFormattedTime(time);
-      setBoardingTime(boarding);
-    }
-  }, [ticket.departureTime]);
-
-
+ 
   return (
-    loading ? (
-      <LoadingState />
-    ) : (
+    // loading ? (
+    //   <LoadingState />
+    // ) : (
       <div className="ticket">
         <div className="ticket-barcode">
           <img src={verticalBarcode} alt="barcode" />
@@ -104,7 +80,7 @@ const TicketForm = ({ ticket, onCancelSuccess }) => {
   
             <div className="info-section">
               <span>Departure: </span>
-              <span>{formattedTime}</span>
+              <span>{formattedTime }</span>
             </div>
   
             <div className="info-section">
@@ -203,7 +179,7 @@ const TicketForm = ({ ticket, onCancelSuccess }) => {
         </div>
       </div>
     )
-  );
+  // );
 }
   
 
