@@ -23,8 +23,10 @@ export const NavBar_1 = () => {
 
   const handleShowInfor = () => {
     if (!userInfo && loading) {
-      setShowUserMenu(false);
+      // Nếu đang loading và userInfo chưa có, chỉ bật trạng thái menu nhưng không hiển thị thông tin
+      setShowUserMenu(true);
     } else if (userInfo) {
+      // Khi userInfo có sẵn, toggle hiển thị menu
       setShowUserMenu((prev) => !prev);
     }
   };
@@ -62,6 +64,7 @@ export const NavBar_1 = () => {
     </div>
   );
 
+  console.log("showUserMenu", showUserMenu);
   return (
     <>
       <div className="navbar">

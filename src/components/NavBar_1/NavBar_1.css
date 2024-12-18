@@ -184,6 +184,8 @@
     align-self: center;
     justify-content: center;
 
+    width: 250px;
+
     position: absolute;
     top: calc(100% + 5px);
     right: 0%;
@@ -220,8 +222,9 @@
 .navbar .navbar-sign .user-menu li {
     text-align: left;
     padding: 5px 0;
-    font-size: 12px;
+    font-size: 15px;
 }
+
 
 
 .navbar .navbar-sign .user-menu .user-section-action {
