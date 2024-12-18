@@ -59,7 +59,7 @@ const TicketForm = ({ ticket, onCancelSuccess }) => {
     // ) : (
       <div className="ticket">
         <div className="ticket-barcode">
-          <img src={verticalBarcode} alt="barcode" />
+          {/* <img src={verticalBarcode} alt="barcode" /> */}
         </div>
   
         <div className="ticket-left">

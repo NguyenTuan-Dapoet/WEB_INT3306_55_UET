@@ -33,16 +33,23 @@
 }
 
 .ticket-barcode {
-  margin: 0;
-  height: 100%;
-  padding: 80px 20px 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 80px 10px 15px 15px;
   background-color: whitesmoke;
+  width: 50px;
+  background-image: url("../../../assets/vertical-barcode.gif");
+
 }
 
 .ticket-barcode img {
-  width: 100%;
+  width: 80%;
+  /* Chiều rộng của barcode theo chiều ngang */
   height: 100%;
-  object-fit: cover;
+  /* Barcode sẽ nằm gọn trong khung */
+  object-fit: contain;
+  /* Giữ nguyên tỷ lệ barcode */
 }
 
 .ticket-left,
@@ -114,10 +121,15 @@
 }
 
 .info {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   justify-content: space-between;
   gap: 10px;
   font-size: 1rem;
+}
+
+.info:last-child {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .info-section {
@@ -237,15 +249,214 @@
 }
 
 .cancel-button:disabled {
-  background-color: #ccc; /* Màu nền xám */
-  color: #666;            /* Màu chữ xám nhạt */
-  cursor: not-allowed;     /* Biểu tượng chuột không thể bấm */
-  opacity: 0.6;           /* Làm mờ nút */
+  background-color: #ccc;
+  /* Màu nền xám */
+  color: #666;
+  /* Màu chữ xám nhạt */
+  cursor: not-allowed;
+  /* Biểu tượng chuột không thể bấm */
+  opacity: 0.6;
+  /* Làm mờ nút */
 }
 
 @keyframes ripple {
   to {
     transform: translate(-50%, -50%) scale(4);
     opacity: 0;
+  }
+}
+
+/* Responsive Styling */
+@media (max-width: 1024px) {
+  .ticket {
+    width: 700px;
+    height: auto;
+    flex-direction: column;
+    margin: 10px auto 30px;
+  }
+
+  .ticket-barcode {
+    /* width: 100%;
+    height: auto;
+    background-image: url("../../../assets/horizontal-barcode.gif"); */
+    display: none;
+  }
+
+  .ticket-left,
+  .ticket-right {
+    padding: 15px;
+    font-size: 90%;
+  }
+
+  .ticket-left {
+    font-size: 20px;
+  }
+
+  .ticket-left-header {
+    font-size: 28px;
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+
+  .airport-code {
+    font-size: 40px;
+  }
+
+  .plane-icon-ticket {
+    font-size: 50px;
+  }
+
+  .ticket-divider {
+    display: none;
+    /* Hide the divider for smaller screens */
+  }
+
+  .ticket-right {
+    flex: 1;
+    padding: 15px;
+    padding-bottom: 20px;
+    gap: 10px;
+
+  }
+
+  .ticket-right-header {
+    font-size: 20px;
+    padding: 0;
+  }
+
+  .ticket-right-content {
+    font-size: 90%;
+    text-align: center;
+  }
+
+  .print-button,
+  .cancel-button {
+    font-size: 13px;
+    padding: 8px 15px;
+  }
+
+  .ticket-barcode {
+    height: 100px;
+    /* Giảm chiều cao barcode */
+    padding: 5px 15px;
+  }
+
+  .ticket-barcode img {
+    width: 90%;
+    /* Tăng tỷ lệ chiếm màn hình */
+  }
+
+  .ticket {
+    flex-direction: column;
+    width: 100%;
+    margin: 10px 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ticket {
+    width: 100%;
+    margin: 10px 5px;
+    border-radius: 20px;
+  }
+
+  .ticket-barcode {
+    padding: 60px 10px 10px 10px;
+  }
+
+  .ticket-left-header {
+    font-size: 24px;
+  }
+
+  .airport-code {
+    font-size: 30px;
+  }
+
+  .city {
+    font-size: 0.9rem;
+  }
+
+  .info {
+    font-size: 0.9rem;
+    padding: 10px 0;
+    text-align: center;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .plane-icon-ticket {
+    font-size: 40px;
+  }
+
+  .ticket-right-header {
+    font-size: 18px;
+  }
+
+  .ticket-status {
+    font-size: 16px;
+  }
+
+  .status {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ticket {
+    width: 100%;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .ticket-left {
+    font-size: 80%;
+    padding: 10px;
+  }
+
+  .ticket-left-header {
+    font-size: 20px;
+    padding-bottom: 10px;
+  }
+
+  .ticket-left-header::after {
+    width: 200%;
+    height: 300%;
+    left: -100%;
+    top: -200%;
+  }
+
+  .airport-code {
+    font-size: 24px;
+  }
+
+  .city {
+    font-size: 0.8rem;
+  }
+
+  .info {
+    font-size: 0.8rem;
+    gap: 5px;
+    flex-direction: column;
+  }
+
+  .print-button,
+  .cancel-button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .ticket-barcode {
+    padding: 40px 5px 5px 5px;
+  }
+
+  .plane-icon-ticket {
+    font-size: 30px;
+  }
+
+  .ticket-status {
+    font-size: 14px;
+  }
+
+  .status {
+    font-size: 12px;
   }
 }
