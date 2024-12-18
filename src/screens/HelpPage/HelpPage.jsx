@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./HelpPage.css";
 import { FaPhone, FaEnvelope, FaQuestionCircle } from "react-icons/fa";
 import emailjs from "@emailjs/browser"; // Import EmailJS
+import PopUp from "../../components/PopUp/PopUp";
+import LoadingState from "../../components/LoadingState/LoadingState";
 
 const HelpPage = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +12,9 @@ const HelpPage = () => {
     question: "",
   });
 
+  const [showPopUp, setShowPopUp] = useState(false); // State cho PopUp
+  const [loading, setLoading] = useState(false); // Trạng thái loading
+
   const handleChange = (e) => {
     const { name, value } = e.target; // Lấy name và value từ input
     setFormData((prevState) => ({ ...prevState, [name]: value }));
@@ -17,7 +22,7 @@ const HelpPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    
+
     const templateParams = {
       from_name: formData.name,
       from_email: formData.email,
@@ -27,6 +32,8 @@ const HelpPage = () => {
     const serviceID = "service_3c56a5c";
     const templateID = "template_50wm155";
     const publicKey = "ndn-y3XhSgBgx7SN6";
+
+    setLoading(true); // Bắt đầu loading
 
     emailjs
       .send(
@@ -38,13 +45,16 @@ const HelpPage = () => {
       .then(
         (response) => {
           console.log("SUCCESS!", response.status, response.text);
-          alert("Cảm ơn bạn! Câu hỏi đã được gửi thành công.");
+          setShowPopUp(true);
         },
         (error) => {
           console.log("FAILED...", error);
           alert("Có lỗi xảy ra, vui lòng thử lại!");
         }
-      );
+      )
+      .finally(() => {
+        setLoading(false); // Kết thúc loading
+      });
 
     setFormData({ name: "", email: "", question: "" });
   };
@@ -71,62 +81,74 @@ const HelpPage = () => {
   return (
     <div className="help-page">
       <h1 className="help-title">Trung tâm Hỗ Trợ Qairline</h1>
+      {loading ? (
+        <LoadingState /> // Hiển thị khi đang loading
+      ) : (
+        <>
+          {/* FAQ Section */}
+          <section className="faq-section">
+            <h2 className="section-title">Câu hỏi thường gặp</h2>
+            {faqs.map((item, index) => (
+              <div key={index} className="faq-item">
+                <details>
+                  <summary>{item.question}</summary>
+                  <p>{item.answer}</p>
+                </details>
+              </div>
+            ))}
+          </section>
 
-      {/* FAQ Section */}
-      <section className="faq-section">
-        <h2 className="section-title">Câu hỏi thường gặp</h2>
-        {faqs.map((item, index) => (
-          <div key={index} className="faq-item">
-            <details>
-              <summary>{item.question}</summary>
-              <p>{item.answer}</p>
-            </details>
-          </div>
-        ))}
-      </section>
+          {/* Contact Information */}
+          <section className="contact-section">
+            <h2 className="section-title">Liên hệ hỗ trợ</h2>
+            <div className="contact-info">
+              <p><FaPhone /> Hotline: <strong>1900 123 456</strong></p>
+              <p><FaEnvelope /> Email: <strong>support@qairline.com</strong></p>
+            </div>
+          </section>
 
-      {/* Contact Information */}
-      <section className="contact-section">
-        <h2 className="section-title">Liên hệ hỗ trợ</h2>
-        <div className="contact-info">
-          <p><FaPhone /> Hotline: <strong>1900 123 456</strong></p>
-          <p><FaEnvelope /> Email: <strong>support@qairline.com</strong></p>
-        </div>
-      </section>
+          {/* Inquiry Form */}
+          <section className="form-section">
+            <h2 className="section-title">Gửi câu hỏi của bạn</h2>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="name"
+                placeholder="Họ và tên"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
 
-      {/* Inquiry Form */}
-      <section className="form-section">
-        <h2 className="section-title">Gửi câu hỏi của bạn</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Họ và tên"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email của bạn"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Email của bạn"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+              <textarea
+                name="question"
+                placeholder="Nhập câu hỏi của bạn..."
+                value={formData.question}
+                onChange={handleChange}
+                required
+              />
 
-          <textarea
-            name="question"
-            placeholder="Nhập câu hỏi của bạn..."
-            value={formData.question}
-            onChange={handleChange}
-            required
-          />
+              <button type="submit">Gửi câu hỏi</button>
+            </form>
+          </section>
 
-          <button type="submit">Gửi câu hỏi</button>
-        </form>
-      </section>
+          {showPopUp && (
+            <PopUp
+              title={"Cảm ơn bạn!"}
+              content={"Câu hỏi đã được gửi thành công."}
+            />
+          )}
+        </>
+      )}
     </div>
   );
 };
