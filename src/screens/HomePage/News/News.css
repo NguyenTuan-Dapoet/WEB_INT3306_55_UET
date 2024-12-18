@@ -8,3 +8,10 @@
     font-weight: 600;
     padding-bottom: 20px;
 }
+
+.loading-news {
+    text-align: center;
+    font-weight: 600;
+    font-size: large;
+    margin: 10%;
+}

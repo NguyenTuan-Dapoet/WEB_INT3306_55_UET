@@ -26,7 +26,7 @@ const News = () => {
   }
 
   if (newList.length === 0) {
-    return <div>Loading...</div>;
+    return <div className="loading-news" >Loading new...</div>;
   }
 
   return (

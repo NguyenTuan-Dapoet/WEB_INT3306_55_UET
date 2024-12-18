@@ -114,18 +114,16 @@ const ContactPage = () => {
             </section>
 
             {/* Google Maps */}
-            {/* <section className="contact-map">
+            <section className="contact-map">
               <h2>Bản đồ</h2>
               <iframe
-                title="Google Map"
-                src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=123+Nguyen+Hue,+District+1,+Ho+Chi+Minh+City"
-                width="100%"
-                height="300"
-                style={{ border: "0", borderRadius: "10px" }}
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7448.098935411942!2d105.81850847493868!3d21.030706587712316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab730858046f%3A0x726209e62a2742be!2zMjY5IFAuIEtpbSBNw6MsIEdp4bqjbmcgVsO1LCBCYSDEkMOsbmgsIEjDoCBO4buZaSAxMDAwMDAsIFZpZXRuYW0!5e0!3m2!1sen!2sus!4v1727546747190!5m2!1sen!2sus"
+                style={{ border: "0", width: "100%", height: "270px" }}
                 allowFullScreen=""
                 loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
-            </section> */}
+            </section>
           </div>
 
           {showPopUp && (
@@ -136,20 +134,7 @@ const ContactPage = () => {
           )}
         </>
       )}
-
-        {/* Google Maps */}
-        <section className="contact-map">
-          <h2>Bản đồ</h2>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7448.098935411942!2d105.81850847493868!3d21.030706587712316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab730858046f%3A0x726209e62a2742be!2zMjY5IFAuIEtpbSBNw6MsIEdp4bqjbmcgVsO1LCBCYSDEkMOsbmgsIEjDoCBO4buZaSAxMDAwMDAsIFZpZXRuYW0!5e0!3m2!1sen!2sus!4v1727546747190!5m2!1sen!2sus"
-            style={{ border: "0", width: "100%", height: "270px" }}
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </section>
-
-      </div>
+    </div>
   );
 };
 

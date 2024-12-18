@@ -124,6 +124,9 @@ export const NavBar_1 = () => {
         </div>
       </div>
 
+      
+
+
       {/* Sidebar */}
       <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
         <ul>
