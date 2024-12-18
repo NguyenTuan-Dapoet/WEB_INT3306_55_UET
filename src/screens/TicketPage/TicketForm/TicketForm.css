@@ -207,16 +207,16 @@
   font-weight: bold;
 }
 
-.status-accept {
+.status-confirmed {
   color: green;
 }
 
-.status-cancel {
+.status-cancelled {
   color: red;
 }
 
 .status-pending {
-  color: rgb(255, 115, 0);
+  color: rgb(254, 229, 0);
 }
 
 /* Nút bấm in hóa đơn */

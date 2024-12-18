@@ -134,10 +134,10 @@ const TicketForm = ({ ticket, onCancelSuccess }) => {
         <div className="ticket-status">
           <span>Status: </span>
           <span
-            className={`status ${ticket.status === "CONFIRM"
-              ? "status-accept"
+            className={`status ${ticket.status === "CONFIRMED"
+              ? "status-confirmed"
               : ticket.status === "CANCELLED"
-                ? "status-cancel"
+                ? "status-cancelled"
                 : "status-pending"
               }`}
           >
