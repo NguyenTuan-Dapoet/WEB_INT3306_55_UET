@@ -52,135 +52,124 @@ const TicketForm = ({ ticket, onCancelSuccess }) => {
   const handlePrintInvoice = () => {
     window.open(`http://localhost:8080/pdf/${ticket.pdfs}`, "_blank");
   };
- 
+
   return (
     // loading ? (
     //   <LoadingState />
     // ) : (
-      <div className="ticket">
-        <div className="ticket-barcode">
-          {/* <img src={verticalBarcode} alt="barcode" /> */}
-        </div>
-  
-        <div className="ticket-left">
-          <div className="ticket-left-header">
-            <p>{ticket.ticketClass} Class</p>
-          </div>
-  
-          <div className="info">
-            <div className="info-section">
-              <span>Passenger Name:</span>
-              <span>{ticket.passengerName}</span>
-            </div>
-  
-            <div className="info-section">
-              <span>Flight:</span>
-              <span>{ticket.flightNumber}</span>
-            </div>
-  
-            <div className="info-section">
-              <span>Departure: </span>
-              <span>{formattedTime }</span>
-            </div>
-  
-            <div className="info-section">
-              <span>Date:</span>
-              <span>{formattedDate}</span>
-            </div>
-          </div>
-  
-          <div className="content">
-            <div className="section-from">
-              <div className="section-details">
-                <span className="airport-code">{ticket.originCode}</span>
-                <span className="city">{ticket.originName}</span>
-              </div>
-            </div>
-            <div className="plane-icon-ticket">
-              <IoAirplane />
-            </div>
-  
-            <div className="section-to">
-              <div className="section-details">
-                <span className="airport-code">{ticket.destinationCode}</span>
-                <span className="city">{ticket.destinationName}</span>
-              </div>
-            </div>
-          </div>
-  
-          <div className="info">
-            <div className="info-section">
-              <span>Boarding: </span>
-              <span>{boardingTime}</span>
-            </div>
-  
-            <div className="info-section">
-              <span>Gate: </span>
-              <span>trống</span>
-            </div>
-  
-            <div className="info-section">
-              <span>Seat: </span>
-              <span>trống</span>
-            </div>
-          </div>
-        </div>
-  
-        <div className="ticket-divider"></div>
-  
-        <div className="ticket-right">
-          <div className="ticket-right-header">
-            <p>BOARDING PASS</p>
-          </div>
-  
-          <div className="ticket-right-content">
-            <p>{ticket.ticketClass}</p>
-            <p>{ticket.passengerName}</p>
-            <p>{ticket.originCode} - {ticket.destinationCode}</p>
-            <p>{ticket.flightNumber}</p>
-            <p>{formattedDate}</p>
-          </div>
-  
-          <div className="ticket-status">
-            <span>Status: </span>
-            <span
-              className={`status ${
-                ticket.status === "CONFIRM"
-                  ? "status-accept"
-                  : ticket.status === "CANCELLED"
-                  ? "status-cancel"
-                  : "status-pending"
-              }`}
-            >
-              {ticket.status}
-            </span>
-          </div>
-  
-          {/* Hiển thị bộ đếm */}
-          {cancelEnabled && (
-            <div className="countdown-timer">
-              <p>Time to cancel: <strong>{timeLeft} s</strong></p>
-            </div>
-          )}
-  
-          {/* Nút hủy */}
-          <button
-            className="cancel-button"
-            onClick={handleCancelTicket}
-            disabled={!cancelEnabled || loading}
-          >
-            Cancel Ticket
-          </button>
-  
-          {/* Nút in hóa đơn */}
-          <button className="print-button" onClick={handlePrintInvoice}>
-            Print Invoice
-          </button>
-        </div>
+    <div className="ticket">
+      <div className="ticket-barcode">
+        {/* <img src={verticalBarcode} alt="barcode" /> */}
       </div>
-    )
+
+      <div className="ticket-left">
+        <div className="ticket-left-header">
+          <p>{ticket.ticketClass} Class</p>
+        </div>
+
+        <div className="info">
+          <div className="info-section">
+            <span>Passenger Name:</span>
+            <span>{ticket.passengerName}</span>
+          </div>
+
+          <div className="info-section">
+            <span>Flight:</span>
+            <span>{ticket.flightNumber}</span>
+          </div>
+
+          <div className="info-section">
+            <span>Departure: </span>
+            <span>{formattedTime}</span>
+          </div>
+
+          <div className="info-section">
+            <span>Date:</span>
+            <span>{formattedDate}</span>
+          </div>
+        </div>
+
+        <div className="content">
+          <div className="section-from">
+            <div className="section-details">
+              <span className="airport-code">{ticket.originCode}</span>
+              <span className="city">{ticket.originName}</span>
+            </div>
+          </div>
+
+          <div className="plane-icon-ticket">
+            <IoAirplane />
+          </div>
+
+          <div className="section-to">
+            <div className="section-details">
+              <span className="airport-code">{ticket.destinationCode}</span>
+              <span className="city">{ticket.destinationName}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div className="info-section-row">
+            <span>Booking number: </span>
+            <span>{ticket.bookingNumber}</span>
+          </div>
+
+      </div>
+
+      <div className="ticket-divider"></div>
+
+      <div className="ticket-right">
+        <div className="ticket-right-header">
+          <p>BOARDING PASS</p>
+        </div>
+
+        <div className="ticket-right-content">
+          <p>{ticket.ticketClass}</p>
+          <p>{ticket.passengerName}</p>
+          <p>{ticket.originCode} - {ticket.destinationCode}</p>
+          <p>{ticket.flightNumber}</p>
+          <p>{formattedDate}</p>
+        </div>
+
+        <div className="ticket-status">
+          <span>Status: </span>
+          <span
+            className={`status ${ticket.status === "CONFIRM"
+              ? "status-accept"
+              : ticket.status === "CANCELLED"
+                ? "status-cancel"
+                : "status-pending"
+              }`}
+          >
+            {ticket.status}
+          </span>
+        </div>
+
+        {/* Hiển thị bộ đếm */}
+        {cancelEnabled && (
+          <div className="countdown-timer">
+            <p>Time to cancel: <strong>{timeLeft} s</strong></p>
+          </div>
+        )}
+
+        {/* Nút hủy */}
+        <button
+          className="cancel-button"
+          onClick={handleCancelTicket}
+          disabled={!cancelEnabled || loading}
+        >
+          Cancel Ticket
+        </button>
+
+        {/* Nút in hóa đơn */}
+        <button className="print-button" onClick={handlePrintInvoice}>
+          Print Invoice
+        </button>
+      </div>
+    </div>
+  )
   // );
 }
-  
+
 
 export default TicketForm;
