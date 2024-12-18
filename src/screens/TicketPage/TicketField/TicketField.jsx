@@ -22,7 +22,7 @@ const TicketField = () => {
     useEffect(() => {
         setLocalTickets(tickets); // Cập nhật state cục bộ khi tickets từ context thay đổi
     }, [tickets]);
- 
+
     // Hàm cập nhật trạng thái ticket khi hủy thành công
     const updateTicketStatus = (bookingId) => {
         setLocalTickets((prevTickets) =>
@@ -46,14 +46,16 @@ const TicketField = () => {
             {localTickets.length === 0 ? (
                 <p className='notification'>No tickets available.</p>
             ) : (
-                <div className="ticket-list">
-                    {localTickets.map((ticket, index) => (
+                //in từ dưới lên: mới->cũ
+                <div className="ticket-list">   
+                    {localTickets.slice().reverse().map((ticket, index) => (
                         <TicketForm
                             key={index}
                             ticket={ticket}
                             onCancelSuccess={() => updateTicketStatus(ticket.bookingId)}
                         />
                     ))}
+
                 </div>
             )}
         </div>

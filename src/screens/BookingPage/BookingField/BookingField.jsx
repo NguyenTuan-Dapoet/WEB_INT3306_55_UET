@@ -7,6 +7,8 @@ import { LoadingState } from '../../../components/LoadingState/LoadingState.jsx'
 import PassengerClassSelect from '../../../components/PassengerClassSelect/PassengerClassSelect.jsx';
 import CalendarComp from '../../../components/DateSelect/CalendarComp.jsx';
 import './BookingField.css';
+import { convertToDateInputFormat } from '../../../components/DateSelect/formatDateTime.jsx';
+
 
 const BookingField = () => {
     const selectedFlight = JSON.parse(localStorage.getItem("selectedFlight"));
@@ -16,7 +18,7 @@ const BookingField = () => {
 
     // Lấy dữ liệu hành khách từ Redux
     const passengers = useSelector((state) => state.trip.passengers);
-
+    const birthDate = useSelector((state) => state.trip.startDate);
     if (!selectedFlight || !userInfo) {
         return <p>No flight or user selected. Please go back and try again.</p>;
     }
@@ -24,8 +26,7 @@ const BookingField = () => {
     const [human, setHuman] = useState({
         title: 'Mr',
         firstAndMiddleName: '',
-        lastName: 'Mr',
-        fullName: '',
+        lastName: 'Mr. ',
         dateOfBirth: '',
         email: '',
         phoneNumber: '',
@@ -40,9 +41,11 @@ const BookingField = () => {
         ticketClass: '',
     });
 
-    console.log("passengers", passengers);
+    // console.log("passengers", passengers);
     console.log("human", human);
     console.log("bookingData", bookingData);
+    // console.log("birthDate", birthDate);
+    // console.log("dateOfBirth", human.dateOfBirth);
 
     useEffect(() => {
         // Cập nhật lại bookingData khi passengers thay đổi
@@ -67,28 +70,24 @@ const BookingField = () => {
             // Khi thay đổi title, cập nhật lại lastName
             if (name === 'title') {
                 updatedHuman.lastName = '';
-                updatedHuman.lastName = `${value} ${updatedHuman.lastName}`;
+                updatedHuman.lastName = `${value}. ${updatedHuman.lastName}`;
             }
-
-            // Tạo fullName từ lastName và firstAndMiddleName
-            const fullName = `${updatedHuman.lastName} ${updatedHuman.firstAndMiddleName}`;
-
+            
+            updatedHuman.dateOfBirth = convertToDateInputFormat(birthDate); // Chuyển đổi định dạng
             return updatedHuman;
         });
     };
 
     const handleSubmit = () => {
-        const full_name = human.lastName + ' ' + human.firstAndMiddleName;
+        // const full_name = human.lastName + ' ' + human.firstAndMiddleName;
 
-        const updatedBookingData = {
-            ...bookingData,
-            passengerName: full_name
-        };
-        console.log("updatedBookingData", updatedBookingData);
+        // const updatedBookingData = {
+        //     ...bookingData,
+        //     passengerName: full_name
+        // };
 
-        setBookingData(updatedBookingData);
-
-        createBooking(userInfo.id, selectedFlight.flightId, token, updatedBookingData);
+        console.log("updatedBookingData", bookingData);
+        createBooking(userInfo.id, selectedFlight.flightId, token, bookingData);
     };
 
     return (
@@ -160,27 +159,6 @@ const BookingField = () => {
                                             />
                                         </label>
 
-                                        {/* Date of Birth */}
-                                        <label>
-                                            <p>Date of Birth:</p>
-                                            <input
-                                                type="date"
-                                                name="dateOfBirth"
-                                                value={human.dateOfBirth}
-                                                onChange={handleChange}
-                                                required
-                                            />
-                                        </label>
-
-                                        <label>
-                                            <p>Email:</p>
-                                            <input
-                                                type="email"
-                                                name="email"
-                                                value={human.email}
-                                                onChange={handleChange}
-                                            />
-                                        </label>
                                         <label>
                                             <p>Phone number:</p>
                                             <input
@@ -190,6 +168,28 @@ const BookingField = () => {
                                                 onChange={handleChange}
                                             />
                                         </label>
+
+                                        <div className='birth-phone'>
+                                            <label>
+                                                <p>Date of Birth:</p>
+                                                <div 
+                                                    className="date-container"
+                                                    name="dateOfBirth"
+                                                >   
+                                                    <CalendarComp />
+                                                </div>
+                                            </label>
+
+                                            <label>
+                                                <p>Email:</p>
+                                                <input
+                                                    type="email"
+                                                    name="email"
+                                                    value={human.email}
+                                                    onChange={handleChange}
+                                                />
+                                            </label>
+                                        </div>
 
                                         <label>
                                             <p>Passenger select:</p>

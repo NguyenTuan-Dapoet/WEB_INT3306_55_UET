@@ -1,4 +1,6 @@
 import React, { createContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 // Tạo context cho việc hủy booking
 const CancelBookingContext = createContext();
@@ -7,6 +9,7 @@ function CancelBookingProvider({ children }) {
   const [cancelResponse, setCancelResponse] = useState(null); // Lưu phản hồi khi hủy booking
   const [error, setError] = useState(null);                   // Lưu thông báo lỗi
   const [loading, setLoading] = useState(false);              // Trạng thái loading
+  const navigate = useNavigate();
 
   // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -15,7 +18,7 @@ function CancelBookingProvider({ children }) {
     setLoading(true);   // Bắt đầu loading
     setError(null);     // Reset lỗi trước đó
     setCancelResponse(null); // Reset phản hồi trước đó
-     
+
 
     try {
       // console.log("Delaying API call for 10 seconds...");
@@ -30,8 +33,14 @@ function CancelBookingProvider({ children }) {
       });
 
       if (!response.ok) {
+        if (response.status === 401) {
+          logout();  // Gọi logout nếu lỗi 401
+          navigate('/401');
+          throw new Error('Phiên làm việc đã hết. Vui lòng đăng nhập lại.');
+        }
         throw new Error(`Lỗi HTTP! Trạng thái: ${response.status}`);
       }
+
 
       const data = await response.text(); // Chuyển phản hồi thành JSON
       setCancelResponse(data);  // Lưu phản hồi thành công từ server

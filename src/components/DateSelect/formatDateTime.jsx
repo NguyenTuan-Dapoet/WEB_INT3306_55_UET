@@ -24,3 +24,20 @@ export const DateTimeComponent = ({ departureTime }) => {
         </div>
     );
 };
+
+export const convertToDateInputFormat = (date) => {
+    if (!date || typeof date !== 'string') {
+        console.error("Invalid date input:", date); 
+        return ""; 
+    }
+
+    const [day, month, year] = date.split('/'); 
+
+    if (!day || !month || !year) {
+        console.error("Incomplete date format:", date); 
+        return ""; 
+    }
+
+    // Trả về chuỗi theo định dạng yyyy-MM-dd
+    return `${year}-${month}-${day}`;
+};
