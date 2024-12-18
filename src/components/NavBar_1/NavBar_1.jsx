@@ -23,8 +23,10 @@ export const NavBar_1 = () => {
 
   const handleShowInfor = () => {
     if (!userInfo && loading) {
-      setShowUserMenu(false);
+      // Nếu đang loading và userInfo chưa có, chỉ bật trạng thái menu nhưng không hiển thị thông tin
+      setShowUserMenu(true);
     } else if (userInfo) {
+      // Khi userInfo có sẵn, toggle hiển thị menu
       setShowUserMenu((prev) => !prev);
     }
   };
@@ -62,6 +64,7 @@ export const NavBar_1 = () => {
     </div>
   );
 
+  console.log("showUserMenu", showUserMenu);
   return (
     <>
       <div className="navbar">
@@ -80,17 +83,23 @@ export const NavBar_1 = () => {
                       <LoadingState />
                     ) : userInfo ? (
                       <>
-                        <h3>User Information</h3>
-                        <ul>
-                          <li><strong>Id:</strong> {userInfo.id}</li>
-                          <li><strong>Name:</strong> {userInfo.fullName}</li>
-                          <li><strong>Email:</strong> {userInfo.username}</li>
-                          <li><strong>Phone:</strong> {userInfo.phoneNumber}</li>
-                          <li><strong>Role:</strong> {userInfo.role}</li>
-                        </ul>
-                        <button onClick={handleShowTicket} className="show-tickets">
-                          My Tickets
-                        </button>
+                        <div className='user-section-info'>
+                          <h3>User Information</h3>
+                          <ul>
+                            <li><strong>Id:</strong> {userInfo.id}</li>
+                            <li><strong>Name:</strong> {userInfo.fullName}</li>
+                            <li><strong>Email:</strong> {userInfo.username}</li>
+                            <li><strong>Phone:</strong> {userInfo.phoneNumber}</li>
+                            <li><strong>Role:</strong> {userInfo.role}</li>
+                          </ul>
+                        </div>
+                        <div className='user-section-action'>
+                          <p onClick={handleShowTicket} className="show-tickets">
+                            My Tickets
+                          </p>
+
+                          <p onClick={logout} className='logout'>Logout</p>
+                        </div>
                       </>
                     ) : (
                       <p>No user information available.</p>
