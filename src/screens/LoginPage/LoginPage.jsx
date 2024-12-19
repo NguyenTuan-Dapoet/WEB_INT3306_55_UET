@@ -5,10 +5,16 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from '../../assets/api/AuthProvider'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import loginBG from '../../assets/login-background.jpeg'
+import loginBG from '../../assets/pictures/login-background.jpeg'
+
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
+import GoogleLoginButton from './GoogleLoginButton';
+import { GoogleAuthContext } from '../../assets/api/GoogleAuthProvider';
 
 export const LoginPage = () => {
-  const authResult = useContext(AuthContext);
+  const { api_isLogin, api_token, api_login, api_error } = useContext(AuthContext);
+  const { gg_isLogin, gg_token, authenticateWithGoogle, gg_error} = useContext(GoogleAuthContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [usernameError, setUsernameError] = useState('');
@@ -17,10 +23,13 @@ export const LoginPage = () => {
   // Khi token và status thay đổi, nếu đã đăng nhập thành công thì chuyển hướng luôn
   useEffect(() => {
     //nếu đăng nhập thành công và có token
-    if (authResult.status === 'succeeded' && authResult.token) {
+    if (
+        (api_isLogin === true && api_token)||  
+        (gg_isLogin === true && gg_token)
+    ) {
       navigate('/home');
     }
-  }, [authResult.status, authResult.token, navigate]);
+  }, [api_isLogin, api_token, gg_isLogin, gg_token ,navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +43,7 @@ export const LoginPage = () => {
       setUsernameError('');
     }
 
-    await authResult.login(cleanUsername, password);
+    await api_login(cleanUsername, password);
     // Sau khi login, useEffect sẽ phát hiện token và status để navigate
   }
 
@@ -82,13 +91,20 @@ export const LoginPage = () => {
             </button>
           </div>
 
+          <div className='google-box'>
+            <GoogleLoginButton />
+          </div>
+          
+
           <div className="signup-link">
             <p>
               Don't have an account?<Link to="/signup"> Sign Up</Link>
             </p>
           </div>
 
-          {authResult.error && <p className="error-value">{authResult.error}</p>}
+          {api_error && <p className="error-message">{api_error}</p>}
+          {gg_error && <p className="error-message">{gg_error}</p>}
+
         </form>
       </div>
     </div>

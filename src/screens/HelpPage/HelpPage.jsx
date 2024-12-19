@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./HelpPage.css";
 import { FaPhone, FaEnvelope, FaQuestionCircle } from "react-icons/fa";
 import emailjs from "@emailjs/browser"; // Import EmailJS
 import PopUp from "../../components/PopUp/PopUp";
 import LoadingState from "../../components/LoadingState/LoadingState";
+import { UserInfoContext } from '../../assets/api/UserInfoProvider';
 
 const HelpPage = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,19 @@ const HelpPage = () => {
 
   const [showPopUp, setShowPopUp] = useState(false); // State cho PopUp
   const [loading, setLoading] = useState(false); // Trạng thái loading
+  const { userInfo } = useContext(UserInfoContext);
+
+
+  // Cập nhật formData từ userInfo nếu có
+    useEffect(() => {
+      if (userInfo) {
+        setFormData((prevState) => ({
+          ...prevState,
+          name: userInfo.fullName || "",
+          email: userInfo.username || "",
+        }));
+      }
+    }, [userInfo]);
 
   const handleChange = (e) => {
     const { name, value } = e.target; // Lấy name và value từ input

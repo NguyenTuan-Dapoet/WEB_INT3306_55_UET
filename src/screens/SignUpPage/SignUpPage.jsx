@@ -6,7 +6,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
 import { useRegister } from '../../assets/api/RegisterProvider';
 import { Link } from 'react-router-dom';
-import signupBG from '../../assets/login-background.jpeg'
+import signupBG from '../../assets/pictures/login-background.jpeg'
 
 
 export const SignUpPage = () => {

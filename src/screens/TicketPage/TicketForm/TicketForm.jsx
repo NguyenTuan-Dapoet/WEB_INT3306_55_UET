@@ -1,7 +1,7 @@
 import { React, useState, useEffect, useContext } from "react";
 import "./TicketForm.css";
 import { IoAirplane } from "react-icons/io5";
-import verticalBarcode from "../../../assets/vertical-barcode.gif";
+import verticalBarcode from "../../../assets/icons/vertical-barcode.gif";
 import { CancelBookingContext } from '../../../assets/api/CancelBookingProvider';
 import { el } from "date-fns/locale";
 import LoadingState from "../../../components/LoadingState/LoadingState";

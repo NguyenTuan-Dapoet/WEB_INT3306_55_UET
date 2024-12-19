@@ -29,3 +29,8 @@ npm create vite@latest (how to make react project)
 - emailJs
 => npm install @emailjs/browser
 
+- googleOAth
+=> npm i @react-oauth/google
+
+- jwt decode
+=> npm i jwt-decode

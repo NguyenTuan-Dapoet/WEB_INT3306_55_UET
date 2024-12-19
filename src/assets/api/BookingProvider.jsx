@@ -1,7 +1,9 @@
 
 import React, { createContext, useContext, useState } from 'react';
 import { AuthContext } from './AuthProvider';  // Import AuthContext để gọi logout
+import { GoogleAuthContext } from '../../assets/api/GoogleAuthProvider';
 import { useNavigate } from 'react-router-dom';
+import { useLogout } from '../../components/Hook/useLogOut.js';
 
 const BookingContext = createContext();
 
@@ -9,10 +11,16 @@ export const BookingProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [bookingResponse, setBookingResponse] = useState(null);
-    const { logout } = useContext(AuthContext);  // Lấy logout từ AuthContext
+    const { api_isLogin, api_logout } = useContext(AuthContext);
+    const { gg_isLogin, gg_logout } = useContext(GoogleAuthContext);
     const navigate = useNavigate();
 
     // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    // const handleLogout = () => {
+    //     api_isLogin ? api_logout() : gg_logout();
+    // }
+
+    const handleLogout = useLogout();
 
     const createBooking = async (userId, flightId, token, bookingData) => {
         setLoading(true);
@@ -40,7 +48,7 @@ export const BookingProvider = ({ children }) => {
             // Kiểm tra nếu có lỗi 401 và logout người dùng
             if (!response.ok) {
                 if (response.status === 401) {
-                    logout();  // Gọi logout nếu lỗi 401
+                    handleLogout();  // Gọi logout nếu lỗi 401
                     navigate('/401');
                     throw new Error('Phiên làm việc đã hết. Vui lòng đăng nhập lại.');
                 }

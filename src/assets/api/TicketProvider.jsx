@@ -27,7 +27,7 @@
 
 //             const data = await response.json(); // API trả về dữ liệu dạng JSON
 //             setTickets(data); // Lưu dữ liệu vào state
-        
+
 //             //--------------test----------------
 //             console.log("ticket response" ,response);
 //             console.log("ticket data",data);
@@ -44,11 +44,12 @@
 //         </TicketContext.Provider>
 //     );
 // };
- 
+
 
 import React, { createContext, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthProvider';  // Thêm import AuthContext
+import { useLogout } from '../../components/Hook/useLogOut'; // Thêm import useLogout
 
 // Tạo context cho ticket
 export const TicketContext = createContext();
@@ -76,7 +77,8 @@ export const TicketProvider = ({ children }) => {
             if (!response.ok) {
                 // Kiểm tra nếu là lỗi 401 (Unauthorized)
                 if (response.status === 401) {
-                    logout();  // Gọi logout nếu lỗi 401
+                    const handleLogout = useLogout();
+                    handleLogout();  // Gọi logout nếu lỗi 401
                     navigate('/401');
                     throw new Error('Phiên làm việc đã hết. Vui lòng đăng nhập lại.');
                 }
@@ -85,10 +87,10 @@ export const TicketProvider = ({ children }) => {
 
             const data = await response.json(); // API trả về dữ liệu dạng JSON
             setTickets(data); // Lưu dữ liệu vào state
-        
+
             //--------------test----------------
-            console.log("ticket response" ,response);
-            console.log("ticket data",data);
+            console.log("ticket response", response);
+            console.log("ticket data", data);
         } catch (err) {
             setError(err.message);
         } finally {

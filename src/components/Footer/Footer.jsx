@@ -1,7 +1,7 @@
 import React from 'react'
 import './Footer.css'
 import { assets } from '../../assets/frontend_assets/assets';
-import plane from '../../assets/pictures/aeroplane.png'
+import plane from '../../assets/icons/aeroplane.png'
 
 export const Footer = () => {
   return (

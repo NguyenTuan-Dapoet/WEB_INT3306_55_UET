@@ -1,0 +1,54 @@
+.google-login {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: slideUp 0.5s ease;
+    gap: 0px;
+}
+
+.google-icon {
+    font-size: 30px;
+    margin-right: 12px; 
+    display: flex;
+    align-items: center;
+}
+
+.google-login .custom-google-login {
+    width: 100%;
+    background: rgb(214, 141, 204);
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    /* margin: 20px 0; */
+    padding: 15px 0px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Căn giữa biểu tượng và nội dung */
+}
+
+.google-login .custom-google-login:hover {
+    background: rgb(205, 94, 190);
+    transform: translateY(-5px);
+} 
+
+.google-login .custom-google-login:focus {
+    transform: scale(0.95);
+    background-color: rgba(231, 234, 233, 0.3);
+    box-shadow: 0 0 0 5px rgba(231, 234, 233, 0.3);
+}
+
+.google-login .google-error-message {
+    color: #EF5122;
+    font-size: 16px;
+    font-weight: 600;
+}

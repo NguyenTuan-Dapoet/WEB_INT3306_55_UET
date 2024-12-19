@@ -1,5 +1,5 @@
 import React from 'react'
-import aeroplane from '../../../assets/pictures/aeroplane.png'
+import aeroplane from '../../../assets/icons/aeroplane.png'
 import plane from '../../../assets/pictures/plane.png'
 import nature from '../../../assets/pictures/nature.mp4'
 import city_sky from '../../../assets/pictures/city-sky.mp4'
