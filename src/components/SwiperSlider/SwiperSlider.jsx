@@ -103,7 +103,7 @@ const SwiperSlider = () => {
             {popupOpen && selectedCity && (
                 <Popup
                     city={selectedCity}
-                    content={`Khám phá ${selectedCity.cityName}, một điểm đến tuyệt vời cho những ai yêu thích du lịch và trải nghiệm văn hóa đặc sắc. Với cảnh sắc thiên nhiên tuyệt đẹp, những món ăn phong phú và lịch sử văn hóa lâu đời, ${selectedCity.cityName} hứa hẹn sẽ mang đến cho bạn những trải nghiệm khó quên. Hãy đến và khám phá những địa danh nổi bật, hòa mình vào nhịp sống nơi đây và tận hưởng những khoảnh khắc thư giãn bên gia đình và bạn bè!`}
+                    content={`Explore ${selectedCity.cityName}, A great destination for those who love traveling and experiencing unique culture. With beautiful natural scenery, rich cuisine and a long cultural history, ${selectedCity.cityName} promises to bring you unforgettable experiences. Come and explore outstanding landmarks, immerse yourself in the rhythm of life here and enjoy relaxing moments with family and friends!`}
                     onClose={closePopup}
                 />
             )}

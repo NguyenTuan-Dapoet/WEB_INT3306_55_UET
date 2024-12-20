@@ -39,18 +39,45 @@
 // export default Error   
 
 
+// import React from 'react';
+// import './Error.css';
+// import { useNavigate } from 'react-router-dom';
+// import { useLogout } from '../Hook/useLogOut';
+
+// export const Error = ({ title, content }) => {
+//   const navigate = useNavigate();
+
+//   const onClose = () => {
+//     const logout = useLogout(); // Nhận hàm logout từ custom hook
+//     logout(); // Thực thi logout
+//     // navigate('/login'); // Điều hướng tới trang login
+//   };
+
+//   return (
+//     <div className="error-popup">
+//       <div className="error-content">
+//         <h2>{title}</h2>
+//         <p>{content}</p>
+//         <button className="error-close" onClick={onClose}>
+//           Log In
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Error;
+
+
 import React from 'react';
 import './Error.css';
-import { useNavigate } from 'react-router-dom';
 import { useLogout } from '../Hook/useLogOut';
 
 export const Error = ({ title, content }) => {
-  const navigate = useNavigate();
+  const logout = useLogout(); // Gọi useLogout trong thân component
 
   const onClose = () => {
-    const logout = useLogout(); // Nhận hàm logout từ custom hook
     logout(); // Thực thi logout
-    navigate('/login'); // Điều hướng tới trang login
   };
 
   return (

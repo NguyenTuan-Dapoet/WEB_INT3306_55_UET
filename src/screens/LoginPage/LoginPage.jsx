@@ -11,25 +11,41 @@ import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
 import GoogleLoginButton from './GoogleLoginButton';
 import { GoogleAuthContext } from '../../assets/api/GoogleAuthProvider';
+import { UserInfoContext } from '../../assets/api/UserInfoProvider';
+
 
 export const LoginPage = () => {
   const { api_isLogin, api_token, api_login, api_error } = useContext(AuthContext);
-  const { gg_isLogin, gg_token, authenticateWithGoogle, gg_error} = useContext(GoogleAuthContext);
+  const { gg_isLogin, gg_token, authenticateWithGoogle, gg_error } = useContext(GoogleAuthContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [usernameError, setUsernameError] = useState('');
+  const { userInfo, loading } = useContext(UserInfoContext);
+  
   const navigate = useNavigate();
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   // Khi token và status thay đổi, nếu đã đăng nhập thành công thì chuyển hướng luôn
+  
+  // useEffect(() => {
+  //   //nếu đăng nhập thành công và có token
+  //   if (
+  //       (api_isLogin === true && api_token)||  
+  //       (gg_isLogin === true && gg_token)
+  //   ) {
+  //     navigate('/home');
+  //   }
+  // }, [api_isLogin, api_token, gg_isLogin, gg_token ,navigate]);
+
   useEffect(() => {
     //nếu đăng nhập thành công và có token
-    if (
-        (api_isLogin === true && api_token)||  
-        (gg_isLogin === true && gg_token)
-    ) {
+    const savedToken = localStorage.getItem('app_token')
+    if (savedToken ) {
       navigate('/home');
     }
-  }, [api_isLogin, api_token, gg_isLogin, gg_token ,navigate]);
+  }, [api_isLogin, api_token, gg_isLogin, gg_token, navigate, userInfo]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -94,7 +110,7 @@ export const LoginPage = () => {
           <div className='google-box'>
             <GoogleLoginButton />
           </div>
-          
+
 
           <div className="signup-link">
             <p>

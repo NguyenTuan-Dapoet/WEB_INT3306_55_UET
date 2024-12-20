@@ -21,15 +21,15 @@ export const GoogleAuthProvider = ({ children }) => {
     useEffect(() => {
         if (gg_token !== null) {
             localStorage.setItem('app_token', gg_token);
-          } else {
+        } else {
             localStorage.removeItem('app_token');
-          }
-      
-          if (gg_isLogin !== false) {
+        }
+
+        if (gg_isLogin !== false) {
             localStorage.setItem('isLogin', gg_isLogin);
-          } else {
+        } else {
             localStorage.removeItem('isLogin');
-          }
+        }
     }, [gg_token, gg_isLogin]);
 
     const gg_logout = () => {
@@ -37,6 +37,9 @@ export const GoogleAuthProvider = ({ children }) => {
         setGgIsLogin(false);
         setGgLoading(false);
         setGgError(null);
+       
+        localStorage.removeItem('gg_token');
+    localStorage.removeItem('gg_isLogin');
     };
 
     const authenticateWithGoogle = async (credential) => {
@@ -61,9 +64,9 @@ export const GoogleAuthProvider = ({ children }) => {
         } finally {
             setGgLoading(false);
         }
-    }; 
+    };
 
-    
+
 
     return (
         <GoogleAuthContext.Provider

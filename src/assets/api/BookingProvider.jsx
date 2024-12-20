@@ -48,8 +48,8 @@ export const BookingProvider = ({ children }) => {
             // Kiểm tra nếu có lỗi 401 và logout người dùng
             if (!response.ok) {
                 if (response.status === 401) {
-                    handleLogout();  // Gọi logout nếu lỗi 401
-                    navigate('/401');
+                    // handleLogout();  // Gọi logout nếu lỗi 401
+                    // navigate('/401');
                     throw new Error('Phiên làm việc đã hết. Vui lòng đăng nhập lại.');
                 }
                 throw new Error('Failed to create booking');
@@ -65,7 +65,7 @@ export const BookingProvider = ({ children }) => {
     };
 
     return (
-        <BookingContext.Provider value={{ createBooking, loading, error, bookingResponse }}>
+        <BookingContext.Provider value={{ createBooking, loading, error, setError, bookingResponse, setBookingResponse }}>
             {children}
         </BookingContext.Provider>
     );

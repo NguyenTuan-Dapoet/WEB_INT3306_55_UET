@@ -13,29 +13,28 @@ const HelpPage = () => {
     question: "",
   });
 
-  const [showPopUp, setShowPopUp] = useState(false); // State cho PopUp
-  const [loading, setLoading] = useState(false); // Trạng thái loading
+  const [showPopUp, setShowPopUp] = useState(false); // State for PopUp
+  const [loading, setLoading] = useState(false); // Loading state
   const { userInfo } = useContext(UserInfoContext);
 
-
-  // Cập nhật formData từ userInfo nếu có
-    useEffect(() => {
-      if (userInfo) {
-        setFormData((prevState) => ({
-          ...prevState,
-          name: userInfo.fullName || "",
-          email: userInfo.username || "",
-        }));
-      }
-    }, [userInfo]);
+  // Update formData from userInfo if available
+  useEffect(() => {
+    if (userInfo) {
+      setFormData((prevState) => ({
+        ...prevState,
+        name: userInfo.fullName || "",
+        email: userInfo.username || "",
+      }));
+    }
+  }, [userInfo]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target; // Lấy name và value từ input
+    const { name, value } = e.target; // Get name and value from input
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const templateParams = {
       from_name: formData.name,
@@ -47,7 +46,7 @@ const HelpPage = () => {
     const templateID = "template_50wm155";
     const publicKey = "ndn-y3XhSgBgx7SN6";
 
-    setLoading(true); // Bắt đầu loading
+    setLoading(true); // Start loading
 
     emailjs
       .send(
@@ -63,11 +62,11 @@ const HelpPage = () => {
         },
         (error) => {
           console.log("FAILED...", error);
-          alert("Có lỗi xảy ra, vui lòng thử lại!");
+          alert("An error occurred. Please try again!");
         }
       )
       .finally(() => {
-        setLoading(false); // Kết thúc loading
+        setLoading(false); // End loading
       });
 
     setFormData({ name: "", email: "", question: "" });
@@ -75,33 +74,33 @@ const HelpPage = () => {
 
   const faqs = [
     {
-      question: "Làm thế nào để đặt vé máy bay?",
-      answer: "Bạn có thể truy cập trang chủ, chọn điểm đi, điểm đến và ngày bay để tìm kiếm chuyến bay.",
+      question: "How can I book a flight?",
+      answer: "You can visit the homepage, select your departure and destination points, and choose your travel date to search for flights.",
     },
     {
-      question: "Tôi có thể đổi ngày bay không?",
-      answer: "Có, bạn có thể đổi ngày bay thông qua mục 'Quản lý đặt chỗ' hoặc liên hệ tổng đài hỗ trợ.",
+      question: "Can I change my travel date?",
+      answer: "Yes, you can change your travel date through the 'Manage Booking' section or by contacting our support hotline.",
     },
     {
-      question: "Phương thức thanh toán nào được hỗ trợ?",
-      answer: "Qairline hỗ trợ thanh toán qua thẻ tín dụng, ví điện tử và chuyển khoản ngân hàng.",
+      question: "What payment methods are supported?",
+      answer: "Qairline supports payments via credit card, e-wallets, and bank transfers.",
     },
     {
-      question: "Làm sao để nhận hóa đơn VAT?",
-      answer: "Bạn vui lòng gửi yêu cầu qua email hỗ trợ hoặc gọi đến số hotline của chúng tôi.",
+      question: "How can I get a VAT invoice?",
+      answer: "Please send your request via our support email or contact our hotline for assistance.",
     },
   ];
 
   return (
     <div className="help-page">
-      <h1 className="help-title">Trung tâm Hỗ Trợ Qairline</h1>
+      <h1 className="help-title">Qairline Support Center</h1>
       {loading ? (
-        <LoadingState /> // Hiển thị khi đang loading
+        <LoadingState /> // Display while loading
       ) : (
         <>
           {/* FAQ Section */}
           <section className="faq-section">
-            <h2 className="section-title">Câu hỏi thường gặp</h2>
+            <h2 className="section-title">Frequently Asked Questions</h2>
             {faqs.map((item, index) => (
               <div key={index} className="faq-item">
                 <details>
@@ -114,7 +113,7 @@ const HelpPage = () => {
 
           {/* Contact Information */}
           <section className="contact-section">
-            <h2 className="section-title">Liên hệ hỗ trợ</h2>
+            <h2 className="section-title">Contact Support</h2>
             <div className="contact-info">
               <p><FaPhone /> Hotline: <strong>1900 123 456</strong></p>
               <p><FaEnvelope /> Email: <strong>support@qairline.com</strong></p>
@@ -123,12 +122,12 @@ const HelpPage = () => {
 
           {/* Inquiry Form */}
           <section className="form-section">
-            <h2 className="section-title">Gửi câu hỏi của bạn</h2>
+            <h2 className="section-title">Submit Your Inquiry</h2>
             <form onSubmit={handleSubmit}>
               <input
                 type="text"
                 name="name"
-                placeholder="Họ và tên"
+                placeholder="Full Name"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -137,7 +136,7 @@ const HelpPage = () => {
               <input
                 type="email"
                 name="email"
-                placeholder="Email của bạn"
+                placeholder="Your Email"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -145,20 +144,20 @@ const HelpPage = () => {
 
               <textarea
                 name="question"
-                placeholder="Nhập câu hỏi của bạn..."
+                placeholder="Enter your question..."
                 value={formData.question}
                 onChange={handleChange}
                 required
               />
 
-              <button type="submit">Gửi câu hỏi</button>
+              <button type="submit">Submit Inquiry</button>
             </form>
           </section>
 
           {showPopUp && (
             <PopUp
-              title={"Cảm ơn bạn!"}
-              content={"Câu hỏi đã được gửi thành công."}
+              title={"Thank you!"}
+              content={"Your question has been successfully submitted."}
             />
           )}
         </>

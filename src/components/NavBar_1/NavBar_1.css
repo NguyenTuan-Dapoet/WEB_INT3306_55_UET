@@ -184,7 +184,7 @@
     align-self: center;
     justify-content: center;
 
-    width: 250px;
+    width: auto;
 
     position: absolute;
     top: calc(100% + 5px);

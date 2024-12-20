@@ -87,25 +87,27 @@ function AuthProvider({ children }) {
   }, []);
 
   // Đồng bộ token và isLogin với localStorage
-  useEffect(() => {
-    if (api_token !== null) {
-      localStorage.setItem('app_token', api_token);
-    } else {
-      localStorage.removeItem('app_token');
-    }
+    useEffect(() => {
+      if (api_token !== null) {
+        localStorage.setItem('app_token', api_token);
+      } else {
+        localStorage.removeItem('app_token');
+      }
 
-    if (api_isLogin !== false) {
-      localStorage.setItem('isLogin', api_isLogin);
-    } else {
-      localStorage.removeItem('isLogin');
-    }
-  }, [api_token, api_isLogin]);
+      if (api_isLogin !== false) {
+        localStorage.setItem('isLogin', api_isLogin);
+      } else {
+        localStorage.removeItem('isLogin');
+      }
+    }, [api_token, api_isLogin]);
 
   const api_logout = () => {
     setApiToken(null);
     setApiIsLogin(false);
     setApiLoading(false);
     setApiError(null);
+    localStorage.removeItem('app_token');
+    localStorage.removeItem('isLogin');
   };
 
   // Hàm đăng nhập

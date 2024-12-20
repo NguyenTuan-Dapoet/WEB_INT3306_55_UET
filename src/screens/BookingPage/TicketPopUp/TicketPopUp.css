@@ -1,0 +1,40 @@
+.ticket-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    
+    display: flex;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 3; 
+}
+
+.ticket-popup .ticket-popup-content {
+    width: 400px;
+    height: 200px;
+    background: #fff;
+    border-radius: 10px;    
+    margin: auto;
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-popup .ticket-popup-close {
+    background-color: tomato;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+
+.ticket-popup .ticket-popup-close:hover {
+    background-color: #c82333;
+}

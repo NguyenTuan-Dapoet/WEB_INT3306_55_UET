@@ -83,6 +83,12 @@
   text-align: center;
 }
 
+
+.form-submit-error {
+  color: #ff0000;
+  font-size: 1rem;
+  margin-top: 5px;
+}
 @media screen and (max-width: 1200px) {
   .form-submit {
     padding: 0 16px 20px 16px;

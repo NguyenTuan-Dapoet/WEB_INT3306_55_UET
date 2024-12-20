@@ -102,7 +102,7 @@ export const ComposeTrip = ({ formType }) => {
             value={fromOption}
             onChange={handleFromChange}
             options={locationOptions}
-            placeholder="Khởi hành"
+            placeholder="Departure"
             styles={customStyles}
           />
 
@@ -126,7 +126,7 @@ export const ComposeTrip = ({ formType }) => {
             value={toOption}
             onChange={handleToChange}
             options={locationOptions}
-            placeholder="Điểm đến"
+            placeholder="Destination"
             styles={customStyles}
           />
 

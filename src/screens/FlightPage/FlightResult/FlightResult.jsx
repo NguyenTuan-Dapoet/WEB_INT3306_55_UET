@@ -62,9 +62,9 @@ export const FlightResult = () => {
   return (
     <div className='flight-page'>
 
-      <h2>Kết quả tìm kiếm chuyến bay:</h2>
+      <h2>Flight search results:</h2>
       {contextData.loading && <LoadingState />}
-      {!contextData.loading && displayError && <p className="error-message">Lỗi: {displayError}, tham khảo các chuyến sau:</p>}
+      {!contextData.loading && displayError && <p className="error-message">Error: {displayError}, Refer to the following flights:</p>}
 
       {/* Hiển thị danh sách chuyến bay */}
       {!contextData.loading && (

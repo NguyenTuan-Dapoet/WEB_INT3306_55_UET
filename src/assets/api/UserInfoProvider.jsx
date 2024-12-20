@@ -86,8 +86,8 @@ function UserInfoProvider({ children }) {
 
           if (!response.ok) {
             if (response.status === 401) {
-              const handleLogout = useLogout();
-              handleLogout();  // Gọi logout nếu lỗi 401
+              // const handleLogout = useLogout();
+              // handleLogout();  // Gọi logout nếu lỗi 401
               navigate('/401');
               throw new Error('Phiên làm việc đã hết. Vui lòng đăng nhập lại.');
             }

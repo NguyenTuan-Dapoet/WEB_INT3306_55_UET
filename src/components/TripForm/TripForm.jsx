@@ -37,7 +37,7 @@ export const TripForm = () => {
   const handleSubmit = () => {
     // Kiểm tra xem dữ liệu cần thiết đã được nhập hay chưa
     if (isError) {
-      setErrorMessage("Vui lòng nhập đầy đủ thông tin");
+      setErrorMessage("Please enter complete information");
       return;
     }
 

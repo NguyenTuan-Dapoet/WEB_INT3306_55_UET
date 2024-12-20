@@ -11,17 +11,17 @@ const ExplorePage = () => {
         <div className="explore-row">
             <div className="destinations">
                 <img src= {destination} alt="" />
-                <p className="title">Điểm đến</p>
+                <p className="title">Destination</p>
             </div>
             <div className="offers">
                 <img src= {offer} alt="" />
-                <p className="title">Ưu đãi</p>
+                <p className="title">Endow</p>
             </div>
         </div>
 
         <div className="explore-flight">
             <img src= {flight} alt="" />
-            <p className="title">Vé máy bay & lịch bay</p>
+            <p className="title">Airline tickets and flight schedules</p>
         </div>
     </div>
   );

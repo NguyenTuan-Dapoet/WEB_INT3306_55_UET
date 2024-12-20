@@ -15,7 +15,7 @@ import ExplorePage from './screens/ExplorePage/ExplorePage.jsx'
 import ClubPage from './screens/ClubPage/ClubPage.jsx'
 import HelpPage from './screens/HelpPage/HelpPage.jsx'
 import ContactPage from './screens/ContactPage/ContactPage.jsx'
-
+import Intro from './screens//ClubPage/Intro/Intro.jsx'
 // import { FlightSearchPage } from './screens/FlightSearch/FlightSearchPage.jsx'
 
 function App() {
@@ -37,6 +37,8 @@ function App() {
           <Route path="/help" element={<HelpPage/>} />
           <Route path="/contact" element={<ContactPage/>} />
           <Route path="/401" element={<Error/>} />
+          <Route path="/intro" element={<Intro/>} />
+
         </Routes>
       </div>
       <Footer />

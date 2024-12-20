@@ -77,8 +77,8 @@ export const TicketProvider = ({ children }) => {
             if (!response.ok) {
                 // Kiểm tra nếu là lỗi 401 (Unauthorized)
                 if (response.status === 401) {
-                    const handleLogout = useLogout();
-                    handleLogout();  // Gọi logout nếu lỗi 401
+                    // const handleLogout = useLogout();
+                    // handleLogout();  // Gọi logout nếu lỗi 401
                     navigate('/401');
                     throw new Error('Phiên làm việc đã hết. Vui lòng đăng nhập lại.');
                 }

@@ -218,9 +218,9 @@ export const NavBar_1 = () => {
     </div>
   );
 
-  // console.log("showUserMenu", showUserMenu);
-  // console.log("userInfo", userInfo);
-  // console.log("token", localStorage.getItem('app_token'));
+  console.log("showUserMenu", showUserMenu);
+  console.log("userInfo", userInfo);
+  console.log("token", localStorage.getItem('app_token'));
   console.log("api_islogin", api_isLogin);
   console.log("gg_islogin", gg_isLogin);
 
@@ -245,11 +245,9 @@ export const NavBar_1 = () => {
                         <div className='user-section-info'>
                           <h3>User Information</h3>
                           <ul>
-                            <li><strong>Id:</strong> {userInfo.id}</li>
                             <li><strong>Name:</strong> {userInfo.fullName}</li>
                             <li><strong>Email:</strong> {userInfo.username}</li>
                             <li><strong>Phone:</strong> {userInfo.phoneNumber}</li>
-                            <li><strong>Role:</strong> {userInfo.role}</li>
                           </ul>
                         </div>
                         <div className='user-section-action'>

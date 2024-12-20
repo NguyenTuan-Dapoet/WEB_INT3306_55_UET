@@ -85,12 +85,12 @@ export const SearchFlightProvider = ({ children }) => {
       
       const response = await fetch(api);
       if (!response.ok) {
-        throw new Error('Không tìm thấy chuyến bay phù hợp.');
+        throw new Error('No suitable flight found.');
       }
       const data = await response.json();
       setFlightList(data);
     } catch (err) {
-      setError(err.message || 'Đã có lỗi xảy ra khi tìm kiếm chuyến bay.');
+      setError(err.message || 'An error occurred while searching for flights  .');
     } finally {
       setLoading(false);
     }

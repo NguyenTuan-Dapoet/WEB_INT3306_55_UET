@@ -8,13 +8,15 @@ import PassengerClassSelect from '../../../components/PassengerClassSelect/Passe
 import CalendarComp from '../../../components/DateSelect/CalendarComp.jsx';
 import './BookingField.css';
 import { convertToDateInputFormat } from '../../../components/DateSelect/formatDateTime.jsx';
+import PopUp from '../../../components/PopUp/PopUp.jsx';
+import TicketPopUp from '../TicketPopUp/TicketPopUp.jsx';
 
 
 const BookingField = () => {
     const selectedFlight = JSON.parse(localStorage.getItem("selectedFlight"));
     const token = localStorage.getItem('app_token');
     const { userInfo } = useContext(UserInfoContext);
-    const { createBooking, loading, error, bookingResponse } = useContext(BookingContext);
+    const { createBooking, loading, error, setError, bookingResponse, setBookingResponse } = useContext(BookingContext);
 
     // Lấy dữ liệu hành khách từ Redux
     const passengers = useSelector((state) => state.trip.passengers);
@@ -44,6 +46,8 @@ const BookingField = () => {
     // console.log("passengers", passengers);
     console.log("human", human);
     console.log("bookingData", bookingData);
+    console.log("........bookingresonse", bookingResponse);
+
     // console.log("birthDate", birthDate);
     // console.log("dateOfBirth", human.dateOfBirth);
 
@@ -58,6 +62,7 @@ const BookingField = () => {
             ticketClass: passengers.classType
         };
 
+        setBookingResponse(null)
         setBookingData(updatedBookingData);
     }, [passengers, human]); // Chạy lại khi passengers hoặc human thay đổi
 
@@ -72,7 +77,7 @@ const BookingField = () => {
                 updatedHuman.lastName = '';
                 updatedHuman.lastName = `${value}. ${updatedHuman.lastName}`;
             }
-            
+
             updatedHuman.dateOfBirth = convertToDateInputFormat(birthDate); // Chuyển đổi định dạng
             return updatedHuman;
         });
@@ -88,6 +93,27 @@ const BookingField = () => {
 
         console.log("updatedBookingData", bookingData);
         createBooking(userInfo.id, selectedFlight.flightId, token, bookingData);
+
+        setHuman({
+            title: 'Mr',
+            firstAndMiddleName: '',
+            lastName: 'Mr. ',
+            dateOfBirth: '',
+            email: '',
+            phoneNumber: '',
+        });
+
+        setBookingData({
+            passengerName: '',
+            email: '',
+            phoneNumber: '',
+            totalPrices: '',
+            totalPeople: '',
+            ticketClass: '',
+        });
+
+        setError(null);
+        setBookingResponse(null);
     };
 
     return (
@@ -116,99 +142,108 @@ const BookingField = () => {
                             <div className="passenger-detail">
                                 <h3>Passenger Information</h3>
 
-                                <div className="booking-form">
-                                    <div className="booking-form-title">
-                                        <h4>Adult 1</h4>
-                                    </div>
-                                    <div className='booking-form-detail'>
-                                        <label> Title
-                                            <select
-                                                name="title"
-                                                value={human.title}
-                                                onChange={handleChange}
-                                                required
-                                            >
-                                                <option value="Mr">Mr</option>
-                                                <option value="Mrs">Mrs</option>
-                                                <option value="Ms">Ms</option>
-                                            </select>
-                                        </label>
-
-                                        <label>
-                                            <p>Last Name (e.g. Nguyen):</p>
-                                            <input
-                                                type="text"
-                                                name="lastName"
-                                                placeholder="Without title and punctuation"
-                                                value={human.lastName}
-                                                onChange={handleChange}
-                                                required
-                                            />
-                                        </label>
-
-                                        {/* Middle & First Name */}
-                                        <label>
-                                            <p>Middle & First Name (e.g. Thi Ngoc Anh):</p>
-                                            <input
-                                                type="text"
-                                                name="firstAndMiddleName"
-                                                placeholder="Without title and punctuation"
-                                                value={human.firstAndMiddleName}
-                                                onChange={handleChange}
-                                                required
-                                            />
-                                        </label>
-
-                                        <label>
-                                            <p>Phone number:</p>
-                                            <input
-                                                type="text"
-                                                name="phoneNumber"
-                                                value={human.phoneNumber}
-                                                onChange={handleChange}
-                                            />
-                                        </label>
-
-                                        <div className='birth-phone'>
-                                            <label>
-                                                <p>Date of Birth:</p>
-                                                <div 
-                                                    className="date-container"
-                                                    name="dateOfBirth"
-                                                >   
-                                                    <CalendarComp />
-                                                </div>
-                                            </label>
-
-                                            <label>
-                                                <p>Email:</p>
-                                                <input
-                                                    type="email"
-                                                    name="email"
-                                                    value={human.email}
+                                <form onSubmit={handleSubmit}>
+                                    <div className="booking-form">
+                                        {/* <div className="booking-form-title">
+                                            <h4>Adult 1</h4>
+                                        </div> */}
+                                        <div className='booking-form-detail'>
+                                            <label> Title
+                                                <select
+                                                    name="title"
+                                                    value={human.title}
                                                     onChange={handleChange}
+                                                    required
+                                                >
+                                                    <option value="Mr">Mr</option>
+                                                    <option value="Mrs">Mrs</option>
+                                                    <option value="Ms">Ms</option>
+                                                </select>
+                                            </label>
+                                            <label>
+                                                <p>Last Name (e.g. Nguyen):</p>
+                                                <input
+                                                    type="text"
+                                                    name="lastName"
+                                                    placeholder="Without title and punctuation"
+                                                    value={human.lastName}
+                                                    onChange={handleChange}
+                                                    required
                                                 />
                                             </label>
-                                        </div>
-
-                                        <label>
-                                            <p>Passenger select:</p>
-                                            <div className="book-passenger">
-                                                <PassengerClassSelect />
+                                            {/* Middle & First Name */}
+                                            <label>
+                                                <p>Middle & First Name (e.g. Thi Ngoc Anh):</p>
+                                                <input
+                                                    type="text"
+                                                    name="firstAndMiddleName"
+                                                    placeholder="Without title and punctuation"
+                                                    value={human.firstAndMiddleName}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </label>
+                                            <label>
+                                                <p>Phone number:</p>
+                                                <input
+                                                    type="text"
+                                                    name="phoneNumber"
+                                                    value={human.phoneNumber}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </label>
+                                            <div className='birth-phone'>
+                                                <label>
+                                                    <p>Date of Birth:</p>
+                                                    <div
+                                                        className="date-container"
+                                                        name="dateOfBirth"
+                                                    >
+                                                        <CalendarComp />
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <p>Email:</p>
+                                                    <input
+                                                        type="email"
+                                                        name="email"
+                                                        value={human.email}
+                                                        onChange={handleChange}
+                                                        required
+                                                    />
+                                                </label>
                                             </div>
-                                        </label>
+                                            <label>
+                                                <p>Passenger select:</p>
+                                                <div className="book-passenger">
+                                                    <PassengerClassSelect />
+                                                </div>
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
+
+                                    <div className='booking-submit'>
+                                        {/* <button onClick={handleSubmit} disabled={loading} className='booking-submit-button'> */}
+                                        <button type="submit" disabled={loading} className='booking-submit-button'>
+                                            {loading ? 'Booking...' : 'Confirm Booking'}
+                                        </button>
+
+                                        {error && <p className="error-message">{error}</p>}
+                                        {/* {bookingResponse && <p className="success-message">Booking Successful!: {bookingResponse}</p>} */}
+                                        {bookingResponse && <TicketPopUp/>}
+                                    </div>
+                                </form>
                             </div>
 
-                            <div className='booking-submit'>
+                            {/* <div className='booking-submit'>
                                 <button onClick={handleSubmit} disabled={loading} className='booking-submit-button'>
                                     {loading ? 'Booking...' : 'Confirm Booking'}
                                 </button>
 
                                 {error && <p className="error-message">{error}</p>}
                                 {bookingResponse && <p className="success-message">Booking Successful! ID: {bookingResponse}</p>}
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 
@@ -247,7 +282,6 @@ const BookingField = () => {
                         </button>
 
                         {error && <p className="error-message">{error}</p>}
-                        {bookingResponse && <p className="success-message">Booking Successful! ID: {bookingResponse}</p>}
                     </div>
                 </div>
             </div>
