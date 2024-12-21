@@ -21,7 +21,7 @@ const NewsPopUp = ({ title, content, onClose }) => {
           dangerouslySetInnerHTML={{ __html: sanitizedContent }}
         />
         <button className="news-popup-close" onClick={onClose}>
-          Đóng
+          Close
         </button>
       </div>
     </div>
