@@ -10,3 +10,19 @@ p.recent-search {
     flex-direction: column;
     margin-top: 30px;
 }
+
+.flight-page .error-message {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.flight-page-notification {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    font-size: 16px;
+}

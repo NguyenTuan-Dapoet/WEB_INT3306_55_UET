@@ -3,10 +3,14 @@ import './FlightCard.css';
 import { PiAirplaneInFlightLight } from "react-icons/pi";
 import { MdFlightTakeoff } from "react-icons/md";
 import { RiFlightLandLine } from "react-icons/ri";
+import { covertDateTimeFromDB } from '../../../components/DateSelect/formatDateTime.jsx';
 
 export const FlightCard = (
   { flightNumber, origin, destination, departure, arrival, price, availableSeats, handleBooking }
 ) => {
+  const { date: formattedDateDepature, time: formattedTimeDeparture } = covertDateTimeFromDB(departure);
+  const { date: formattedDateArrival, time: formattedTimeArrival } = covertDateTimeFromDB(arrival);
+
   return (
     <div className="flight-card">
       <p className="flight-number">Flight {flightNumber}</p>
@@ -14,7 +18,8 @@ export const FlightCard = (
         <div className="flight-info">
           <div className="section">
             <p><strong>{origin}</strong> </p>
-            <p className='flight-time'>{departure}</p>
+            <p className='flight-time'>{formattedDateDepature}</p>
+            <p className='flight-time'>{formattedTimeDeparture}</p>
           </div>
           <div className="section flight-icons">
             <MdFlightTakeoff />
@@ -23,7 +28,8 @@ export const FlightCard = (
           </div>
           <div className="section">
             <p><strong>{destination}</strong></p>
-            <p className='flight-time'>{arrival}</p>
+            <p className='flight-time'>{formattedDateArrival}</p>
+            <p className='flight-time'>{formattedTimeArrival}</p>
           </div>
         </div>
 
@@ -31,7 +37,7 @@ export const FlightCard = (
 
         <div className='price-seats'>
           <p>starting from</p>
-          <p className="flight-price">{price.toLocaleString()} VND</p>
+          <p className="flight-price">USD {price.toLocaleString()}</p>
           <p className="flight-seats">Available Seats: {availableSeats}</p>
         </div>
       </div>

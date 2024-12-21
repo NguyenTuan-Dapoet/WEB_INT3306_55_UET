@@ -12,7 +12,12 @@ export const Footer = () => {
             <a href="#">Qairline</a>
             <img src={plane} />
           </div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis et incidunt vero, repellendus deserunt iste tempore esse delectus accusantium deleniti ea praesentium illum rem veniam nulla cupiditate facilis quidem. Excepturi!</p>
+          <p>QAirline is dedicated to providing safe, reliable,
+            and comfortable travel experiences. With a passion for
+            excellence and a focus on customer satisfaction, we connect
+            you to the world with care and efficiency.
+            Thank you for choosing QAirline as your travel partner.</p>
+          <h4>QAirline – Elevating Every Journey.</h4>
           <div className="footer-social-icons">
             <img src={assets.facebook_icon} alt="" />
             <img src={assets.twitter_icon} alt="" />
@@ -39,8 +44,8 @@ export const Footer = () => {
           </ul>
         </div>
       </div>
-      <hr/>
-      <p className='footer-copyright'>Copyright 2024 @ UETVNU.com - All Right Reserved</p>
+      <hr />
+      <p className='footer-copyright'>Copyright © 2024 QAirline UETVNU.com - All Right Reserved</p>
     </div>
   )
 }

@@ -43,7 +43,11 @@
   align-items: center;
   gap: 10px;
   margin: 20px 0;
-  font-size: 1.2rem;
+  font-size: 18px;
+}
+
+.contact-info svg {
+  font-size: 24px;
 }
 
 /* Form liên hệ */

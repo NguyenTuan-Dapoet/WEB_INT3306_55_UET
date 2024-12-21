@@ -250,7 +250,7 @@ const BookingField = () => {
                     <div className='booking-price-container'>
                         <p>Please make your payment within the next <strong>20 minutes</strong> to keep this session active.</p>
                         <div className='price-details'>
-                            <h3 className='price-details-header'>Price Details (VND)</h3>
+                            <h3 className='price-details-header'>Price Details (USD)</h3>
                             <div className='price-details-item'>
                                 <ul>
                                     <li>
@@ -259,18 +259,18 @@ const BookingField = () => {
                                     </li>
                                     <li>
                                         <span>{passengers.adult} Adult</span>
-                                        <span>{passengers.adult * selectedFlight.price} VND</span>
+                                        <span>USD {passengers.adult * selectedFlight.price}</span>
                                     </li>
                                     {passengers.children > 0 &&
                                         <li>
                                             <span>{passengers.children} Children</span>
-                                            <span>{passengers.children * selectedFlight.price * 0.5} VND</span>
+                                            <span>USD {passengers.children * selectedFlight.price * 0.5}</span>
                                         </li>
                                     }
                                 </ul>
                                 <div className='total-price'>
                                     <h4>Total Price: </h4>
-                                    <span>{bookingData.totalPrices} VND</span>
+                                    <span>USD {bookingData.totalPrices}</span>
                                 </div>
                             </div>
                         </div>
