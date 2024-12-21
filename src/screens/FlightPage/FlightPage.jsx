@@ -4,7 +4,7 @@ import FlightResult from './FlightResult/FlightResult.jsx'
 
 function FlightPage() {
     return (
-        <div>
+        <div className='flight-page-container'>
             <FlightResult/>
         </div>
     )

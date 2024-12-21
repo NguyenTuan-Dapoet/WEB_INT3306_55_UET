@@ -27,17 +27,32 @@ export const DateTimeComponent = ({ departureTime }) => {
 
 export const convertToDateInputFormat = (date) => {
     if (!date || typeof date !== 'string') {
-        console.error("Invalid date input:", date); 
-        return ""; 
+        console.error("Invalid date input:", date);
+        return "";
     }
 
-    const [day, month, year] = date.split('/'); 
+    const [day, month, year] = date.split('/');
 
     if (!day || !month || !year) {
-        console.error("Incomplete date format:", date); 
-        return ""; 
+        console.error("Incomplete date format:", date);
+        return "";
     }
 
     // Trả về chuỗi theo định dạng yyyy-MM-dd
     return `${year}-${month}-${day}`;
 };
+
+export const covertDateTimeFromDB = (string) => {
+    const departureTime = string;
+    const [datePart, timePart] = departureTime.split("T");
+
+    // Xử lý Date
+    const [year, month, day] = datePart.split("-");
+    const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    const date = `${day} ${monthNames[parseInt(month, 10) - 1]} ${year}`;
+
+    // Xử lý Time
+    const time = timePart.substring(0, 5); // Chỉ lấy giờ và phút
+    console.log(date, time);
+    return { date, time }
+}

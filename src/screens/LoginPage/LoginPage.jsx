@@ -21,14 +21,14 @@ export const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [usernameError, setUsernameError] = useState('');
   const { userInfo, loading } = useContext(UserInfoContext);
-  
+
   const navigate = useNavigate();
   useEffect(() => {
     localStorage.clear();
   }, []);
 
   // Khi token và status thay đổi, nếu đã đăng nhập thành công thì chuyển hướng luôn
-  
+
   // useEffect(() => {
   //   //nếu đăng nhập thành công và có token
   //   if (
@@ -42,7 +42,7 @@ export const LoginPage = () => {
   useEffect(() => {
     //nếu đăng nhập thành công và có token
     const savedToken = localStorage.getItem('app_token')
-    if (savedToken ) {
+    if (savedToken) {
       navigate('/home');
     }
   }, [api_isLogin, api_token, gg_isLogin, gg_token, navigate, userInfo]);
@@ -107,10 +107,16 @@ export const LoginPage = () => {
             </button>
           </div>
 
+
+          <div className="login-divider">
+            <div className="login-divider-line"></div>
+            <span>Or</span>
+            <div className="login-divider-line"></div>
+          </div>
+
           <div className='google-box'>
             <GoogleLoginButton />
           </div>
-
 
           <div className="signup-link">
             <p>

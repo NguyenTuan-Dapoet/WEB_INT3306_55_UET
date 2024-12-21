@@ -130,7 +130,7 @@
 
 .login-box .login:focus {
     transform: scale(0.95);
-    background-color: rgba(231, 234, 233, 0.3);
+    background-color: rgba(141, 214, 171, 0.547);
     box-shadow: 0 0 0 5px rgba(231, 234, 233, 0.3);
 }
 
@@ -191,6 +191,29 @@ p.token-value {
     font-size: 16px;
     font-weight: 600;
 }
+
+.login-divider {
+    display: flex;
+    text-align: center;
+    margin: 20px 0;
+    align-items: center;
+    width: 100%;
+}
+
+.login-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--text-color);
+    place-content: center;
+    margin: 0 5px;
+}
+
+.login-divider span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+}
+
 
 @keyframes fadeIn {
     from {

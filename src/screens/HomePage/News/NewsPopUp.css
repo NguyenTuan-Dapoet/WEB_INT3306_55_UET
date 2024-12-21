@@ -25,12 +25,10 @@
 .news-popup-container .news-popup-title {
     font-size: 24px;
     margin-bottom: 30px;
-    color: var(--primary-color);
 }
 
 .news-popup-container .news-popup-content {
     font-size: 16px;
-    color: var(--text-color);
     line-height: 1.5;
     margin-bottom: 30px;
 }
@@ -41,11 +39,6 @@
 
 .news-popup-container .news-popup-content .ql-size-large {
     font-size: 18px;
-    color: var(--text-color) !important;
-}
-
-.news-popup-container .news-popup-content h2.ql-align-justify span {
-    color: var(--text-color) !important;
 }
 
 .news-popup-close {

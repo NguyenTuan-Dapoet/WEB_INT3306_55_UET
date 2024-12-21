@@ -4,7 +4,7 @@
 // Nếu có lỗi, lỗi sẽ được cập nhật vào dữ liệu chuyến bay đã lưu trong localStorage.
 // Cuối cùng, giao diện sẽ hiển thị danh sách chuyến bay 
 // từ dữ liệu có trong localStorage hoặc context, và thông báo lỗi nếu có.
- 
+
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -64,7 +64,7 @@ export const FlightResult = () => {
 
       <h2>Flight search results:</h2>
       {contextData.loading && <LoadingState />}
-      {!contextData.loading && displayError && <p className="error-message">Error: {displayError}, Refer to the following flights:</p>}
+      {!contextData.loading && displayError && <p className="error-message">Error: {displayError} Refer to the following flights:</p>}
 
       {/* Hiển thị danh sách chuyến bay */}
       {!contextData.loading && (
@@ -73,21 +73,21 @@ export const FlightResult = () => {
             <ul className='flight-result-list'>
               {displayFlightList.map((flight) => (
                 <li key={flight.flightId}>
-                  <FlightCard 
-                    flightNumber= {flight.flightNumber}
-                    origin= {flight.origin.locationName}
+                  <FlightCard
+                    flightNumber={flight.flightNumber}
+                    origin={flight.origin.locationName}
                     destination={flight.destination.locationName}
                     departure={flight.departureTime}
-                    arrival= {flight.arrivalTime}
+                    arrival={flight.arrivalTime}
                     price={flight.price}
                     availableSeats={flight.availableSeats}
-                    handleBooking={() => handleSubmitButton(flight)} 
+                    handleBooking={() => handleSubmitButton(flight)}
                   />
                 </li>
               ))}
             </ul>
           ) : (
-            <p>Không có chuyến bay nào.</p>
+            <p className='flight-page-notification'>No flights available. </p>
           )}
         </>
       )}

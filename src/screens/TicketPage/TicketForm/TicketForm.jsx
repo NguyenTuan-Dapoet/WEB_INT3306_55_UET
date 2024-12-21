@@ -39,13 +39,14 @@ const TicketForm = ({ ticket, onCancelSuccess }) => {
     updateTimer(); // Chạy lần đầu tiên
     return () => clearInterval(timerInterval); // Cleanup interval khi unmount
   }, [createAt, ticket.status]);
+  
 
   const handleCancelTicket = () => {
     if (ticket.bookingId && token) {
       cancelBooking(ticket.bookingId, token); // Gọi hàm với bookingId và token
       onCancelSuccess();
     } else {
-      alert("Vui lòng nhập Booking ID và đảm bảo bạn đã đăng nhập!");
+      alert("Please enter your Booking ID and make sure you are logged in!");
     }
   };
 
@@ -59,7 +60,7 @@ const TicketForm = ({ ticket, onCancelSuccess }) => {
     // ) : (
     <div className="ticket">
       <div className="ticket-barcode">
-        {/* <img src={verticalBarcode} alt="barcode" /> */}
+        <img src={verticalBarcode} alt="barcode" />
       </div>
 
       <div className="ticket-left">
@@ -108,11 +109,11 @@ const TicketForm = ({ ticket, onCancelSuccess }) => {
             </div>
           </div>
         </div>
-        
+
         <div className="info-section-row">
-            <span>Booking number: </span>
-            <span>{ticket.bookingNumber}</span>
-          </div>
+          <span>Booking number: </span>
+          <span>{ticket.bookingNumber}</span>
+        </div>
 
       </div>
 
