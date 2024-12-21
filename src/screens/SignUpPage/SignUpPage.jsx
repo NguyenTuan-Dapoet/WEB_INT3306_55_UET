@@ -23,7 +23,7 @@ export const SignUpPage = () => {
   useEffect(() => {
     if (status === 'succeeded') {
       // Nếu đăng ký thành công, chuyển hướng sang trang home
-      setSuccessMessage('Đăng ký thành công!');
+      setSuccessMessage('Signup successfull!');
       setErrorMessage('');
       // console.log('Dữ liệu trả về:', data);
       //   navigate('/home');
@@ -48,12 +48,12 @@ export const SignUpPage = () => {
     if (response) {
       console.log('Dữ liệu trả về:', response);  // Hiển thị dữ liệu trả về từ server trong console
       // Thông báo đăng ký thành công
-      setSuccessMessage('Đăng ký thành công!');
+      setSuccessMessage('Signup successfull!');
       setErrorMessage('');
       //   navigate('/home');
     } else {
       setSuccessMessage('');
-      setErrorMessage(error || 'Có lỗi khi đăng ký!');
+      setErrorMessage(error || 'Something go wrong!');
     }
   };
 

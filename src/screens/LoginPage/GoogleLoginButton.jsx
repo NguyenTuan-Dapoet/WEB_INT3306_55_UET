@@ -47,7 +47,7 @@ const GoogleLoginButton = () => {
                 console.log('Google User Token:', tokenResponse.access_token);
             },
             onError: () => {
-                console.error('Đăng nhập Google thất bại.');
+                console.error('Failed to login with Google.');
             },
         }
     );
@@ -56,7 +56,7 @@ const GoogleLoginButton = () => {
         <div className="google-login">
             <button className="custom-google-login" onClick={() => login()}>
                 <span className='google-icon'><FcGoogle /></span>
-                <p className='google-button-content'>Đăng nhập với Google</p>
+                <p className='google-button-content'>Login with Google</p>
             </button>
             {gg_error && <p className="error-message">{gg_error}</p>}
             {/* <p className="google-error-message">test lỗi</p> */}
